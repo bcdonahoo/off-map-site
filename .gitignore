@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local secrets reference — never commit
+Import.md
+
+# claude local session settings — never commit
+.claude/settings.local.json
