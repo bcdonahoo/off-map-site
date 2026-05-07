@@ -49,13 +49,13 @@ export function Nav() {
               >
                 <Link
                   href="/services/gtm-stack"
-                  className="block px-3 py-2 text-sm rounded-md text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-white/5 transition-colors"
+                  className="block px-3 py-2 text-sm rounded-md text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-black/5 transition-colors"
                 >
                   GTM Stack Build
                 </Link>
                 <Link
                   href="/services/managed-retainer"
-                  className="block px-3 py-2 text-sm rounded-md text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-white/5 transition-colors"
+                  className="block px-3 py-2 text-sm rounded-md text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-black/5 transition-colors"
                 >
                   Managed Retainer
                 </Link>

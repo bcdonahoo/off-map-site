@@ -47,7 +47,7 @@ export function HowItWorks() {
         {/* Eyebrow */}
         <p
           className="mb-4 text-xs font-semibold uppercase tracking-widest"
-          style={{ color: 'var(--color-text-muted)', fontFamily: 'monospace' }}
+          style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
         >
           How It Works
         </p>
@@ -86,7 +86,7 @@ export function HowItWorks() {
                 className="mb-3 text-2xl font-bold"
                 style={{
                   color: 'var(--color-text-dark)',
-                  fontFamily: 'monospace',
+                  fontFamily: 'var(--font-mono)',
                   opacity: 0.25,
                 }}
               >

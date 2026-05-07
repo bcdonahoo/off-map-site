@@ -20,7 +20,7 @@ export default function BlogPage() {
         {/* Eyebrow */}
         <p
           className="mb-4 text-xs font-semibold uppercase tracking-widest"
-          style={{ color: 'var(--color-accent)', fontFamily: 'monospace' }}
+          style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
         >
           Blog
         </p>
@@ -60,7 +60,7 @@ export default function BlogPage() {
                 >
                   <p
                     className="mb-2 text-xs"
-                    style={{ color: 'var(--color-text-muted)', fontFamily: 'monospace' }}
+                    style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
                   >
                     {post.date}
                   </p>
