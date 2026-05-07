@@ -97,7 +97,7 @@ export function Footer() {
           <a
             href="mailto:hello@off-map.com"
             className="text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors"
-            style={{ fontFamily: 'monospace' }}
+            style={{ fontFamily: 'var(--font-mono)' }}
           >
             hello@off-map.com
           </a>

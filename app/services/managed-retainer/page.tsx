@@ -106,7 +106,7 @@ export default function ManagedRetainerPage() {
         <div className="mx-auto max-w-4xl">
           <p
             className="mb-4 text-xs font-semibold uppercase tracking-widest"
-            style={{ color: 'var(--color-text-muted)', fontFamily: 'monospace' }}
+            style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
           >
             What&apos;s Included
           </p>
@@ -160,7 +160,7 @@ export default function ManagedRetainerPage() {
         <div className="mx-auto max-w-2xl">
           <p
             className="mb-4 text-xs font-semibold uppercase tracking-widest"
-            style={{ color: 'var(--color-accent)', fontFamily: 'monospace' }}
+            style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
           >
             FAQ
           </p>

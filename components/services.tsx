@@ -27,7 +27,7 @@ export function Services() {
         {/* Eyebrow */}
         <p
           className="mb-4 text-xs font-semibold uppercase tracking-widest"
-          style={{ color: 'var(--color-accent)', fontFamily: 'monospace' }}
+          style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
         >
           Services
         </p>

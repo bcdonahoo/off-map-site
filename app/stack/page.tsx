@@ -99,7 +99,7 @@ export default function StackPage() {
         {/* Eyebrow */}
         <p
           className="mb-4 text-xs font-semibold uppercase tracking-widest"
-          style={{ color: 'var(--color-accent)', fontFamily: 'monospace' }}
+          style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
         >
           The Stack
         </p>
@@ -129,7 +129,7 @@ export default function StackPage() {
             <div key={layer}>
               <p
                 className="mb-6 text-xs font-semibold uppercase tracking-widest"
-                style={{ color: 'var(--color-text-muted)', fontFamily: 'monospace' }}
+                style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
               >
                 {layer}
               </p>
@@ -147,7 +147,7 @@ export default function StackPage() {
                       className="mb-2 font-semibold"
                       style={{
                         color: 'var(--color-text-primary)',
-                        fontFamily: 'monospace',
+                        fontFamily: 'var(--font-mono)',
                       }}
                     >
                       {name}

@@ -1,20 +1,25 @@
 import type { Metadata } from 'next'
-import { Syne, DM_Sans } from 'next/font/google'
+import localFont from 'next/font/local'
+import { JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { Nav } from '@/components/nav'
 import { Footer } from '@/components/footer'
 import { PostHogProviderWrapper } from '@/components/posthog-provider'
 
-const syne = Syne({
-  subsets: ['latin'],
-  weight: ['700', '800'],
-  variable: '--font-display',
+const inter = localFont({
+  src: [
+    { path: '../public/fonts/Inter-VariableFont_opsz_wght.ttf', style: 'normal' },
+    { path: '../public/fonts/Inter-Italic-VariableFont_opsz_wght.ttf', style: 'italic' },
+  ],
+  variable: '--font-inter',
+  display: 'swap',
 })
 
-const dmSans = DM_Sans({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   weight: ['400', '500', '600'],
-  variable: '--font-body',
+  variable: '--font-jetbrains',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -29,13 +34,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${syne.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body>
         <PostHogProviderWrapper>
           <Nav />
           {children}
           <Footer />
         </PostHogProviderWrapper>
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
       </body>
     </html>
   )

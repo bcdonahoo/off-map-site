@@ -64,7 +64,7 @@ export function CTAForm() {
     <div className="mx-auto max-w-6xl text-center">
       <p
         className="mb-4 text-xs font-semibold uppercase tracking-widest"
-        style={{ color: 'var(--color-accent)', fontFamily: 'monospace' }}
+        style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
       >
         Get Started
       </p>
