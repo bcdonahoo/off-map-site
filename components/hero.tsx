@@ -12,7 +12,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            'radial-gradient(circle, rgba(245,245,243,0.04) 1px, transparent 1px)',
+            'radial-gradient(circle, rgba(15,23,42,0.05) 1px, transparent 1px)',
           backgroundSize: '28px 28px',
         }}
       />
@@ -21,7 +21,7 @@ export function Hero() {
         {/* Eyebrow */}
         <p
           className="mb-6 text-xs font-semibold uppercase tracking-widest"
-          style={{ color: 'var(--color-accent)', fontFamily: 'monospace' }}
+          style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
         >
           GTM Engineering
         </p>

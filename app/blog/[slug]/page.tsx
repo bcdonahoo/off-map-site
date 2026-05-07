@@ -46,7 +46,7 @@ export default async function BlogPostPage({ params }: Props) {
         {/* Meta */}
         <p
           className="mb-3 text-xs"
-          style={{ color: 'var(--color-text-muted)', fontFamily: 'monospace' }}
+          style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
         >
           {post.date}
           {post.author ? ` · ${post.author}` : ''}

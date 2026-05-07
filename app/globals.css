@@ -49,17 +49,25 @@
 }
 
 :root {
-  /* Off-Map design tokens */
-  --color-bg: #0A0A0A;
-  --color-bg-surface: #141414;
-  --color-bg-light: #F9F9F7;
-  --color-text-primary: #F5F5F3;
-  --color-text-muted: #6B7280;
-  --color-text-dark: #111111;
-  --color-accent: #00C2A8;
-  --color-accent-dim: rgba(0, 194, 168, 0.125);
-  --color-border: #1F1F1F;
-  --color-border-light: #E5E5E3;
+  /* Off-Map design tokens — light theme */
+  --color-bg: #FFFFFF;
+  --color-bg-surface: #F8FAFC;
+  --color-bg-light: #F1F5F9;
+  --color-text-primary: #0F172A;
+  --color-text-muted: #64748B;
+  --color-text-dark: #0F172A;
+  --color-accent: #2563EB;
+  --color-accent-hover: #1D4ED8;
+  --color-accent-dim: rgba(37, 99, 235, 0.10);
+  --color-border: #E2E8F0;
+  --color-border-light: #E2E8F0;
+  --color-border-strong: #CBD5E1;
+  --color-error: #f87171;
+
+  /* Font families */
+  --font-display: var(--font-inter);
+  --font-body: var(--font-inter);
+  --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", Menlo, monospace;
 
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);

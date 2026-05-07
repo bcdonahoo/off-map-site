@@ -23,7 +23,7 @@ export function StackPreview() {
           <div>
             <p
               className="mb-4 text-xs font-semibold uppercase tracking-widest"
-              style={{ color: 'var(--color-accent)', fontFamily: 'monospace' }}
+              style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
             >
               The Stack
             </p>
@@ -63,7 +63,7 @@ export function StackPreview() {
                   background: 'var(--color-bg-surface)',
                   border: '1px solid var(--color-border)',
                   color: 'var(--color-text-muted)',
-                  fontFamily: 'monospace',
+                  fontFamily: 'var(--font-mono)',
                 }}
               >
                 {tool}

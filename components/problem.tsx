@@ -23,7 +23,7 @@ export function Problem() {
         {/* Eyebrow */}
         <p
           className="mb-4 text-xs font-semibold uppercase tracking-widest"
-          style={{ color: 'var(--color-text-muted)', fontFamily: 'monospace' }}
+          style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
         >
           The Problem
         </p>
