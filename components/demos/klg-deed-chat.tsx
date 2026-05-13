@@ -10,7 +10,14 @@ type ToolCall = { name: string; label: string }
 type DisplayMessage =
   | { kind: 'user'; content: string }
   | { kind: 'assistant'; content: string; toolCalls: ToolCall[] }
+  | { kind: 'tool'; label: string; done: boolean }
   | { kind: 'loading' }
+
+type SSEEvent =
+  | { type: 'tool_start'; label: string }
+  | { type: 'tool_done'; label: string }
+  | { type: 'done'; text: string; toolCalls: ToolCall[]; messages: MessageParam[] }
+  | { type: 'error'; error: string }
 
 const GREETING = "Hi! I'm KLG's intake assistant. What deed or property issue can I help you with today?"
 
@@ -23,6 +30,8 @@ export function KlgDeedChat() {
   const [loading, setLoading] = useState(false)
   const messagesRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
+  // Index into display where the current turn's items start (after user message)
+  const turnStartRef = useRef<number>(0)
 
   useEffect(() => {
     const el = messagesRef.current
@@ -40,8 +49,13 @@ export function KlgDeedChat() {
     ]
 
     setInput('')
-    setDisplay((prev) => [...prev, { kind: 'user', content: text }, { kind: 'loading' }])
     setLoading(true)
+
+    // Snapshot how many items exist before this turn's user message
+    setDisplay((prev) => {
+      turnStartRef.current = prev.length + 1 // after the user message we're about to add
+      return [...prev, { kind: 'user', content: text }, { kind: 'loading' }]
+    })
 
     try {
       const res = await fetch('/api/klg_deed/chat', {
@@ -50,20 +64,58 @@ export function KlgDeedChat() {
         body: JSON.stringify({ messages: newApiMessages }),
       })
 
-      const data = await res.json() as { text?: string; toolCalls?: ToolCall[]; messages?: MessageParam[]; error?: string }
-      if (!res.ok) throw new Error(data.error ?? `HTTP ${res.status}`)
+      // Non-2xx before streaming starts = JSON error body
+      if (!res.ok) {
+        const data = await res.json() as { error?: string }
+        throw new Error(data.error ?? `HTTP ${res.status}`)
+      }
 
-      // Store the full history including internal tool calls so Claude
-      // remembers the session ID and all prior context on the next turn.
-      setApiMessages(data.messages!)
-      setDisplay((prev) => [
-        ...prev.filter((m) => m.kind !== 'loading'),
-        { kind: 'assistant', content: data.text!, toolCalls: data.toolCalls! },
-      ])
+      const reader = res.body!.getReader()
+      const decoder = new TextDecoder()
+      let buffer = ''
+
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+
+        buffer += decoder.decode(value, { stream: true })
+        const lines = buffer.split('\n')
+        buffer = lines.pop() ?? ''
+
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue
+          let event: SSEEvent
+          try { event = JSON.parse(line.slice(6)) } catch { continue }
+
+          if (event.type === 'tool_start') {
+            setDisplay((prev) => [
+              ...prev.filter((m) => m.kind !== 'loading'),
+              { kind: 'tool', label: event.label, done: false },
+              { kind: 'loading' },
+            ])
+          } else if (event.type === 'tool_done') {
+            setDisplay((prev) =>
+              prev.map((m) =>
+                m.kind === 'tool' && m.label === event.label && !m.done
+                  ? { ...m, done: true }
+                  : m
+              )
+            )
+          } else if (event.type === 'done') {
+            setApiMessages(event.messages)
+            setDisplay((prev) => [
+              ...prev.slice(0, turnStartRef.current),
+              { kind: 'assistant', content: event.text, toolCalls: event.toolCalls },
+            ])
+          } else if (event.type === 'error') {
+            throw new Error(event.error)
+          }
+        }
+      }
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Something went wrong. Please try again.'
       setDisplay((prev) => [
-        ...prev.filter((m) => m.kind !== 'loading'),
+        ...prev.slice(0, turnStartRef.current),
         { kind: 'assistant', content: `⚠ ${msg}`, toolCalls: [] },
       ])
     } finally {
@@ -143,6 +195,9 @@ export function KlgDeedChat() {
           if (msg.kind === 'user') {
             return <ChatBubble key={i} role="user" content={msg.content} />
           }
+          if (msg.kind === 'tool') {
+            return <ToolCallPill key={i} label={msg.label} done={msg.done} />
+          }
           return (
             <div key={i}>
               {msg.toolCalls.map((tc, j) => (
@@ -188,9 +243,7 @@ export function KlgDeedChat() {
       </form>
 
       {/* Footer */}
-      <div
-        className="shrink-0 px-4 pb-2.5 flex items-center justify-between"
-      >
+      <div className="shrink-0 px-4 pb-2.5 flex items-center justify-between">
         <span
           className="text-[10px]"
           style={{ color: 'var(--color-text-muted)', opacity: 0.4, fontFamily: 'var(--font-mono)' }}

@@ -488,6 +488,7 @@ Follow this sequence:
 13. Close warmly
 
 Rules:
+- IMPORTANT: Make only ONE tool call per response. After a tool call completes, always send a text message to the user before making the next tool call. Never chain multiple tool calls in a single turn.
 - Be conversational and empathetic — one question at a time
 - Never give legal advice or interpret Texas law for the client
 - The attorney-client disclaimer belongs only in the final confirmation message, not throughout the conversation
@@ -496,6 +497,12 @@ Rules:
 // ── Route handler ──────────────────────────────────────────────────────────
 
 export const maxDuration = 60
+
+type SSEEvent =
+  | { type: 'tool_start'; label: string }
+  | { type: 'tool_done'; label: string }
+  | { type: 'done'; text: string; toolCalls: { name: string; label: string }[]; messages: Anthropic.MessageParam[] }
+  | { type: 'error'; error: string }
 
 export async function POST(req: NextRequest) {
   if (!process.env.ANTHROPIC_API_KEY) {
@@ -513,51 +520,78 @@ export async function POST(req: NextRequest) {
   }
 
   const messages = body.messages ?? []
-  const toolCallsMade: { name: string; label: string }[] = []
-  let current: Anthropic.MessageParam[] = messages
+  const encoder = new TextEncoder()
 
-  for (let i = 0; i < 12; i++) {
-    const response = await anthropic.messages.create({
-      model: 'claude-sonnet-4-6',
-      max_tokens: 1024,
-      system: SYSTEM_PROMPT,
-      tools: TOOLS,
-      messages: current,
-    })
+  const stream = new ReadableStream({
+    async start(controller) {
+      const send = (event: SSEEvent) =>
+        controller.enqueue(encoder.encode(`data: ${JSON.stringify(event)}\n\n`))
 
-    if (response.stop_reason === 'end_turn') {
-      const text = response.content
-        .filter((b): b is Anthropic.TextBlock => b.type === 'text')
-        .map((b) => b.text)
-        .join('')
-      const finalMessages: Anthropic.MessageParam[] = [
-        ...current,
-        { role: 'assistant', content: text },
-      ]
-      return NextResponse.json({ text, toolCalls: toolCallsMade, messages: finalMessages })
-    }
+      try {
+        const toolCallsMade: { name: string; label: string }[] = []
+        let current: Anthropic.MessageParam[] = messages
 
-    if (response.stop_reason === 'tool_use') {
-      const toolUseBlocks = response.content.filter(
-        (b): b is Anthropic.ToolUseBlock => b.type === 'tool_use'
-      )
-      const toolResults: Anthropic.ToolResultBlockParam[] = []
+        for (let i = 0; i < 12; i++) {
+          const response = await anthropic.messages.create({
+            model: 'claude-sonnet-4-6',
+            max_tokens: 1024,
+            system: SYSTEM_PROMPT,
+            tools: TOOLS,
+            messages: current,
+          })
 
-      for (const block of toolUseBlocks) {
-        toolCallsMade.push({ name: block.name, label: TOOL_LABELS[block.name] ?? block.name })
-        const result = await executeTool(block.name, block.input as Record<string, unknown>)
-        toolResults.push({ type: 'tool_result', tool_use_id: block.id, content: JSON.stringify(result) })
+          if (response.stop_reason === 'end_turn') {
+            const text = response.content
+              .filter((b): b is Anthropic.TextBlock => b.type === 'text')
+              .map((b) => b.text)
+              .join('')
+            send({
+              type: 'done',
+              text,
+              toolCalls: toolCallsMade,
+              messages: [...current, { role: 'assistant', content: text }],
+            })
+            break
+          }
+
+          if (response.stop_reason === 'tool_use') {
+            const toolUseBlocks = response.content.filter(
+              (b): b is Anthropic.ToolUseBlock => b.type === 'tool_use'
+            )
+            const toolResults: Anthropic.ToolResultBlockParam[] = []
+
+            for (const block of toolUseBlocks) {
+              const label = TOOL_LABELS[block.name] ?? block.name
+              send({ type: 'tool_start', label })
+              const result = await executeTool(block.name, block.input as Record<string, unknown>)
+              toolCallsMade.push({ name: block.name, label })
+              send({ type: 'tool_done', label })
+              toolResults.push({ type: 'tool_result', tool_use_id: block.id, content: JSON.stringify(result) })
+            }
+
+            current = [
+              ...current,
+              { role: 'assistant', content: response.content },
+              { role: 'user', content: toolResults },
+            ]
+          } else {
+            send({ type: 'error', error: `Unexpected stop reason: ${response.stop_reason}` })
+            break
+          }
+        }
+      } catch (err) {
+        send({ type: 'error', error: err instanceof Error ? err.message : 'Unknown error' })
+      } finally {
+        controller.close()
       }
+    },
+  })
 
-      current = [
-        ...current,
-        { role: 'assistant', content: response.content },
-        { role: 'user', content: toolResults },
-      ]
-    } else {
-      break
-    }
-  }
-
-  return NextResponse.json({ error: 'Max iterations reached' }, { status: 500 })
+  return new Response(stream, {
+    headers: {
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache',
+      'Connection': 'keep-alive',
+    },
+  })
 }
