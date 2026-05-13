@@ -258,10 +258,10 @@ const TOOLS: Anthropic.Tool[] = [
 
 // ── Tool executor ──────────────────────────────────────────────────────────
 
-function sbCheck<T>(result: { data: T | null; error: { message: string } | null }, context: string): T {
+function sbCheck<T>(result: { data: T; error: { message: string } | null }, context: string): NonNullable<T> {
   if (result.error) throw new Error(`[supabase] ${context}: ${result.error.message}`)
-  if (result.data === null) throw new Error(`[supabase] ${context}: no data returned`)
-  return result.data
+  if (result.data === null || result.data === undefined) throw new Error(`[supabase] ${context}: no data returned`)
+  return result.data as NonNullable<T>
 }
 
 async function executeTool(name: string, input: Record<string, unknown>): Promise<unknown> {
