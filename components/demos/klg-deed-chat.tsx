@@ -120,7 +120,6 @@ export function KlgDeedChat() {
       ])
     } finally {
       setLoading(false)
-      inputRef.current?.focus()
     }
   }
 
@@ -220,7 +219,6 @@ export function KlgDeedChat() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
-          disabled={loading}
           placeholder="Describe your property issue…"
           rows={1}
           className="flex-1 resize-none rounded-xl px-4 py-2.5 text-sm leading-relaxed outline-none transition-colors"
@@ -230,6 +228,7 @@ export function KlgDeedChat() {
             color: 'var(--color-text-primary)',
             maxHeight: 120,
             overflowY: 'auto',
+            opacity: loading ? 0.5 : 1,
           }}
         />
         <button
