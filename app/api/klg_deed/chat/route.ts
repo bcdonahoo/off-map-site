@@ -471,6 +471,8 @@ Rules:
 
 // ── Route handler ──────────────────────────────────────────────────────────
 
+export const maxDuration = 60
+
 export async function POST(req: NextRequest) {
   let body: { messages?: Anthropic.MessageParam[] }
   try {
@@ -497,7 +499,11 @@ export async function POST(req: NextRequest) {
         .filter((b): b is Anthropic.TextBlock => b.type === 'text')
         .map((b) => b.text)
         .join('')
-      return NextResponse.json({ text, toolCalls: toolCallsMade })
+      const finalMessages: Anthropic.MessageParam[] = [
+        ...current,
+        { role: 'assistant', content: text },
+      ]
+      return NextResponse.json({ text, toolCalls: toolCallsMade, messages: finalMessages })
     }
 
     if (response.stop_reason === 'tool_use') {
