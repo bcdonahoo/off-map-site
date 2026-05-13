@@ -258,6 +258,12 @@ const TOOLS: Anthropic.Tool[] = [
 
 // ── Tool executor ──────────────────────────────────────────────────────────
 
+function sbCheck<T>(result: { data: T | null; error: { message: string } | null }, context: string): T {
+  if (result.error) throw new Error(`[supabase] ${context}: ${result.error.message}`)
+  if (result.data === null) throw new Error(`[supabase] ${context}: no data returned`)
+  return result.data
+}
+
 async function executeTool(name: string, input: Record<string, unknown>): Promise<unknown> {
   const supabase = createServerSupabaseClient()
 
@@ -265,7 +271,7 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
     case 'start_intake': {
       const sessionId = randomUUID()
       const now = new Date().toISOString()
-      await supabase.from('intake_sessions').insert({
+      const result = await supabase.from('intake_sessions').insert({
         sessionId,
         tenantId: 'klg',
         createdAt: now,
@@ -277,6 +283,7 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
         documents: {},
         assessment: {},
       })
+      if (result.error) throw new Error(`[supabase] start_intake insert: ${result.error.message}`)
       return { sessionId, status: 'active' }
     }
 
@@ -288,8 +295,10 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
         hasCurrentDeed, hasSurvey, hasTitleInsurance, hasCorrespondence, hasCourtDocs,
       } = input
 
-      const { data: row } = await supabase.from('intake_sessions').select('client,property,dispute,documents').eq('sessionId', sessionId).single()
-      if (!row) return { error: 'Session not found' }
+      const row = sbCheck(
+        await supabase.from('intake_sessions').select('client,property,dispute,documents').eq('sessionId', sessionId).single(),
+        `record_dispute_info select ${sessionId}`
+      )
 
       const client = {
         ...(row.client ?? {}),
@@ -321,27 +330,34 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
         ...(hasCourtDocs != null && { hasCourtDocs }),
       }
 
-      await supabase.from('intake_sessions').update({ client, property, dispute, documents, updatedAt: new Date().toISOString() }).eq('sessionId', sessionId)
+      const updateResult = await supabase.from('intake_sessions').update({ client, property, dispute, documents, updatedAt: new Date().toISOString() }).eq('sessionId', sessionId)
+      if (updateResult.error) throw new Error(`[supabase] record_dispute_info update: ${updateResult.error.message}`)
       return { saved: true }
     }
 
     case 'classify_dispute': {
       const { sessionId, description } = input as { sessionId: string; description: string }
-      const { data: row } = await supabase.from('intake_sessions').select('dispute').eq('sessionId', sessionId).single()
+      const row = sbCheck(
+        await supabase.from('intake_sessions').select('dispute').eq('sessionId', sessionId).single(),
+        `classify_dispute select ${sessionId}`
+      )
       const type = classifyDispute(description)
-      await supabase.from('intake_sessions').update({
+      const updateResult = await supabase.from('intake_sessions').update({
         dispute: { ...(row?.dispute ?? {}), type, description: (row?.dispute as Record<string, unknown>)?.description ?? description },
         updatedAt: new Date().toISOString(),
       }).eq('sessionId', sessionId)
+      if (updateResult.error) throw new Error(`[supabase] classify_dispute update: ${updateResult.error.message}`)
       return { disputeType: type, label: DISPUTE_LABELS[type], suggestedQuestions: DISPUTE_QUESTIONS[type] }
     }
 
     case 'assess_complexity': {
       const { sessionId } = input as { sessionId: string }
-      const { data: row } = await supabase.from('intake_sessions').select('*').eq('sessionId', sessionId).single()
-      if (!row) return { error: 'Session not found' }
+      const row = sbCheck(
+        await supabase.from('intake_sessions').select('*').eq('sessionId', sessionId).single(),
+        `assess_complexity select ${sessionId}`
+      )
       const result = scoreComplexity(row as Record<string, unknown>)
-      await supabase.from('intake_sessions').update({
+      const updateResult = await supabase.from('intake_sessions').update({
         assessment: {
           complexityScore: result.score,
           complexityLevel: result.level,
@@ -350,12 +366,16 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
         },
         updatedAt: new Date().toISOString(),
       }).eq('sessionId', sessionId)
+      if (updateResult.error) throw new Error(`[supabase] assess_complexity update: ${updateResult.error.message}`)
       return result
     }
 
     case 'request_documents': {
       const { sessionId } = input as { sessionId: string }
-      const { data: row } = await supabase.from('intake_sessions').select('dispute').eq('sessionId', sessionId).single()
+      const row = sbCheck(
+        await supabase.from('intake_sessions').select('dispute').eq('sessionId', sessionId).single(),
+        `request_documents select ${sessionId}`
+      )
       const type = ((row?.dispute as Record<string, unknown>)?.type as DisputeType) ?? 'other'
       const docs = DOCUMENT_LISTS[type] ?? DOCUMENT_LISTS.other
       return {
@@ -367,8 +387,10 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
 
     case 'generate_case_summary': {
       const { sessionId } = input as { sessionId: string }
-      const { data: row } = await supabase.from('intake_sessions').select('*').eq('sessionId', sessionId).single()
-      if (!row) return { error: 'Session not found' }
+      const row = sbCheck(
+        await supabase.from('intake_sessions').select('*').eq('sessionId', sessionId).single(),
+        `generate_case_summary select ${sessionId}`
+      )
 
       const client = (row.client ?? {}) as Record<string, string>
       const property = (row.property ?? {}) as Record<string, string>
@@ -416,9 +438,10 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
         `Factors:        ${assessment?.reasoning ?? 'None'}`,
       ].join('\n')
 
-      await supabase.from('intake_sessions').update({
+      const summaryResult = await supabase.from('intake_sessions').update({
         summaryId, outcomeType: 'async_review', updatedAt: new Date().toISOString(),
       }).eq('sessionId', sessionId)
+      if (summaryResult.error) throw new Error(`[supabase] generate_case_summary update: ${summaryResult.error.message}`)
 
       const intakeEmail = process.env.KLG_INTAKE_EMAIL ?? 'intake@kellylegalgroup.com'
       console.error(`[klg-intake] BRIEF → ${intakeEmail}\n${brief}`)
@@ -429,9 +452,10 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
     case 'submit_case': {
       const { sessionId } = input as { sessionId: string }
       const caseReference = `KLG-${randomUUID().slice(0, 8).toUpperCase()}`
-      await supabase.from('intake_sessions').update({
+      const submitResult = await supabase.from('intake_sessions').update({
         status: 'submitted', caseReference, updatedAt: new Date().toISOString(),
       }).eq('sessionId', sessionId)
+      if (submitResult.error) throw new Error(`[supabase] submit_case update: ${submitResult.error.message}`)
       return { caseReference, message: `Case ${caseReference} submitted successfully.` }
     }
 
@@ -474,6 +498,13 @@ Rules:
 export const maxDuration = 60
 
 export async function POST(req: NextRequest) {
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return NextResponse.json({ error: 'ANTHROPIC_API_KEY is not set' }, { status: 500 })
+  }
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    return NextResponse.json({ error: 'Supabase env vars are not set (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)' }, { status: 500 })
+  }
+
   let body: { messages?: Anthropic.MessageParam[] }
   try {
     body = await req.json()

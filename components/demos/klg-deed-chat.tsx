@@ -50,20 +50,21 @@ export function KlgDeedChat() {
         body: JSON.stringify({ messages: newApiMessages }),
       })
 
-      if (!res.ok) throw new Error(`HTTP ${res.status}`)
-      const data = await res.json() as { text: string; toolCalls: ToolCall[]; messages: MessageParam[] }
+      const data = await res.json() as { text?: string; toolCalls?: ToolCall[]; messages?: MessageParam[]; error?: string }
+      if (!res.ok) throw new Error(data.error ?? `HTTP ${res.status}`)
 
       // Store the full history including internal tool calls so Claude
       // remembers the session ID and all prior context on the next turn.
-      setApiMessages(data.messages)
+      setApiMessages(data.messages!)
       setDisplay((prev) => [
         ...prev.filter((m) => m.kind !== 'loading'),
-        { kind: 'assistant', content: data.text, toolCalls: data.toolCalls },
+        { kind: 'assistant', content: data.text!, toolCalls: data.toolCalls! },
       ])
-    } catch {
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Something went wrong. Please try again.'
       setDisplay((prev) => [
         ...prev.filter((m) => m.kind !== 'loading'),
-        { kind: 'assistant', content: 'Sorry, something went wrong. Please try again.', toolCalls: [] },
+        { kind: 'assistant', content: `⚠ ${msg}`, toolCalls: [] },
       ])
     } finally {
       setLoading(false)
