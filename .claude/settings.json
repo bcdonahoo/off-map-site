@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(npx -y @modelcontextprotocol/server-github --version)",
-      "mcp__github__search_users"
+      "mcp__github__search_users",
+      "Write"
     ]
   }
 }

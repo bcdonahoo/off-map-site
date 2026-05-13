@@ -1,0 +1,201 @@
+{
+  "meta": {
+    "firm": "Kelly Legal Group",
+    "firmTagline": "Austin Property & Real Estate Law",
+    "userName": "Sarah H.",
+    "userInitials": "SH"
+  },
+  "scenarios": [
+    {
+      "id": "simple",
+      "label": "Simple Case",
+      "sublabel": "New fence · Boundary Review",
+      "outcome": {
+        "type": "paywall",
+        "title": "KLG Boundary Review",
+        "description": "Title opinion + formal demand letter, delivered in 3–5 business days.",
+        "price": "$149",
+        "cta": "Unlock My Report →"
+      },
+      "messages": [
+        {
+          "id": "s1",
+          "role": "user",
+          "content": "Hi — I'm hoping you can help me. My neighbor just put up a fence along our back property line, and I'm pretty sure it's about 3 feet inside my property.",
+          "delayMs": 1000
+        },
+        {
+          "id": "s2",
+          "role": "tool_call",
+          "name": "check_tx_property_law",
+          "label": "Reviewing Texas Property Code…",
+          "delayMs": 700
+        },
+        {
+          "id": "s3",
+          "role": "assistant",
+          "content": "I can definitely help with that. Two quick questions: how long has the fence been up — and do you have a copy of your property survey?",
+          "delayMs": 500
+        },
+        {
+          "id": "s4",
+          "role": "user",
+          "content": "He put it up about two months ago. And yes, I have the survey from when I bought the house — done in 2017.",
+          "delayMs": 2000
+        },
+        {
+          "id": "s5",
+          "role": "tool_call",
+          "name": "lookup_klg_services",
+          "label": "Checking KLG service catalog…",
+          "delayMs": 600
+        },
+        {
+          "id": "s6",
+          "role": "assistant",
+          "content": "Good news — this is a pretty clear-cut situation. Texas law is on your side here: a fence that went up two months ago carries no adverse possession risk, and a current survey locks your boundary in.\n\nKLG can prepare a Boundary Review Report — a formal title opinion plus a demand letter that most neighbors take seriously the moment it arrives. Want me to get that started?",
+          "delayMs": 400
+        },
+        {
+          "id": "s7",
+          "role": "user",
+          "content": "Yes — what exactly does the report include?",
+          "delayMs": 2200
+        },
+        {
+          "id": "s8",
+          "role": "tool_call",
+          "name": "lookup_klg_services",
+          "label": "Retrieving service details…",
+          "delayMs": 600
+        },
+        {
+          "id": "s9",
+          "role": "assistant",
+          "content": "The Boundary Review Report includes:\n\n• Title opinion confirming your property line against the 2017 survey\n• Formal demand letter citing Texas Property Code §5.021\n• Documentation suitable for Travis County records if needed\n\nKLG turns this around in **3–5 business days** for **$149**. Last thing — what's your property address so I can pull the parcel?",
+          "delayMs": 400
+        },
+        {
+          "id": "s10",
+          "role": "user",
+          "content": "3412 Bouldin Ave, Austin TX 78704",
+          "delayMs": 2400
+        },
+        {
+          "id": "s11",
+          "role": "tool_call",
+          "name": "check_parcel_data",
+          "label": "Pulling Travis County parcel data…",
+          "delayMs": 600
+        },
+        {
+          "id": "s12",
+          "role": "assistant",
+          "content": "Parcel confirmed. Once you complete checkout, KLG begins the review immediately. You'll receive an email with a download link when your documents are ready — typically within 3 business days.",
+          "delayMs": 400
+        }
+      ]
+    },
+    {
+      "id": "complex",
+      "label": "Complex Case",
+      "sublabel": "Old fence · Attorney Consult",
+      "outcome": {
+        "type": "calendar",
+        "title": "30-Min Property Consultation",
+        "description": "KLG reviews your deed, survey, and HOA letter before the call. You'll have a clear path forward by the end.",
+        "slots": [
+          "Thu, May 14 · 2:00 PM CT",
+          "Fri, May 15 · 10:00 AM CT",
+          "Fri, May 15 · 3:30 PM CT"
+        ],
+        "cta": "Book with KLG →"
+      },
+      "messages": [
+        {
+          "id": "c1",
+          "role": "user",
+          "content": "Hi — I need some help. I have a property line dispute with my neighbor. There's an old fence along my back yard, and he's claiming the land on his side of it is legally his.",
+          "delayMs": 1000
+        },
+        {
+          "id": "c2",
+          "role": "tool_call",
+          "name": "check_tx_property_law",
+          "label": "Reviewing Texas Property Code…",
+          "delayMs": 700
+        },
+        {
+          "id": "c3",
+          "role": "assistant",
+          "content": "I can help you work through this. How long has the fence been there — and did this dispute come up recently or has it been building for a while?",
+          "delayMs": 500
+        },
+        {
+          "id": "c4",
+          "role": "user",
+          "content": "The fence has been there since before I bought the house in 2017. My neighbor just sent me a letter last week saying he has some kind of legal right to the land — claims he has an old survey that backs him up.",
+          "delayMs": 2000
+        },
+        {
+          "id": "c5",
+          "role": "tool_call",
+          "name": "check_adverse_possession",
+          "label": "Reviewing adverse possession threshold (Tex. Civ. Prac. §16.026)…",
+          "delayMs": 700
+        },
+        {
+          "id": "c6",
+          "role": "assistant",
+          "content": "That's an important detail. Under Texas law, someone who has openly used land for **10 or more years** under a 'claim of right' can petition for adverse possession — and a fence in place before 2017 likely clears that threshold.\n\nTwo more questions: has your HOA been involved at all? And do you know roughly how old your neighbor's survey is?",
+          "delayMs": 400
+        },
+        {
+          "id": "c7",
+          "role": "user",
+          "content": "Yes — the HOA sent me a letter about the fence last month too. And my neighbor's survey is from 1998, which conflicts with mine from 2017.",
+          "delayMs": 2200
+        },
+        {
+          "id": "c8",
+          "role": "tool_call",
+          "name": "check_adverse_possession",
+          "label": "Analyzing conflicting surveys and HOA involvement…",
+          "delayMs": 600
+        },
+        {
+          "id": "c9",
+          "role": "tool_call",
+          "name": "lookup_klg_attorneys",
+          "label": "Finding available KLG property attorneys…",
+          "delayMs": 900
+        },
+        {
+          "id": "c10",
+          "role": "assistant",
+          "content": "This has three things working against you at once:\n\n1. **Adverse possession** — 10+ years in place clears the Texas threshold, and your neighbor knows it\n2. **Conflicting surveys** — 1998 vs. your 2017 boundary creates a title dispute that a demand letter alone won't resolve\n3. **HOA involvement** — their letter affects how any resolution gets recorded with the county\n\nYou need an attorney to review your deed, the 1998 survey, and the HOA correspondence together. KLG handles exactly this. Want me to find you an opening this week?",
+          "delayMs": 400
+        },
+        {
+          "id": "c11",
+          "role": "user",
+          "content": "Yes, please.",
+          "delayMs": 2400
+        },
+        {
+          "id": "c12",
+          "role": "tool_call",
+          "name": "check_klg_calendar",
+          "label": "Checking KLG attorney availability…",
+          "delayMs": 700
+        },
+        {
+          "id": "c13",
+          "role": "assistant",
+          "content": "I found a few openings with KLG's property team this week. The **30-minute consultation** includes a document pre-review — bring your deed, your 2017 survey, and the HOA letter. You'll have a clear path forward by the end of the call.",
+          "delayMs": 400
+        }
+      ]
+    }
+  ]
+}
