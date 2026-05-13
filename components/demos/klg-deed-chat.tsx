@@ -21,11 +21,12 @@ export function KlgDeedChat() {
   const [apiMessages, setApiMessages] = useState<MessageParam[]>([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
-  const scrollRef = useRef<HTMLDivElement>(null)
+  const messagesRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
+    const el = messagesRef.current
+    if (el) el.scrollTop = el.scrollHeight
   }, [display])
 
   async function handleSubmit(e: FormEvent) {
@@ -136,7 +137,7 @@ export function KlgDeedChat() {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 flex flex-col gap-3 py-4 overflow-y-auto">
+      <div ref={messagesRef} className="flex-1 flex flex-col gap-3 py-4 overflow-y-auto">
         {display.map((msg, i) => {
           if (msg.kind === 'loading') {
             return <ChatBubble key={`loading-${i}`} role="assistant" content="" isTyping />
@@ -153,7 +154,6 @@ export function KlgDeedChat() {
             </div>
           )
         })}
-        <div ref={scrollRef} className="h-0" />
       </div>
 
       {/* Input */}
