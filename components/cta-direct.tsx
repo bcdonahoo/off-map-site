@@ -20,17 +20,18 @@ export function CTADirect() {
           fontFamily: 'var(--font-display)',
         }}
       >
-        Ready to build your GTM system?
+        Find out what is actually broken.
       </h2>
       <p
         className="mx-auto mb-10 max-w-[480px] text-sm leading-relaxed"
         style={{ color: 'var(--color-text-muted)' }}
       >
-        Thirty minutes. We scope the build, align on your ICP, and tell you
-        exactly what the system will cost and what it will generate.
+        Start with a $350 Off-Map Audit. Sixty minutes, a one-page brief in 72
+        hours, and one move to make next. If it is worth more, we will talk
+        about what comes after.
       </p>
       <Link
-        href="/book"
+        href="/services/audit"
         onClick={() =>
           posthog.capture('cta_clicked', {
             variant: 'direct',
@@ -43,7 +44,7 @@ export function CTADirect() {
         }
         style={{ background: 'var(--color-accent)' }}
       >
-        Book a Discovery Call →
+        Get an Audit →
       </Link>
     </div>
   )

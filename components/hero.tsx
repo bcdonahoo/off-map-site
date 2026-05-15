@@ -1,6 +1,10 @@
 import Link from 'next/link'
 import { buttonVariants } from '@/components/ui/button'
 
+// TODO: Wire PostHog A/B test for hero tagline variants (flag: hero-tagline-variant).
+// Variant A (current, locked): "AI redrew GTM. / We help you build for what's next."
+// Variants B-D documented in SITE_COPY.md. Track CTA clicks to /services/audit and /book.
+
 export function Hero() {
   return (
     <section
@@ -23,7 +27,7 @@ export function Hero() {
           className="mb-6 text-xs font-semibold uppercase tracking-widest"
           style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
         >
-          GTM Engineering
+          GTM Consulting
         </p>
 
         {/* Headline */}
@@ -34,9 +38,9 @@ export function Hero() {
             fontFamily: 'var(--font-display)',
           }}
         >
-          Pipeline built by machines.
+          AI redrew GTM.
           <br />
-          Closed by you.
+          We help you build for what&apos;s next.
         </h1>
 
         {/* Subhead */}
@@ -44,28 +48,40 @@ export function Hero() {
           className="mx-auto mb-10 max-w-[560px] text-lg leading-relaxed"
           style={{ color: 'var(--color-text-muted)' }}
         >
-          Off-Map designs and operates AI-powered outbound systems — Clay, n8n,
-          Instantly, and the Anthropic API — that generate qualified meetings
-          without your team doing manual research or outreach.
+          The old GTM playbooks were written for a world that&apos;s gone, and
+          nobody&apos;s written the new ones yet. Off-Map works with services firms
+          and early-stage founders to build the pipelines, offers, and sales motions
+          that fit the business you actually run, in the world we are actually in.
         </p>
 
-        {/* CTA */}
-        <div className="mb-12">
+        {/* Primary CTA */}
+        <div className="mb-4">
           <Link
-            href="/book"
+            href="/services/audit"
             className={
               buttonVariants({ size: 'lg' }) +
               ' !text-[var(--color-bg)] font-semibold px-8 py-3 text-base'
             }
             style={{ background: 'var(--color-accent)' }}
           >
-            Book a Discovery Call →
+            Start with a $350 Audit →
+          </Link>
+        </div>
+
+        {/* Secondary CTA */}
+        <div className="mb-12">
+          <Link
+            href="/book"
+            className="text-sm transition-opacity hover:opacity-70"
+            style={{ color: 'var(--color-text-muted)' }}
+          >
+            Or book a discovery call
           </Link>
         </div>
 
         {/* Trust signals */}
         <div className="flex flex-wrap items-center justify-center gap-6">
-          {['No paid ads', 'No manual research', 'Results in 30 days'].map(
+          {['Senior operator', 'No copy-paste playbooks', 'Solo by design'].map(
             (signal) => (
               <div
                 key={signal}

@@ -23,9 +23,9 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Off-Map | GTM Engineering',
+  title: 'Off-Map | GTM Consulting',
   description:
-    'Off-Map builds and operates AI-powered outbound systems that generate qualified pipeline for B2B companies.',
+    'AI redrew GTM. Off-Map works with services firms and early-stage founders to build the pipelines, offers, and sales motions that fit the business you actually run.',
 }
 
 export default function RootLayout({

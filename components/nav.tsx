@@ -48,26 +48,32 @@ export function Nav() {
                 }}
               >
                 <Link
-                  href="/services/gtm-stack"
+                  href="/services/audit"
                   className="block px-3 py-2 text-sm rounded-md text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-black/5 transition-colors"
                 >
-                  GTM Stack Build
+                  The Audit
                 </Link>
                 <Link
-                  href="/services/managed-retainer"
+                  href="/services/sprint"
                   className="block px-3 py-2 text-sm rounded-md text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-black/5 transition-colors"
                 >
-                  Managed Retainer
+                  Pipeline Sprint
+                </Link>
+                <Link
+                  href="/services/fractional"
+                  className="block px-3 py-2 text-sm rounded-md text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-black/5 transition-colors"
+                >
+                  Fractional GTM
                 </Link>
               </div>
             </div>
           </div>
 
           <Link
-            href="/stack"
+            href="/approach"
             className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors"
           >
-            Stack
+            Approach
           </Link>
 
           <Link
@@ -104,31 +110,38 @@ export function Nav() {
       <div
         className="md:hidden overflow-hidden transition-all duration-200"
         style={{
-          maxHeight: menuOpen ? '300px' : '0',
+          maxHeight: menuOpen ? '400px' : '0',
           borderTop: menuOpen ? '1px solid var(--color-border)' : 'none',
         }}
       >
         <div className="px-6 py-4 flex flex-col gap-4">
           <Link
-            href="/services/gtm-stack"
+            href="/services/audit"
             className="text-sm text-[var(--color-text-muted)]"
             onClick={() => setMenuOpen(false)}
           >
-            GTM Stack Build
+            The Audit
           </Link>
           <Link
-            href="/services/managed-retainer"
+            href="/services/sprint"
             className="text-sm text-[var(--color-text-muted)]"
             onClick={() => setMenuOpen(false)}
           >
-            Managed Retainer
+            Pipeline Sprint
           </Link>
           <Link
-            href="/stack"
+            href="/services/fractional"
             className="text-sm text-[var(--color-text-muted)]"
             onClick={() => setMenuOpen(false)}
           >
-            Stack
+            Fractional GTM
+          </Link>
+          <Link
+            href="/approach"
+            className="text-sm text-[var(--color-text-muted)]"
+            onClick={() => setMenuOpen(false)}
+          >
+            Approach
           </Link>
           <Link
             href="/book"

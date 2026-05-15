@@ -3,54 +3,42 @@ import Link from 'next/link'
 import { buttonVariants } from '@/components/ui/button'
 
 export const metadata: Metadata = {
-  title: 'Managed GTM Retainer | Off-Map',
+  title: 'The Off-Map Audit | Off-Map',
   description:
-    'Off-Map runs your outbound pipeline end-to-end. Enriched lists, personalized sequences, agentic research, weekly reporting.',
+    'A sharp outside read on your GTM. 60 minutes live, a 1-page brief in 72 hours, a follow-up two weeks later to see what stuck.',
 }
 
-const included = [
+const deliverables = [
   {
-    label: 'Weekly enriched prospect lists',
-    body: 'Every Monday: a fresh set of in-market accounts sourced from intent signals, job changes, and trigger events — enriched and ready to sequence.',
+    label: '60-minute working session',
+    body: 'Live, recorded, yours to keep. We walk your GTM end to end. ICP, offer, pipeline, sales process. No filler.',
   },
   {
-    label: 'AI-personalized sequence copy',
-    body: 'Claude-generated research context for each account, translated into a multi-step email sequence. Written to your ICP, your voice, your offer.',
+    label: 'The Off-Map Brief (1 to 2 pages, 72 hours)',
+    body: 'The one thing working. The one thing broken. The one move to make next. Specific, concrete, written like an operator would write it.',
   },
   {
-    label: 'Human review gate before every send',
-    body: 'Nothing goes out without a human seeing it. Slack-based approval workflow — you or your team reviews, edits, and approves before launch.',
-  },
-  {
-    label: 'Dedicated sending infrastructure',
-    body: 'Warmed domains, inbox rotation, deliverability monitoring. We manage it so your main domain never takes the risk.',
-  },
-  {
-    label: 'Friday performance reports',
-    body: 'Weekly attribution report: sequences sent, open rate, reply rate, meetings booked, cost-per-meeting. No vanity metrics.',
+    label: '15-minute follow-up at week 2',
+    body: 'Did the move work? What did you learn? What is the next call to make? Built into the price.',
   },
 ]
 
 const faqs = [
   {
-    q: 'What is the minimum commitment?',
-    a: 'Three months. Long enough to tune the system and generate signal worth optimizing on.',
+    q: 'What do I need to send ahead of time?',
+    a: 'A short intake form, a link to your website, and any pipeline data you are comfortable sharing. Ten minutes of prep.',
   },
   {
-    q: 'What do you need from us each week?',
-    a: 'Thirty minutes to review sequences in Slack. That is it. We handle the rest.',
+    q: 'Is this a sales call?',
+    a: 'No. The Audit is the deliverable. If you want more after, we will talk about what that looks like in the follow-up. Most clients use the Audit as a complete, standalone engagement.',
   },
   {
-    q: 'Do we need an existing outbound system?',
-    a: 'No. The retainer includes a full stack build in month one. If you already have infrastructure, we audit and upgrade it.',
-  },
-  {
-    q: 'What happens if we want to bring it in-house later?',
-    a: 'Everything is documented and lives in your accounts. We will do a full handoff — same as the GTM Stack Build engagement.',
+    q: 'What if I do not like the brief?',
+    a: 'The Brief is the product. If you would genuinely have rather had your $350 back, ask, and you will have it.',
   },
 ]
 
-export default function ManagedRetainerPage() {
+export default function AuditPage() {
   return (
     <main
       className="min-h-screen"
@@ -62,11 +50,11 @@ export default function ManagedRetainerPage() {
           <span
             className="mb-6 inline-block rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider"
             style={{
-              background: 'rgba(107,114,128,0.15)',
-              color: 'var(--color-text-muted)',
+              background: 'var(--color-accent-dim)',
+              color: 'var(--color-accent)',
             }}
           >
-            Ongoing Retainer
+            5 Days · $350
           </span>
           <h1
             className="mb-6 text-4xl font-bold md:text-6xl"
@@ -75,15 +63,14 @@ export default function ManagedRetainerPage() {
               fontFamily: 'var(--font-display)',
             }}
           >
-            Managed GTM Retainer
+            The Off-Map Audit
           </h1>
           <p
             className="mb-10 max-w-xl text-lg leading-relaxed"
             style={{ color: 'var(--color-text-muted)' }}
           >
-            Off-Map runs your outbound pipeline end-to-end. Enriched lists,
-            personalized sequences, agentic research, weekly reporting. You
-            show up for the calls. From $2,500/mo.
+            A sharp outside read on your GTM. 60 minutes live, a 1-page brief
+            in 72 hours, a follow-up two weeks later to see what stuck.
           </p>
           <Link
             href="/book"
@@ -93,12 +80,12 @@ export default function ManagedRetainerPage() {
             }
             style={{ background: 'var(--color-accent)' }}
           >
-            Book a Discovery Call →
+            Get the Audit →
           </Link>
         </div>
       </section>
 
-      {/* Included */}
+      {/* What You Get */}
       <section
         className="py-24 px-6"
         style={{ background: 'var(--color-bg-light)' }}
@@ -108,7 +95,7 @@ export default function ManagedRetainerPage() {
             className="mb-4 text-xs font-semibold uppercase tracking-widest"
             style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
           >
-            What&apos;s Included
+            What You Get
           </p>
           <h2
             className="mb-12 text-3xl font-bold"
@@ -117,10 +104,10 @@ export default function ManagedRetainerPage() {
               fontFamily: 'var(--font-display)',
             }}
           >
-            Everything it takes to generate meetings.
+            One sharp read. Three concrete answers.
           </h2>
           <div className="flex flex-col gap-4">
-            {included.map(({ label, body }) => (
+            {deliverables.map(({ label, body }) => (
               <div
                 key={label}
                 className="flex gap-4 rounded-2xl p-6"
@@ -155,19 +142,44 @@ export default function ManagedRetainerPage() {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* Who It's For */}
       <section className="py-24 px-6" style={{ background: 'var(--color-bg)' }}>
         <div className="mx-auto max-w-2xl">
           <p
             className="mb-4 text-xs font-semibold uppercase tracking-widest"
             style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
           >
+            Who It&apos;s For
+          </p>
+          <p
+            className="text-sm leading-relaxed"
+            style={{ color: 'var(--color-text-muted)' }}
+          >
+            Founders and services-firm principals between $250k and $5M in
+            revenue who know something is off in their GTM but cannot pinpoint
+            what. You want a fast, sharp read from someone who has built GTM at
+            your stage. You would rather pay $350 to figure out what is actually
+            broken than spend the next three months guessing.
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section
+        className="py-24 px-6"
+        style={{ background: 'var(--color-bg-light)' }}
+      >
+        <div className="mx-auto max-w-2xl">
+          <p
+            className="mb-4 text-xs font-semibold uppercase tracking-widest"
+            style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
+          >
             FAQ
           </p>
           <h2
             className="mb-12 text-3xl font-bold"
             style={{
-              color: 'var(--color-text-primary)',
+              color: 'var(--color-text-dark)',
               fontFamily: 'var(--font-display)',
             }}
           >
@@ -178,7 +190,7 @@ export default function ManagedRetainerPage() {
               <div key={q}>
                 <p
                   className="mb-2 font-semibold"
-                  style={{ color: 'var(--color-text-primary)' }}
+                  style={{ color: 'var(--color-text-dark)' }}
                 >
                   {q}
                 </p>
@@ -197,17 +209,17 @@ export default function ManagedRetainerPage() {
       {/* CTA */}
       <section
         className="py-24 px-6 text-center"
-        style={{ background: 'var(--color-bg-light)' }}
+        style={{ background: 'var(--color-bg)' }}
       >
         <div className="mx-auto max-w-xl">
           <h2
             className="mb-6 text-3xl font-bold"
             style={{
-              color: 'var(--color-text-dark)',
+              color: 'var(--color-text-primary)',
               fontFamily: 'var(--font-display)',
             }}
           >
-            Ready to hand off your pipeline?
+            Find out what is actually broken.
           </h2>
           <Link
             href="/book"
@@ -217,16 +229,16 @@ export default function ManagedRetainerPage() {
             }
             style={{ background: 'var(--color-accent)' }}
           >
-            Book a Discovery Call →
+            Get an Audit →
           </Link>
           <p className="mt-6 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-            Or start with a{' '}
+            Or compare with the{' '}
             <Link
-              href="/services/gtm-stack"
+              href="/services/sprint"
               className="underline transition-opacity hover:opacity-70"
               style={{ color: 'var(--color-text-muted)' }}
             >
-              one-time GTM Stack Build
+              Pipeline Sprint
             </Link>
           </p>
         </div>
