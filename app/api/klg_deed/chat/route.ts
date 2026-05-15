@@ -7,12 +7,14 @@ const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
 // ── Dispute data ───────────────────────────────────────────────────────────
 
-type DisputeType =
+type MatterType =
   | 'boundary' | 'easement' | 'adverse_possession' | 'chain_of_title'
   | 'deed_fraud' | 'hoa_covenant' | 'encroachment' | 'heirship_probate'
-  | 'quiet_title' | 'wrongful_foreclosure' | 'other'
+  | 'quiet_title' | 'wrongful_foreclosure'
+  | 'deed_transfer' | 'spouse_addition' | 'trust_transfer' | 'name_correction'
+  | 'other'
 
-const DISPUTE_LABELS: Record<DisputeType, string> = {
+const MATTER_LABELS: Record<MatterType, string> = {
   boundary: 'Boundary / Survey Conflict',
   easement: 'Easement Dispute',
   adverse_possession: 'Adverse Possession Claim',
@@ -23,10 +25,14 @@ const DISPUTE_LABELS: Record<DisputeType, string> = {
   heirship_probate: 'Heirship / Probate Deed Issue',
   quiet_title: 'Quiet Title Action',
   wrongful_foreclosure: 'Wrongful Foreclosure',
-  other: 'Other Deed Issue',
+  deed_transfer: 'Deed Transfer',
+  spouse_addition: 'Adding Spouse / Partner to Title',
+  trust_transfer: 'Transfer to Living Trust',
+  name_correction: 'Name Correction on Deed',
+  other: 'Other Deed Matter',
 }
 
-const DISPUTE_KEYWORDS: Record<DisputeType, string[]> = {
+const MATTER_KEYWORDS: Record<MatterType, string[]> = {
   boundary: ['boundary', 'fence', 'survey', 'property line', 'neighbor built', 'encroach'],
   easement: ['easement', 'access', 'right of way', 'utility', 'ingress', 'egress', 'landlocked'],
   adverse_possession: ['adverse possession', 'squatter', 'using my land', 'been there for years', 'claiming my property'],
@@ -37,10 +43,14 @@ const DISPUTE_KEYWORDS: Record<DisputeType, string[]> = {
   heirship_probate: ['inherited', 'estate', 'probate', 'heirs', 'deceased', 'passed away', 'died'],
   quiet_title: ['quiet title', 'cloud on title', 'clear title', 'title insurance refused', 'competing claim'],
   wrongful_foreclosure: ['foreclosure', 'foreclosing', 'lender', 'bank taking', 'trustee sale'],
+  deed_transfer: ['transfer deed', 'quitclaim', 'quit claim', 'gift deed', 'transfer property', 'give property', 'transfer to children', 'transfer to kids', 'transfer to family', 'add to deed', 'remove from deed'],
+  spouse_addition: ['add spouse', 'add wife', 'add husband', 'add partner', 'put spouse', 'put wife', 'put husband', 'add name to deed', 'joint tenancy', 'community property', 'survivorship'],
+  trust_transfer: ['trust', 'living trust', 'revocable trust', 'transfer to trust', 'put in trust', 'estate plan', 'pour-over', 'irrevocable'],
+  name_correction: ['name correction', 'wrong name', 'misspelling', 'typo on deed', 'name error', 'correct name', 'name change', 'maiden name', 'scrivener', 'error on deed', 'incorrect name'],
   other: [],
 }
 
-const DISPUTE_QUESTIONS: Record<DisputeType, string[]> = {
+const MATTER_QUESTIONS: Record<MatterType, string[]> = {
   boundary: ['When did you first notice the boundary dispute?', 'Do you have a current survey of the property?', 'Have you and your neighbor communicated about this?', 'Is there a physical encroachment — a fence, structure, or other improvement?'],
   easement: ['What type of easement is in dispute — access, utility, drainage, or something else?', 'Is the easement recorded in your deed or in a separate document?', 'Who is claiming or blocking the easement rights?', 'Has access been blocked or threatened?'],
   adverse_possession: ['How long has the other party been occupying or using the disputed area?', 'Have you ever given them permission to use that land?', 'Is the occupation open and visible, or was it hidden from you?', 'Have you taken any steps to stop their use?'],
@@ -51,10 +61,14 @@ const DISPUTE_QUESTIONS: Record<DisputeType, string[]> = {
   heirship_probate: ['Did the property owner pass away with or without a will?', 'Has probate been opened?', 'Are there multiple heirs involved?', 'Is the property currently occupied?'],
   quiet_title: ['What is the specific cloud on title you need cleared?', 'Have you identified all potential adverse claimants?', 'Is there an active sale or refinance that depends on clearing title?', 'Has a title company refused to insure the property?'],
   wrongful_foreclosure: ['At what stage is the foreclosure — notice received, sale scheduled, or already completed?', 'What is the basis for challenging the foreclosure?', 'Are you current on payments or in arrears?', 'What is the foreclosure sale date, if scheduled?'],
-  other: ['Can you describe your deed issue in as much detail as possible?', 'What outcome are you hoping to achieve?', 'Is there an active deadline or legal proceeding related to this issue?'],
+  deed_transfer: ['Who are you transferring the property to?', 'Is this a gift, a family transfer, or a sale?', 'Is there a mortgage on the property?', 'Do you want to retain any rights — such as a life estate — after the transfer?'],
+  spouse_addition: ['Is the property currently in your name only?', 'Is there a mortgage on the property? Some lenders require consent before adding someone to title.', 'Do you want your spouse added as a joint tenant with right of survivorship, or as community property?'],
+  trust_transfer: ['Do you already have a signed trust document?', 'Is this a revocable living trust?', 'Is there a mortgage on the property?', 'Are there multiple properties you want to move into the trust?'],
+  name_correction: ['What exactly is the error — a spelling mistake, wrong first name, or something else?', 'When was the deed recorded, and in which county?', 'Do you have a government-issued ID or prior deed showing the correct name?'],
+  other: ['Can you describe your deed matter in as much detail as possible?', 'What outcome are you hoping to achieve?', 'Is there an active deadline or legal proceeding related to this?'],
 }
 
-const DOCUMENT_LISTS: Record<DisputeType, { name: string; priority: 'required' | 'helpful'; description: string }[]> = {
+const DOCUMENT_LISTS: Record<MatterType, { name: string; priority: 'required' | 'helpful'; description: string }[]> = {
   boundary: [
     { name: 'Current deed', priority: 'required', description: 'The most recent recorded deed to your property' },
     { name: 'Survey', priority: 'required', description: "A licensed surveyor's plat of your property" },
@@ -108,43 +122,76 @@ const DOCUMENT_LISTS: Record<DisputeType, { name: string; priority: 'required' |
     { name: 'Payment history', priority: 'helpful', description: 'Your payment records' },
     { name: 'Correspondence with lender', priority: 'helpful', description: 'Written communications' },
   ],
+  deed_transfer: [
+    { name: 'Current deed', priority: 'required', description: 'The most recent recorded deed to your property' },
+    { name: 'Mortgage statement', priority: 'helpful', description: 'If there is an outstanding loan on the property' },
+    { name: 'ID for all parties', priority: 'helpful', description: 'Government-issued ID for both the grantor and grantee' },
+  ],
+  spouse_addition: [
+    { name: 'Current deed', priority: 'required', description: 'The recorded deed currently in your name' },
+    { name: 'Marriage certificate', priority: 'required', description: 'To confirm the marital relationship' },
+    { name: 'Mortgage statement', priority: 'helpful', description: 'If there is an outstanding loan — lender consent may be required' },
+  ],
+  trust_transfer: [
+    { name: 'Current deed', priority: 'required', description: 'The most recent recorded deed to your property' },
+    { name: 'Trust document', priority: 'required', description: 'The fully signed and notarized trust agreement' },
+    { name: 'Mortgage statement', priority: 'helpful', description: 'If there is an outstanding loan on the property' },
+  ],
+  name_correction: [
+    { name: 'Current deed with error', priority: 'required', description: 'The recorded deed showing the incorrect name' },
+    { name: 'Government-issued ID', priority: 'required', description: 'Showing the correct legal name' },
+    { name: 'Prior deed or title document', priority: 'helpful', description: 'An earlier document showing the correct name, if available' },
+  ],
   other: [
     { name: 'Current deed', priority: 'required', description: 'Your most recent recorded deed' },
-    { name: 'Any related documents', priority: 'helpful', description: 'Any documents related to your dispute' },
+    { name: 'Any related documents', priority: 'helpful', description: 'Any documents related to your matter' },
   ],
 }
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
-function classifyDispute(description: string): DisputeType {
+function classifyMatter(description: string): MatterType {
   const lower = description.toLowerCase()
-  let best: DisputeType = 'other'
+  let best: MatterType = 'other'
   let bestScore = 0
-  for (const [type, keywords] of Object.entries(DISPUTE_KEYWORDS) as [DisputeType, string[]][]) {
+  for (const [type, keywords] of Object.entries(MATTER_KEYWORDS) as [MatterType, string[]][]) {
     const score = keywords.filter((k) => lower.includes(k)).length
     if (score > bestScore) { bestScore = score; best = type }
   }
   return best
 }
 
+const ROUTINE_MATTERS: MatterType[] = ['deed_transfer', 'spouse_addition', 'trust_transfer', 'name_correction']
+
 function scoreComplexity(session: Record<string, unknown>) {
   let score = 0
   const factors: string[] = []
   const dispute = (session.dispute ?? {}) as Record<string, unknown>
   const documents = (session.documents ?? {}) as Record<string, unknown>
+  const matterType = dispute.type as MatterType | undefined
 
-  if (dispute.type === 'deed_fraud') { score += 60; factors.push('Deed fraud requires immediate legal action') }
-  if (dispute.type === 'wrongful_foreclosure') { score += 55; factors.push('Foreclosure disputes are time-sensitive') }
-  if (dispute.type === 'adverse_possession' || dispute.type === 'quiet_title') { score += 40; factors.push('Action likely requires litigation') }
-  if (dispute.urgency === 'urgent') { score += 25; factors.push('Client flagged as urgent') }
-  if (dispute.activeLitigation) { score += 35; factors.push('Active litigation in progress') }
-  if (dispute.activeDeadline) { score += 30; factors.push('Active court deadline or sale date') }
-  if (Array.isArray(dispute.adverseParties) && dispute.adverseParties.length > 1) { score += 15; factors.push('Multiple adverse parties') }
-  if (documents.hasCurrentDeed === false) { score += 10; factors.push('No current deed on hand') }
-  if (documents.hasSurvey === false && ['boundary', 'encroachment', 'adverse_possession'].includes(String(dispute.type ?? ''))) {
-    score += 15; factors.push('No survey for boundary-related dispute')
+  // Routine transactional matters start at 0 and only escalate if complications arise
+  if (matterType && ROUTINE_MATTERS.includes(matterType)) {
+    if (dispute.urgency === 'urgent') { score += 20; factors.push('Client flagged as urgent') }
+    if (dispute.activeLitigation) { score += 35; factors.push('Active litigation in progress') }
+    if (dispute.activeDeadline) { score += 20; factors.push('Active deadline noted') }
+    if (documents.hasCurrentDeed === false) { score += 15; factors.push('No current deed on hand') }
+    if (factors.length === 0) factors.push(`Routine ${MATTER_LABELS[matterType]} — straightforward preparation`)
+  } else {
+    // Dispute-type scoring
+    if (matterType === 'deed_fraud') { score += 60; factors.push('Deed fraud requires immediate legal action') }
+    if (matterType === 'wrongful_foreclosure') { score += 55; factors.push('Foreclosure disputes are time-sensitive') }
+    if (matterType === 'adverse_possession' || matterType === 'quiet_title') { score += 40; factors.push('Action likely requires litigation') }
+    if (dispute.urgency === 'urgent') { score += 25; factors.push('Client flagged as urgent') }
+    if (dispute.activeLitigation) { score += 35; factors.push('Active litigation in progress') }
+    if (dispute.activeDeadline) { score += 30; factors.push('Active court deadline or sale date') }
+    if (Array.isArray(dispute.adverseParties) && dispute.adverseParties.length > 1) { score += 15; factors.push('Multiple adverse parties') }
+    if (documents.hasCurrentDeed === false) { score += 10; factors.push('No current deed on hand') }
+    if (documents.hasSurvey === false && ['boundary', 'encroachment', 'adverse_possession'].includes(String(matterType ?? ''))) {
+      score += 15; factors.push('No survey for boundary-related dispute')
+    }
+    if (dispute.priorAttempts) { score += 10; factors.push('Prior resolution attempts unsuccessful') }
   }
-  if (dispute.priorAttempts) { score += 10; factors.push('Prior resolution attempts unsuccessful') }
 
   score = Math.min(score, 100)
   const level = score < 30 ? 'simple' : score < 60 ? 'medium' : 'complex'
@@ -341,13 +388,13 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
         await supabase.from('intake_sessions').select('dispute').eq('sessionId', sessionId).single(),
         `classify_dispute select ${sessionId}`
       )
-      const type = classifyDispute(description)
+      const type = classifyMatter(description)
       const updateResult = await supabase.from('intake_sessions').update({
         dispute: { ...(row?.dispute ?? {}), type, description: (row?.dispute as Record<string, unknown>)?.description ?? description },
         updatedAt: new Date().toISOString(),
       }).eq('sessionId', sessionId)
       if (updateResult.error) throw new Error(`[supabase] classify_dispute update: ${updateResult.error.message}`)
-      return { disputeType: type, label: DISPUTE_LABELS[type], suggestedQuestions: DISPUTE_QUESTIONS[type] }
+      return { matterType: type, label: MATTER_LABELS[type], suggestedQuestions: MATTER_QUESTIONS[type] }
     }
 
     case 'assess_complexity': {
@@ -376,7 +423,7 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
         await supabase.from('intake_sessions').select('dispute').eq('sessionId', sessionId).single(),
         `request_documents select ${sessionId}`
       )
-      const type = ((row?.dispute as Record<string, unknown>)?.type as DisputeType) ?? 'other'
+      const type = ((row?.dispute as Record<string, unknown>)?.type as MatterType) ?? 'other'
       const docs = DOCUMENT_LISTS[type] ?? DOCUMENT_LISTS.other
       return {
         required: docs.filter((d) => d.priority === 'required'),
@@ -397,7 +444,7 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
       const dispute = (row.dispute ?? {}) as Record<string, unknown>
       const documents = (row.documents ?? {}) as Record<string, unknown>
       const assessment = (row.assessment ?? {}) as Record<string, unknown>
-      const type = (dispute.type as DisputeType) ?? 'other'
+      const type = (dispute.type as MatterType) ?? 'other'
       const summaryId = randomUUID()
       const ref = summaryId.slice(0, 8).toUpperCase()
       const dateStr = new Date().toLocaleDateString('en-US', { timeZone: 'America/Chicago' })
@@ -418,7 +465,7 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
         `County:  ${property?.county ?? 'Not provided'}`,
         '',
         '── DISPUTE ─────────────────────────────────────',
-        `Type:              ${DISPUTE_LABELS[type]}`,
+        `Type:              ${MATTER_LABELS[type]}`,
         `Description:       ${dispute?.description ?? 'Not provided'}`,
         `Urgency:           ${dispute?.urgency ?? 'Standard'}`,
         `Adverse Parties:   ${Array.isArray(dispute?.adverseParties) ? (dispute.adverseParties as string[]).join(', ') : 'Not identified'}`,
@@ -466,7 +513,7 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
 
 // ── System prompt ──────────────────────────────────────────────────────────
 
-const SYSTEM_PROMPT = `You are an intake assistant for Kelly Legal Group (KLG), an Austin-based property and real estate law firm specializing in deed disputes.
+const SYSTEM_PROMPT = `You are an intake assistant for Kelly Legal Group (KLG), an Austin-based property and real estate law firm. KLG handles all types of deed matters — from disputes and title defects to routine transactions like adding a spouse to a deed, transferring property into a trust, correcting a name error, or preparing a deed transfer to family members.
 
 Your job is to conduct a warm, professional intake conversation with potential clients.
 
@@ -475,10 +522,14 @@ Follow this sequence:
 2. Once you understand their basic situation, call start_intake (tenantId: "klg")
 3. Collect the client's name, email address, and property address — ask naturally, not all at once
 4. Call record_dispute_info with what you've gathered so far
-5. Call classify_dispute with a description of the issue
-6. Ask 2–3 of the most relevant follow-up questions naturally (do not list them all at once)
-7. Call record_dispute_info again with updated dispute details as you learn them
-8. Ask which documents they have (deed, survey, title insurance, correspondence, court docs)
+5. Call classify_dispute with a description of the matter
+6. Ask 2–3 of the most relevant follow-up questions naturally based on the matter type (do not list them all at once)
+   - For disputes: ask about adverse parties, timeline, urgency, prior attempts
+   - For transactional matters (deed transfer, spouse addition, trust transfer, name correction): ask about mortgage status, parties involved, and any complications — skip dispute-specific questions like "adverse parties"
+7. Call record_dispute_info again with updated details as you learn them
+8. Ask which relevant documents they have — tailor the question to the matter type:
+   - Disputes: deed, survey, title insurance, correspondence, court docs
+   - Transactional: current deed, mortgage statement, marriage certificate (for spouse addition), trust document (for trust transfer), ID
 9. Call record_dispute_info with document availability
 10. Call assess_complexity
 11. Call request_documents — you can mention the checklist to the client

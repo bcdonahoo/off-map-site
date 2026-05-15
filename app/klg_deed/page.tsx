@@ -26,10 +26,10 @@ export default function KlgDeedPage() {
             className="mb-3 text-3xl font-bold tracking-tight"
             style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}
           >
-            Deed Dispute Intake
+            Deed Intake
           </h1>
           <p className="text-sm leading-relaxed max-w-lg" style={{ color: 'var(--color-text-muted)' }}>
-            Live conversation powered by Claude and the KLG MCP server. Intake sessions are saved to Supabase; emails log to the console in dry-run mode. Use this to test the full flow before Clio and calendar integrations.
+            Live conversation powered by Claude and the KLG MCP server. Handles disputes, transfers, spousal additions, trust transfers, name corrections, and more. Intake sessions are saved to Supabase; emails log to the console in dry-run mode.
           </p>
         </div>
 
@@ -40,7 +40,7 @@ export default function KlgDeedPage() {
         <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-3">
           {[
             { label: 'Session persistence', desc: 'intake_sessions written to Supabase on each tool call' },
-            { label: 'Complexity routing', desc: 'Simple → async review, Complex → consultation flag' },
+            { label: 'Matter routing', desc: 'Disputes, transfers, spousal additions, trust transfers, name corrections' },
             { label: 'Brief generation', desc: 'Structured attorney brief logged to console (dry-run)' },
           ].map((item) => (
             <div
