@@ -51,10 +51,10 @@ export function CTAForm() {
             fontFamily: 'var(--font-display)',
           }}
         >
-          You&apos;re on the list.
+          You are in.
         </p>
         <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
-          We&apos;ll reach out within one business day to schedule.
+          Check your inbox in the next few minutes for the Audit link and intake.
         </p>
       </div>
     )
@@ -75,14 +75,14 @@ export function CTAForm() {
           fontFamily: 'var(--font-display)',
         }}
       >
-        Ready to build your GTM system?
+        Find out what is actually broken.
       </h2>
       <p
         className="mx-auto mb-10 max-w-[480px] text-sm leading-relaxed"
         style={{ color: 'var(--color-text-muted)' }}
       >
-        Drop your info and we&apos;ll reach out within one business day to schedule
-        a 30-minute scope call.
+        Drop your info and we will send the Audit link plus an intake form. You
+        will have everything you need within one business day.
       </p>
 
       <form
@@ -136,7 +136,7 @@ export function CTAForm() {
             color: 'var(--color-bg)',
           }}
         >
-          {state === 'submitting' ? 'Sending…' : 'Request a Call →'}
+          {state === 'submitting' ? 'Sending...' : 'Send Me the Audit →'}
         </button>
         {state === 'error' && (
           <p className="text-xs" style={{ color: '#f87171' }}>

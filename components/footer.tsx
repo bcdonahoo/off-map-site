@@ -21,8 +21,8 @@ export function Footer() {
               Off-Map
             </p>
             <p className="text-sm text-[var(--color-text-muted)] max-w-xs leading-relaxed">
-              AI-powered outbound systems for B2B companies. We build and run the
-              infrastructure so your team can focus on closing.
+              GTM consulting for services firms and early-stage founders. Built
+              for what&apos;s next.
             </p>
           </div>
 
@@ -35,18 +35,26 @@ export function Footer() {
               <ul className="flex flex-col gap-3">
                 <li>
                   <Link
-                    href="/services/gtm-stack"
+                    href="/services/audit"
                     className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors"
                   >
-                    GTM Stack Build
+                    The Audit
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/services/managed-retainer"
+                    href="/services/sprint"
                     className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors"
                   >
-                    Managed Retainer
+                    Pipeline Sprint
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/services/fractional"
+                    className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors"
+                  >
+                    Fractional GTM
                   </Link>
                 </li>
               </ul>
@@ -59,10 +67,10 @@ export function Footer() {
               <ul className="flex flex-col gap-3">
                 <li>
                   <Link
-                    href="/stack"
+                    href="/approach"
                     className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors"
                   >
-                    The Stack
+                    Approach
                   </Link>
                 </li>
                 <li>

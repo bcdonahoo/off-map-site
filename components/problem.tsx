@@ -1,15 +1,15 @@
 const problems = [
   {
-    label: 'Your reps are researchers, not sellers.',
-    body: 'Most outbound teams spend 60–70% of their time on list building and email writing. That is not what you hired salespeople to do.',
+    label: 'You are the GTM.',
+    body: 'Every closed deal, every renewal, every referral runs through you. The business cannot grow past your calendar.',
   },
   {
-    label: 'Personalization at scale does not exist yet. For you.',
-    body: 'Generic sequences get ignored. Real personalization takes time no one has — unless the infrastructure is built correctly.',
+    label: 'The playbook everyone hands you is for someone else’s business.',
+    body: 'Hire a VP Sales. Run a generic outbound machine. Pour money into ads. None of it fits where you actually are.',
   },
   {
-    label: 'You are flying blind on what works.',
-    body: 'Without proper attribution from signal to sequence to meeting to close, you are optimizing on gut feel. That is a slow way to iterate.',
+    label: 'You do not have time to figure it out alone.',
+    body: 'Every month spent winging it is a month of revenue you cannot get back. The cost of doing nothing is higher than the cost of getting help.',
   },
 ]
 
@@ -36,7 +36,7 @@ export function Problem() {
             fontFamily: 'var(--font-display)',
           }}
         >
-          Traditional outbound is broken. Yours is probably no different.
+          Founder-led selling got you here. It will not get you there.
         </h2>
 
         {/* Three-column grid */}

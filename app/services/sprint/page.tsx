@@ -3,58 +3,54 @@ import Link from 'next/link'
 import { buttonVariants } from '@/components/ui/button'
 
 export const metadata: Metadata = {
-  title: 'GTM Stack Build | Off-Map',
+  title: 'The Pipeline Sprint | Off-Map',
   description:
-    'We design, build, and validate your entire outbound infrastructure in 30 days. You own it, your team runs it.',
+    'We rebuild your GTM motion end to end. ICP, messaging, channel, sales process. You leave with a documented playbook your team can actually run.',
 }
 
 const deliverables = [
   {
-    label: 'ICP definition and signal strategy',
-    body: 'We map your ideal customer profile to real intent signals — job changes, tech stack installs, hiring patterns, and more.',
+    label: 'Week 1 · ICP and offer pressure-test',
+    body: 'We lock the one segment to attack first. Everything else gets parked until this is working.',
   },
   {
-    label: 'Clay table build with waterfall enrichment',
-    body: 'A fully configured Clay workspace with custom enrichment waterfalls across 75+ data sources, tuned for your ICP.',
+    label: 'Week 2 · Messaging and assets',
+    body: 'Cold email, LinkedIn copy, one-pager, qualification script. Rewritten or built from scratch.',
   },
   {
-    label: 'AI research agent (Claude API)',
-    body: 'An n8n workflow that generates account-specific research context for every prospect before anything is written.',
+    label: 'Weeks 3 to 4 · Channel build',
+    body: 'Outbound infrastructure or partner outreach engine, whichever fits the business. We run it together so the motion is real, not theoretical.',
   },
   {
-    label: 'Slack-based review and approval workflow',
-    body: 'Human review gate built into your Slack. Nothing automated goes out without a human seeing it first.',
+    label: 'Week 5 · Sales process',
+    body: 'Discovery script, objection responses, pricing conversation, follow-up cadence. Recorded role-plays so you know it works.',
   },
   {
-    label: 'Instantly sequencing setup with dedicated domains',
-    body: 'Fully warmed sending infrastructure, multi-step sequences, and deliverability monitoring in place on day one.',
-  },
-  {
-    label: 'Attribution dashboard and 60-day support window',
-    body: 'A Looker Studio or Retool dashboard tracking signal → sequence → meeting → close. Sixty days of async support post-launch.',
+    label: 'Week 6 · Handoff',
+    body: 'A 30-day execution plan you or your team can run. Two follow-up office-hours calls in the month after.',
   },
 ]
 
 const faqs = [
   {
-    q: 'What do I need to provide?',
-    a: 'Access to your CRM (or a spreadsheet of past customers), a list of your top 20 target accounts, and two 60-minute working sessions over the first two weeks.',
+    q: 'How much of my time does this take?',
+    a: '90 minutes of working session per week, plus async review of drafts and assets between sessions. Roughly 3 to 5 hours per week of your time.',
   },
   {
-    q: 'Who owns the system after you build it?',
-    a: 'You do. Every tool is set up in your accounts. We document everything and hand off with a recorded walkthrough.',
+    q: 'What do I need to have in place to start?',
+    a: 'A working offer that has produced revenue. The Sprint builds the engine that makes the offer repeatable. If you are pre-offer, an Audit is the right starting point.',
   },
   {
-    q: 'What if my team can\'t run it after handoff?',
-    a: "That's what the Managed GTM Retainer is for. Many clients start with the Stack Build and move to retainer once they see the output.",
+    q: 'What does success look like at the end of 6 weeks?',
+    a: 'A documented motion, a working channel, and 2 to 4 qualified meetings sourced by the new system. We define specific success metrics in week 1.',
   },
   {
-    q: 'How are results measured?',
-    a: 'We define success metrics upfront — typically reply rate, meeting booked rate, and cost-per-meeting — and the attribution dashboard tracks all three.',
+    q: 'What if I want to keep working together after the Sprint?',
+    a: 'That is what the Fractional GTM retainer is for. Sprint graduates get month one at $2,500 instead of $4,500.',
   },
 ]
 
-export default function GTMStackPage() {
+export default function SprintPage() {
   return (
     <main
       className="min-h-screen"
@@ -70,7 +66,7 @@ export default function GTMStackPage() {
               color: 'var(--color-accent)',
             }}
           >
-            One-Time Engagement
+            6 Weeks · $7,500
           </span>
           <h1
             className="mb-6 text-4xl font-bold md:text-6xl"
@@ -79,14 +75,15 @@ export default function GTMStackPage() {
               fontFamily: 'var(--font-display)',
             }}
           >
-            GTM Stack Build
+            The Pipeline Sprint
           </h1>
           <p
             className="mb-10 max-w-xl text-lg leading-relaxed"
             style={{ color: 'var(--color-text-muted)' }}
           >
-            We design, build, and validate your entire outbound infrastructure
-            in 30 days. You own it. Your team runs it. Starting at $3,500.
+            We rebuild your GTM motion end to end. ICP, messaging, channel,
+            sales process. You leave with a documented playbook your team can
+            actually run.
           </p>
           <Link
             href="/book"
@@ -101,7 +98,7 @@ export default function GTMStackPage() {
         </div>
       </section>
 
-      {/* Deliverables */}
+      {/* What You Get */}
       <section
         className="py-24 px-6"
         style={{ background: 'var(--color-bg-light)' }}
@@ -120,32 +117,55 @@ export default function GTMStackPage() {
               fontFamily: 'var(--font-display)',
             }}
           >
-            Six deliverables. Thirty days.
+            Six weeks. One repeatable motion.
           </h2>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div className="flex flex-col gap-4">
             {deliverables.map(({ label, body }) => (
               <div
                 key={label}
-                className="rounded-2xl p-6"
+                className="flex gap-4 rounded-2xl p-6"
                 style={{
                   background: 'var(--color-bg)',
                   border: '1px solid var(--color-border-light)',
                 }}
               >
-                <p
-                  className="mb-2 font-semibold"
-                  style={{ color: 'var(--color-text-dark)' }}
+                <span
+                  className="mt-0.5 shrink-0 text-sm"
+                  style={{ color: 'var(--color-accent)' }}
                 >
-                  {label}
-                </p>
-                <p
-                  className="text-sm leading-relaxed"
-                  style={{ color: 'var(--color-text-muted)' }}
-                >
-                  {body}
-                </p>
+                  ✓
+                </span>
+                <div>
+                  <p
+                    className="mb-1 font-semibold"
+                    style={{ color: 'var(--color-text-dark)' }}
+                  >
+                    {label}
+                  </p>
+                  <p
+                    className="text-sm leading-relaxed"
+                    style={{ color: 'var(--color-text-muted)' }}
+                  >
+                    {body}
+                  </p>
+                </div>
               </div>
             ))}
+          </div>
+
+          {/* Founding-client pricing */}
+          <div
+            className="mt-8 rounded-2xl p-6"
+            style={{
+              background: 'var(--color-accent-dim)',
+              border: '1px solid var(--color-border-light)',
+            }}
+          >
+            <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
+              <strong style={{ color: 'var(--color-accent)' }}>Founding-client pricing:</strong>{' '}
+              $3,750 for the first 3 signed Sprints, in exchange for case study
+              rights and a public testimonial. After that, $7,500.
+            </p>
           </div>
         </div>
       </section>
@@ -202,7 +222,7 @@ export default function GTMStackPage() {
               fontFamily: 'var(--font-display)',
             }}
           >
-            Ready to build?
+            Ready to build the motion?
           </h2>
           <Link
             href="/book"
@@ -215,13 +235,13 @@ export default function GTMStackPage() {
             Book a Discovery Call →
           </Link>
           <p className="mt-6 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-            Or compare with the{' '}
+            Or start with a{' '}
             <Link
-              href="/services/managed-retainer"
+              href="/services/audit"
               className="underline transition-opacity hover:opacity-70"
               style={{ color: 'var(--color-text-muted)' }}
             >
-              Managed GTM Retainer
+              $350 Audit
             </Link>
           </p>
         </div>

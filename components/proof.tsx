@@ -1,16 +1,7 @@
-const metrics = [
-  {
-    value: '3×',
-    label: 'Reply rate vs. generic sequences',
-  },
-  {
-    value: '30 days',
-    label: 'From zero to live outbound pipeline',
-  },
-  {
-    value: '75+',
-    label: 'Data sources in waterfall enrichment',
-  },
+const bullets = [
+  'Years of senior GTM work at companies between traction and scale',
+  'Experience across services firms, B2B SaaS, and early-stage startups',
+  'Hands-on with the AI tools redefining the field',
 ]
 
 export function Proof() {
@@ -25,41 +16,47 @@ export function Proof() {
           className="mb-4 text-xs font-semibold uppercase tracking-widest"
           style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
         >
-          By the Numbers
+          Background
         </p>
 
-        {/* Metrics */}
-        <div className="mb-16 grid grid-cols-1 gap-10 md:grid-cols-3">
-          {metrics.map(({ value, label }) => (
-            <div key={label}>
-              <p
-                className="mb-2 text-5xl font-extrabold md:text-6xl"
-                style={{
-                  color: 'var(--color-accent)',
-                  fontFamily: 'var(--font-display)',
-                }}
+        {/* Headline */}
+        <h2
+          className="mb-10 max-w-2xl text-4xl font-bold md:text-5xl"
+          style={{
+            color: 'var(--color-text-dark)',
+            fontFamily: 'var(--font-display)',
+          }}
+        >
+          Built by someone who has actually done this.
+        </h2>
+
+        {/* Bullets */}
+        <ul className="mb-10 flex flex-col gap-3">
+          {bullets.map((item) => (
+            <li
+              key={item}
+              className="flex items-start gap-3 text-sm leading-relaxed"
+              style={{ color: 'var(--color-text-muted)' }}
+            >
+              <span
+                className="mt-0.5 shrink-0"
+                style={{ color: 'var(--color-accent)' }}
               >
-                {value}
-              </p>
-              <p
-                className="text-sm leading-relaxed"
-                style={{ color: 'var(--color-text-muted)' }}
-              >
-                {label}
-              </p>
-            </div>
+                ✓
+              </span>
+              {item}
+            </li>
           ))}
-        </div>
+        </ul>
 
         {/* Body */}
         <p
           className="max-w-2xl text-sm leading-relaxed"
           style={{ color: 'var(--color-text-muted)' }}
         >
-          These numbers come from running the same system we build for clients —
-          combining intent signals, Clay waterfall enrichment, and AI-generated
-          research context, with a human review gate before anything goes out.
-          The infrastructure is the product.
+          Off-Map is a one-person operation by design. You work directly with
+          Brendon. Every engagement is delivered by the same operator you spoke
+          to on the call.
         </p>
       </div>
     </section>
