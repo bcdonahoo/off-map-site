@@ -66,9 +66,10 @@ type ChatBubbleProps = {
   role: 'user' | 'assistant'
   content: string
   isTyping?: boolean
+  initials?: string
 }
 
-export function ChatBubble({ role, content, isTyping }: ChatBubbleProps) {
+export function ChatBubble({ role, content, isTyping, initials = 'KLG' }: ChatBubbleProps) {
   if (role === 'user') {
     return (
       <div className="flex justify-end px-4">
@@ -91,7 +92,7 @@ export function ChatBubble({ role, content, isTyping }: ChatBubbleProps) {
           color: '#fff',
         }}
       >
-        KLG
+        {initials}
       </div>
       <div
         className="max-w-[80%] rounded-2xl rounded-tl-sm px-4 py-2.5 text-sm leading-relaxed"
