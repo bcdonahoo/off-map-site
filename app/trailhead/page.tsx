@@ -147,9 +147,7 @@ export default function TrailheadPage() {
           >
             <p className="text-xs leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
               <strong style={{ color: 'var(--color-text-primary)' }}>Timeline:</strong> Documents ready within 10
-              business days.{' '}
-              <strong style={{ color: 'var(--color-text-primary)' }}>Guarantee:</strong> Documents fully refundable
-              if you change your mind within 7 days of signing.
+              business days.
             </p>
           </div>
         </div>
@@ -240,7 +238,7 @@ export default function TrailheadPage() {
           <p className="text-xs leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
             Hill Country Estate Law is a fictional firm created for demonstration purposes by{' '}
             <span style={{ color: 'var(--color-text-primary)' }}>Off-Map</span>. This is a working demo of
-            the P3 Flat-Fee GTM Engine — an AI-powered sales and intake system for productized legal
+            the Trailhead GTM Engine — an AI-powered sales and intake system for productized legal
             services.
           </p>
         </div>
