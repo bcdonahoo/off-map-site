@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { TrailheadChat } from '@/components/demos/trailhead-chat'
+import { TrailheadIntroModal } from '@/components/demos/trailhead-intro-modal'
 
 export const metadata: Metadata = {
   title: 'Texas Estate Planning | Hill Country Estate Law',
@@ -43,6 +44,7 @@ export default function TrailheadPage() {
       className="min-h-screen pt-28 pb-24 px-6"
       style={{ background: 'var(--color-bg)' }}
     >
+      <TrailheadIntroModal />
       <div className="mx-auto max-w-2xl">
 
         {/* Eyebrow */}
