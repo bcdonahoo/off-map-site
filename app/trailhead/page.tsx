@@ -62,10 +62,10 @@ export default function TrailheadPage() {
           <br />
           Let&rsquo;s get it done.
         </h1>
-        <p className="mb-2 text-lg leading-relaxed max-w-lg" style={{ color: 'var(--color-text-muted)' }}>
+        <p className="mb-2 text-lg leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
           Plain-English estate planning for Texas families — one flat fee, no hourly billing, no surprises.
         </p>
-        <p className="mb-10 text-sm leading-relaxed max-w-lg" style={{ color: 'var(--color-text-muted)' }}>
+        <p className="mb-10 text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
           Over 60% of Americans have no will or estate plan. If something happens without one, your family
           faces court costs, delays, and conflict that could have been avoided. We make it simple to get
           your affairs in order — everything included for $1,495.

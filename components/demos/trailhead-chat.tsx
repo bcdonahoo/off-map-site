@@ -36,15 +36,17 @@ export function TrailheadChat() {
   const messagesRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const turnStartRef = useRef<number>(0)
+  const hasInteracted = useRef(false)
 
   useEffect(() => {
     const el = messagesRef.current
     if (el) el.scrollTop = el.scrollHeight
   }, [display])
 
-  // Re-focus input after response lands
+  // Re-focus input after response lands, but only after first interaction
+  // (not on mount — prevents the browser scrolling to the chat on page load)
   useEffect(() => {
-    if (!loading) inputRef.current?.focus()
+    if (!loading && hasInteracted.current) inputRef.current?.focus()
   }, [loading])
 
   async function handleSubmit(e: FormEvent) {
@@ -57,6 +59,7 @@ export function TrailheadChat() {
       { role: 'user', content: text },
     ]
 
+    hasInteracted.current = true
     setInput('')
     setLoading(true)
 
@@ -221,7 +224,6 @@ export function TrailheadChat() {
           background: 'var(--color-bg)',
           border: '1px solid var(--color-border)',
           boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
-          minHeight: 480,
           maxHeight: 640,
           opacity: purchaseData ? 0 : 1,
           pointerEvents: purchaseData ? 'none' : undefined,
@@ -296,7 +298,7 @@ export function TrailheadChat() {
         )}
 
         {/* Messages */}
-        <div ref={messagesRef} className="flex-1 flex flex-col gap-3 py-4 overflow-y-auto">
+        <div ref={messagesRef} className="flex flex-col gap-3 py-4 overflow-y-auto" style={{ flex: '1 1 auto', minHeight: 0 }}>
           {display.map((msg, i) => {
             if (msg.kind === 'loading') {
               return <ChatBubble key={`loading-${i}`} role="assistant" content="" isTyping initials="HC" />
