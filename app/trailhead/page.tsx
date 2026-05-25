@@ -84,16 +84,26 @@ export default function TrailheadPage() {
             is right for you — or what the right next step is.
           </p>
           <TrailheadChat />
-          <p className="mt-4 text-xs text-center" style={{ color: 'var(--color-text-muted)' }}>
-            Prefer a traditional form?{' '}
-            <Link
-              href="/trailhead/form"
-              className="transition-opacity hover:opacity-70"
-              style={{ color: 'var(--color-accent)' }}
-            >
-              Use the form wizard instead →
-            </Link>
-          </p>
+          <Link
+            href="/trailhead/form"
+            className="mt-4 flex items-center justify-between gap-4 rounded-xl px-5 py-4 transition-opacity hover:opacity-80"
+            style={{
+              background: 'var(--color-bg-surface)',
+              border: '1px solid var(--color-border)',
+            }}
+          >
+            <div>
+              <p className="text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>
+                Not a fan of chat? Use the traditional form instead.
+              </p>
+              <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
+                Answer a few simple questions — no conversation required.
+              </p>
+            </div>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0" style={{ color: 'var(--color-text-muted)' }}>
+              <path d="M4 8H12M9 5L12 8L9 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
         </div>
 
         {/* What's included */}
