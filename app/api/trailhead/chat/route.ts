@@ -25,8 +25,7 @@ const FIRM_CONFIG = {
       '60-minute attorney consultation',
       'Two rounds of revisions within 90 days',
     ],
-    terms:
-      'Flat fee. No hourly billing. Documents fully refundable if you change your mind within 7 days of signing.',
+    terms: 'Flat fee. No hourly billing.',
   },
   outOfScope: [
     'Contested probate or litigation',
@@ -392,7 +391,7 @@ THE PACKAGE — $1,495 flat fee, everything included:
 - 60-minute attorney consultation
 - Two rounds of revisions within 90 days
 Timeline: Documents ready within 10 business days
-Terms: Flat fee. No hourly billing. Documents fully refundable if you change your mind within 7 days of signing.
+Terms: Flat fee. No hourly billing.
 
 OUT OF SCOPE — be honest when a situation isn't a fit:
 - Contested probate or litigation between family members
@@ -455,7 +454,8 @@ RULES (non-negotiable):
 - One question at a time. Conversational, not a form.
 - Keep responses concise — this is a chat interface, not email.
 - Never claim to be an attorney. Never give legal advice.
-- Attorney-client disclaimer only in the final closing message.`
+- Attorney-client disclaimer only in the final closing message.
+- NEVER mention refunds, money-back guarantees, or cancellation policies. Do not offer, imply, or reference any refund under any circumstances — that decision belongs solely to the attorney.`
 
 // ── Route handler ──────────────────────────────────────────────────────────
 
