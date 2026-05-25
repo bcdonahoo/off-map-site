@@ -1,6 +1,10 @@
 'use client'
 
 import { useState, FormEvent } from 'react'
+import { TrailheadChecklist } from './trailhead-checklist'
+import { CHECKLIST_CONFIG } from '@/lib/trailhead/checklist'
+
+const CLIENT_CHECKLIST = CHECKLIST_CONFIG['texas-estate-plan-package'].client
 
 type Step = 1 | 2 | 'outcome'
 
@@ -445,36 +449,41 @@ export function TrailheadForm() {
         <div>
           {/* Completed action: purchase */}
           {outcome.action === 'purchased' && (
-            <div className="text-center py-4">
-              <div
-                className="w-14 h-14 rounded-full flex items-center justify-center mb-4 mx-auto"
-                style={{ background: 'var(--color-accent)', opacity: 0.9 }}
-              >
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                  <path d="M6 14L11 19L22 9" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+            <div>
+              <div className="text-center py-4">
+                <div
+                  className="w-14 h-14 rounded-full flex items-center justify-center mb-4 mx-auto"
+                  style={{ background: 'var(--color-accent)', opacity: 0.9 }}
+                >
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                    <path d="M6 14L11 19L22 9" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+                <p
+                  className="text-xs font-semibold uppercase tracking-widest mb-2"
+                  style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
+                >
+                  Purchase Confirmed
+                </p>
+                <h3 className="text-xl font-bold mb-1" style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}>
+                  Texas Estate Plan Package
+                </h3>
+                <p className="text-3xl font-bold mb-3" style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}>
+                  ${outcome.amount?.toLocaleString()}
+                </p>
+                <p className="text-sm mb-1" style={{ color: 'var(--color-text-muted)' }}>
+                  Confirmation #{outcome.reference}
+                </p>
+                <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
+                  Your documents will be ready within 10 business days.
+                </p>
               </div>
-              <p
-                className="text-xs font-semibold uppercase tracking-widest mb-2"
-                style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
-              >
-                Purchase Confirmed
-              </p>
-              <h3 className="text-xl font-bold mb-1" style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}>
-                Texas Estate Plan Package
-              </h3>
-              <p className="text-3xl font-bold mb-3" style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}>
-                ${outcome.amount?.toLocaleString()}
-              </p>
-              <p className="text-sm mb-1" style={{ color: 'var(--color-text-muted)' }}>
-                Confirmation #{outcome.reference}
-              </p>
-              <p className="text-sm mb-6" style={{ color: 'var(--color-text-muted)' }}>
-                Your documents will be ready within 10 business days.
-              </p>
+              <div className="mt-4">
+                <TrailheadChecklist items={CLIENT_CHECKLIST} />
+              </div>
               <button
                 onClick={handleReset}
-                className="text-xs px-4 py-2 rounded-lg transition-opacity hover:opacity-70"
+                className="mt-4 text-xs px-4 py-2 rounded-lg transition-opacity hover:opacity-70"
                 style={{ color: 'var(--color-text-muted)', background: 'var(--color-bg-surface)', border: '1px solid var(--color-border)', fontFamily: 'var(--font-mono)' }}
               >
                 Start over
@@ -484,33 +493,38 @@ export function TrailheadForm() {
 
           {/* Completed action: booked */}
           {outcome.action === 'booked' && (
-            <div className="text-center py-4">
-              <div
-                className="w-14 h-14 rounded-full flex items-center justify-center mb-4 mx-auto"
-                style={{ background: 'var(--color-accent)', opacity: 0.9 }}
-              >
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                  <path d="M6 14L11 19L22 9" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+            <div>
+              <div className="text-center py-4">
+                <div
+                  className="w-14 h-14 rounded-full flex items-center justify-center mb-4 mx-auto"
+                  style={{ background: 'var(--color-accent)', opacity: 0.9 }}
+                >
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                    <path d="M6 14L11 19L22 9" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+                <p
+                  className="text-xs font-semibold uppercase tracking-widest mb-2"
+                  style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
+                >
+                  Consultation Requested
+                </p>
+                <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}>
+                  We&rsquo;ll be in touch within one business day.
+                </h3>
+                <p className="text-sm mb-1" style={{ color: 'var(--color-text-muted)' }}>
+                  Reference #{outcome.reference}
+                </p>
+                <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
+                  An attorney will reach out to schedule your consultation.
+                </p>
               </div>
-              <p
-                className="text-xs font-semibold uppercase tracking-widest mb-2"
-                style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
-              >
-                Consultation Requested
-              </p>
-              <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}>
-                We&rsquo;ll be in touch within one business day.
-              </h3>
-              <p className="text-sm mb-1" style={{ color: 'var(--color-text-muted)' }}>
-                Reference #{outcome.reference}
-              </p>
-              <p className="text-sm mb-6" style={{ color: 'var(--color-text-muted)' }}>
-                An attorney will reach out to schedule your consultation.
-              </p>
+              <div className="mt-4">
+                <TrailheadChecklist items={CLIENT_CHECKLIST} />
+              </div>
               <button
                 onClick={handleReset}
-                className="text-xs px-4 py-2 rounded-lg transition-opacity hover:opacity-70"
+                className="mt-4 text-xs px-4 py-2 rounded-lg transition-opacity hover:opacity-70"
                 style={{ color: 'var(--color-text-muted)', background: 'var(--color-bg-surface)', border: '1px solid var(--color-border)', fontFamily: 'var(--font-mono)' }}
               >
                 Start over

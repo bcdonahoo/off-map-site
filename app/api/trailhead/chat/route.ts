@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
 import { createServerSupabaseClient } from '@/lib/supabase'
+import { CHECKLIST_CONFIG } from '@/lib/trailhead/checklist'
 import { randomUUID } from 'crypto'
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
@@ -294,13 +295,18 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
         })
         .eq('leadid', leadId)
 
+      const checklist = CHECKLIST_CONFIG['texas-estate-plan-package']
       console.error(
         `[trailhead] BOOKING → ref:${bookingReference} timeframe:${preferredTimeframe ?? 'not specified'} contact:${contactPreference ?? 'not specified'}`
+      )
+      console.error(
+        `[trailhead] ATTORNEY CHECKLIST → ${checklist.attorney.map((i) => `[${i.category}] ${i.key}`).join(', ')}`
       )
       return {
         bookingReference,
         message:
           "We've placed a hold on your requested time. You'll receive a calendar invite within 1 business day.",
+        clientChecklist: checklist.client,
       }
     }
 
@@ -320,8 +326,12 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
         })
         .eq('leadid', leadId)
 
+      const checklist = CHECKLIST_CONFIG['texas-estate-plan-package']
       console.error(
         `[trailhead] PURCHASE → ref:${purchaseReference} amount:${FIRM_CONFIG.product.price} payment:${paymentMethodPreference ?? 'not specified'}`
+      )
+      console.error(
+        `[trailhead] ATTORNEY CHECKLIST → ${checklist.attorney.map((i) => `[${i.category}] ${i.key}`).join(', ')}`
       )
       return {
         purchaseReference,
@@ -331,6 +341,7 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
           price: FIRM_CONFIG.product.price,
           timeline: FIRM_CONFIG.product.timeline,
         },
+        clientChecklist: checklist.client,
       }
     }
 
@@ -434,7 +445,7 @@ If fitLevel is 'out_of_scope':
   → Call handoff_to_attorney (leadId, situationSummary, urgency)
 
 STEP 5 — CLOSE warmly:
-Tell them exactly what to expect next. Close with warmth, not a sales pitch. Attorney-client disclaimer goes here and only here.
+Tell them exactly what to expect next. Then present the client checklist from the tool response naturally — introduce it with one brief sentence like "Here's what to have ready:" and list each item on its own line. Close with warmth, not a sales pitch. Attorney-client disclaimer goes here and only here.
 
 ---
 
