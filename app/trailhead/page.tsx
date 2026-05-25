@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { TrailheadChat } from '@/components/demos/trailhead-chat'
 import { TrailheadIntroModal } from '@/components/demos/trailhead-intro-modal'
 
@@ -83,6 +84,16 @@ export default function TrailheadPage() {
             is right for you — or what the right next step is.
           </p>
           <TrailheadChat />
+          <p className="mt-4 text-xs text-center" style={{ color: 'var(--color-text-muted)' }}>
+            Prefer a traditional form?{' '}
+            <Link
+              href="/trailhead/form"
+              className="transition-opacity hover:opacity-70"
+              style={{ color: 'var(--color-accent)' }}
+            >
+              Use the form wizard instead →
+            </Link>
+          </p>
         </div>
 
         {/* What's included */}
