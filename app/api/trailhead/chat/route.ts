@@ -170,14 +170,14 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
       const leadId = randomUUID()
       const now = new Date().toISOString()
       const result = await supabase.from('trailhead_leads').insert({
-        leadId,
-        tenantId: 'hill-country',
-        createdAt: now,
-        updatedAt: now,
+        leadid: leadId,
+        tenantid: 'hill-country',
+        createdat: now,
+        updatedat: now,
         status: 'in_progress',
         client: {},
         qualification: {},
-        pricingPresented: false,
+        pricingpresented: false,
       })
       if (result.error) throw new Error(`[supabase] start_lead: ${result.error.message}`)
       return { leadId, status: 'active' }
@@ -208,8 +208,8 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
 
       const row = await supabase
         .from('trailhead_leads')
-        .select('client,qualification,fitLevel,fitScore')
-        .eq('leadId', leadId)
+        .select('client,qualification,fitlevel,fitscore')
+        .eq('leadid', leadId)
         .single()
       if (row.error) throw new Error(`[supabase] qualify_lead select: ${row.error.message}`)
 
@@ -229,11 +229,11 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
       }
 
       // Only commit a fitLevel if the agent explicitly assessed one
-      const fitLevel = agentFitLevel ?? (existing?.fitLevel as 'high' | 'medium' | 'out_of_scope' | null ?? null)
+      const fitLevel = agentFitLevel ?? (existing?.fitlevel as 'high' | 'medium' | 'out_of_scope' | null ?? null)
       const fitScoreMap: Record<string, number> = { high: 88, medium: 52, out_of_scope: 8 }
       const fitScore = agentFitLevel
         ? fitScoreMap[agentFitLevel]
-        : (existing?.fitScore as number | null ?? null)
+        : (existing?.fitscore as number | null ?? null)
 
       if (agentFitLevel) {
         qualification.fitLevel = agentFitLevel
@@ -251,10 +251,10 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
         .update({
           client,
           qualification,
-          ...(agentFitLevel != null && { fitLevel, fitScore, status: statusMap[agentFitLevel] }),
-          updatedAt: new Date().toISOString(),
+          ...(agentFitLevel != null && { fitlevel: fitLevel, fitscore: fitScore, status: statusMap[agentFitLevel] }),
+          updatedat: new Date().toISOString(),
         })
-        .eq('leadId', leadId)
+        .eq('leadid', leadId)
 
       return { saved: true, fitScore, fitLevel }
     }
@@ -264,11 +264,11 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
       await supabase
         .from('trailhead_leads')
         .update({
-          pricingPresented: true,
+          pricingpresented: true,
           status: 'pricing_presented',
-          updatedAt: new Date().toISOString(),
+          updatedat: new Date().toISOString(),
         })
-        .eq('leadId', leadId)
+        .eq('leadid', leadId)
       return {
         packageName: FIRM_CONFIG.product.name,
         price: FIRM_CONFIG.product.price,
@@ -289,10 +289,10 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
         .from('trailhead_leads')
         .update({
           status: 'booked_consult',
-          bookingReference,
-          updatedAt: new Date().toISOString(),
+          bookingreference: bookingReference,
+          updatedat: new Date().toISOString(),
         })
-        .eq('leadId', leadId)
+        .eq('leadid', leadId)
 
       console.error(
         `[trailhead] BOOKING → ref:${bookingReference} timeframe:${preferredTimeframe ?? 'not specified'} contact:${contactPreference ?? 'not specified'}`
@@ -314,11 +314,11 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
         .from('trailhead_leads')
         .update({
           status: 'purchased',
-          purchaseReference,
-          revenueAmount: FIRM_CONFIG.product.price,
-          updatedAt: new Date().toISOString(),
+          purchasereference: purchaseReference,
+          revenueamount: FIRM_CONFIG.product.price,
+          updatedat: new Date().toISOString(),
         })
-        .eq('leadId', leadId)
+        .eq('leadid', leadId)
 
       console.error(
         `[trailhead] PURCHASE → ref:${purchaseReference} amount:${FIRM_CONFIG.product.price} payment:${paymentMethodPreference ?? 'not specified'}`
@@ -345,10 +345,10 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
         .from('trailhead_leads')
         .update({
           status: 'referred',
-          handoffReference,
-          updatedAt: new Date().toISOString(),
+          handoffreference: handoffReference,
+          updatedat: new Date().toISOString(),
         })
-        .eq('leadId', leadId)
+        .eq('leadid', leadId)
 
       console.error(
         `[trailhead] HANDOFF → ref:${handoffReference} urgency:${urgency ?? 'standard'} situation:${situationSummary ?? 'not provided'}`
