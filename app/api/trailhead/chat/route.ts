@@ -44,7 +44,7 @@ const TOOL_LABELS: Record<string, string> = {
   qualify_lead: 'Saving your information…',
   present_pricing: 'Pulling up package details…',
   book_consultation: 'Booking your consultation…',
-  complete_purchase: 'Processing your order…',
+  initiate_checkout: 'Setting up your checkout…',
   handoff_to_attorney: 'Connecting you with our team…',
 }
 
@@ -129,17 +129,13 @@ const TOOLS: Anthropic.Tool[] = [
     },
   },
   {
-    name: 'complete_purchase',
+    name: 'initiate_checkout',
     description:
-      'Record a mock purchase when the inquirer confirms they want to proceed with the flat-fee package.',
+      'Send the inquirer to the secure payment page when they confirm they want to purchase the flat-fee package. Do NOT ask for payment details — this tool handles the handoff to checkout.',
     input_schema: {
       type: 'object' as const,
       properties: {
         leadId: { type: 'string' },
-        paymentMethodPreference: {
-          type: 'string',
-          description: 'e.g. "credit card", "check", "ACH"',
-        },
       },
       required: ['leadId'],
     },
@@ -309,38 +305,20 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
       }
     }
 
-    case 'complete_purchase': {
-      const { leadId, paymentMethodPreference } = input as {
-        leadId: string
-        paymentMethodPreference?: string
-      }
-      const purchaseReference = `HCEL-${randomUUID().slice(0, 8).toUpperCase()}`
+    case 'initiate_checkout': {
+      const { leadId } = input as { leadId: string }
       await supabase
         .from('trailhead_leads')
         .update({
-          status: 'purchased',
-          purchasereference: purchaseReference,
-          revenueamount: FIRM_CONFIG.product.price,
+          status: 'checkout_initiated',
           updatedat: new Date().toISOString(),
         })
         .eq('leadid', leadId)
 
-      const checklist = CHECKLIST_CONFIG['texas-estate-plan-package']
-      console.error(
-        `[trailhead] PURCHASE → ref:${purchaseReference} amount:${FIRM_CONFIG.product.price} payment:${paymentMethodPreference ?? 'not specified'}`
-      )
-      console.error(
-        `[trailhead] ATTORNEY CHECKLIST → ${checklist.attorney.map((i) => `[${i.category}] ${i.key}`).join(', ')}`
-      )
+      console.error(`[trailhead] CHECKOUT INITIATED → leadId:${leadId}`)
       return {
-        purchaseReference,
-        message: `Purchase confirmed. Your confirmation number is ${purchaseReference}.`,
-        packageDetails: {
-          name: FIRM_CONFIG.product.name,
-          price: FIRM_CONFIG.product.price,
-          timeline: FIRM_CONFIG.product.timeline,
-        },
-        clientChecklist: checklist.client,
+        checkoutUrl: `/trailhead/checkout?lead=${leadId}`,
+        message: 'Redirecting to secure payment page.',
       }
     }
 
@@ -428,8 +406,8 @@ STEP 4 — MAKE THE OUTCOME DECISION based on the fitLevel returned by qualify_l
 If fitLevel is 'high':
   → Call present_pricing (leadId)
   → Walk through what's included in plain language — make it feel like a good value
-  → Ask: would they like to complete the purchase today, or would they prefer to speak with an attorney first?
-  → If they want to proceed: call complete_purchase (leadId, paymentMethodPreference)
+  → Ask: would they like to proceed to payment today, or would they prefer to speak with an attorney first?
+  → If they want to proceed: call initiate_checkout (leadId) — this sends them to a secure payment page. Never ask for card details.
   → If they want a consultation first: call book_consultation (leadId, preferredTimeframe, contactPreference)
 
 If fitLevel is 'medium':
@@ -464,7 +442,7 @@ export const maxDuration = 60
 type SSEEvent =
   | { type: 'tool_start'; label: string }
   | { type: 'tool_done'; label: string }
-  | { type: 'purchase_data'; reference: string; amount: number }
+  | { type: 'checkout_redirect'; url: string }
   | { type: 'booking_data'; reference: string }
   | { type: 'done'; text: string; toolCalls: { name: string; label: string }[]; messages: Anthropic.MessageParam[] }
   | { type: 'error'; error: string }
@@ -535,10 +513,10 @@ export async function POST(req: NextRequest) {
               toolCallsMade.push({ name: block.name, label })
               send({ type: 'tool_done', label })
 
-              // Emit checkout-specific events so the client can render confirmation UI
-              if (block.name === 'complete_purchase') {
-                const r = result as { purchaseReference: string }
-                send({ type: 'purchase_data', reference: r.purchaseReference, amount: FIRM_CONFIG.product.price })
+              // Emit checkout-specific events for client-side routing
+              if (block.name === 'initiate_checkout') {
+                const r = result as { checkoutUrl: string }
+                send({ type: 'checkout_redirect', url: r.checkoutUrl })
               }
               if (block.name === 'book_consultation') {
                 const r = result as { bookingReference: string }

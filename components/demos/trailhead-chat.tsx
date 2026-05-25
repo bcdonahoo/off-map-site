@@ -16,7 +16,7 @@ type DisplayMessage =
 type SSEEvent =
   | { type: 'tool_start'; label: string }
   | { type: 'tool_done'; label: string }
-  | { type: 'purchase_data'; reference: string; amount: number }
+  | { type: 'checkout_redirect'; url: string }
   | { type: 'booking_data'; reference: string }
   | { type: 'done'; text: string; toolCalls: ToolCall[]; messages: MessageParam[] }
   | { type: 'error'; error: string }
@@ -31,7 +31,7 @@ export function TrailheadChat() {
   const [apiMessages, setApiMessages] = useState<MessageParam[]>([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
-  const [purchaseData, setPurchaseData] = useState<{ reference: string; amount: number } | null>(null)
+  const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null)
   const [bookingData, setBookingData] = useState<{ reference: string } | null>(null)
   const messagesRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -97,7 +97,11 @@ export function TrailheadChat() {
           let event: SSEEvent
           try { event = JSON.parse(line.slice(6)) } catch { continue }
 
-          if (event.type === 'tool_start') {
+          if (event.type === 'checkout_redirect') {
+                setCheckoutUrl(event.url)
+                // Brief delay so the agent's closing message renders before navigating
+                setTimeout(() => { window.location.href = event.url }, 1800)
+              } else if (event.type === 'tool_start') {
             setDisplay((prev) => [
               ...prev.filter((m) => m.kind !== 'loading'),
               { kind: 'tool', label: event.label, done: false },
@@ -111,8 +115,6 @@ export function TrailheadChat() {
                   : m
               )
             )
-          } else if (event.type === 'purchase_data') {
-            setPurchaseData({ reference: event.reference, amount: event.amount })
           } else if (event.type === 'booking_data') {
             setBookingData({ reference: event.reference })
           } else if (event.type === 'done') {
@@ -148,15 +150,15 @@ export function TrailheadChat() {
     setDisplay([{ kind: 'assistant', content: GREETING, toolCalls: [] }])
     setApiMessages([])
     setInput('')
-    setPurchaseData(null)
+    setCheckoutUrl(null)
     setBookingData(null)
     inputRef.current?.focus()
   }
 
   return (
     <div className="relative w-full">
-      {/* Purchase confirmation overlay */}
-      {purchaseData && (
+      {/* Checkout redirect overlay */}
+      {checkoutUrl && (
         <div
           className="absolute inset-0 z-10 flex flex-col items-center justify-center rounded-2xl p-8 text-center"
           style={{
@@ -169,52 +171,19 @@ export function TrailheadChat() {
             className="w-14 h-14 rounded-full flex items-center justify-center mb-5"
             style={{ background: 'var(--color-accent)', opacity: 0.9 }}
           >
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-              <path
-                d="M6 14L11 19L22 9"
-                stroke="#fff"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#fff" />
             </svg>
           </div>
           <p
             className="text-xs font-semibold uppercase tracking-widest mb-2"
             style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
           >
-            Purchase Confirmed
+            Taking you to checkout
           </p>
-          <h3
-            className="text-xl font-bold mb-1"
-            style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}
-          >
-            Texas Estate Plan Package
-          </h3>
-          <p
-            className="text-3xl font-bold mb-4"
-            style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}
-          >
-            ${purchaseData.amount.toLocaleString()}
+          <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
+            Redirecting to secure payment page…
           </p>
-          <p className="text-sm mb-1" style={{ color: 'var(--color-text-muted)' }}>
-            Confirmation #{purchaseData.reference}
-          </p>
-          <p className="text-sm mb-6" style={{ color: 'var(--color-text-muted)' }}>
-            Your documents will be ready within 10 business days.
-          </p>
-          <button
-            onClick={handleReset}
-            className="text-xs px-4 py-2 rounded-lg transition-opacity hover:opacity-70"
-            style={{
-              color: 'var(--color-text-muted)',
-              background: 'var(--color-bg-light)',
-              border: '1px solid var(--color-border)',
-              fontFamily: 'var(--font-mono)',
-            }}
-          >
-            Start new conversation
-          </button>
         </div>
       )}
 
@@ -225,8 +194,8 @@ export function TrailheadChat() {
           border: '1px solid var(--color-border)',
           boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
           maxHeight: 640,
-          opacity: purchaseData ? 0 : 1,
-          pointerEvents: purchaseData ? 'none' : undefined,
+          opacity: checkoutUrl ? 0 : 1,
+          pointerEvents: checkoutUrl ? 'none' : undefined,
         }}
       >
         {/* Header */}
