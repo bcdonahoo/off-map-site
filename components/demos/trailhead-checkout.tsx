@@ -5,7 +5,7 @@ import { TrailheadChecklist } from './trailhead-checklist'
 import { CHECKLIST_CONFIG } from '@/lib/trailhead/checklist'
 
 const CLIENT_CHECKLIST = CHECKLIST_CONFIG['texas-estate-plan-package'].client
-const PRICE = 1495
+const PRICE = 2000
 
 type Phase = 'form' | 'processing' | 'confirmed'
 
@@ -154,7 +154,7 @@ export function TrailheadCheckout({ leadId }: Props) {
             className="text-xl font-bold shrink-0"
             style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}
           >
-            $1,495
+            $2,000
           </p>
         </div>
       </div>
@@ -232,7 +232,7 @@ export function TrailheadCheckout({ leadId }: Props) {
         className="w-full py-3.5 rounded-xl text-sm font-semibold text-white transition-opacity disabled:opacity-60"
         style={{ background: 'var(--color-accent)' }}
       >
-        {phase === 'processing' ? 'Processing…' : 'Pay $1,495'}
+        {phase === 'processing' ? 'Processing…' : 'Pay $2,000'}
       </button>
 
       {/* Stripe badge */}

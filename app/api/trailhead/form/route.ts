@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase'
 import { randomUUID } from 'crypto'
 
-const PRICE = 1495
+const PRICE = 2000
 
 function qualify(
   texasResident: string,

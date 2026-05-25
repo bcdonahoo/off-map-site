@@ -71,7 +71,7 @@ export default function TrailheadPage() {
         <p className="mb-10 text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
           Over 60% of Americans have no will or estate plan. If something happens without one, your family
           faces court costs, delays, and conflict that could have been avoided. We make it simple to get
-          your affairs in order — everything included for $1,495.
+          your affairs in order — everything included for $2,000 flat.
         </p>
 
         {/* Chat */}
@@ -131,7 +131,7 @@ export default function TrailheadPage() {
                 className="text-3xl font-bold"
                 style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}
               >
-                $1,495
+                $2,000
               </div>
               <div className="text-xs" style={{ color: 'var(--color-text-muted)' }}>flat fee · all-in</div>
             </div>

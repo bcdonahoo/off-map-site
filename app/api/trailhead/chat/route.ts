@@ -14,7 +14,7 @@ const FIRM_CONFIG = {
   positioning: 'Plain-English estate planning for Texas families',
   product: {
     name: 'Texas Estate Plan Package',
-    price: 1495,
+    price: 2000,
     timeline: 'Documents ready within 10 business days',
     included: [
       'Last Will and Testament',
@@ -360,7 +360,7 @@ ABOUT THE FIRM:
 Hill Country Estate Law — "Plain-English estate planning for Texas families"
 We believe estate planning shouldn't be expensive or scary.
 
-THE PACKAGE — $1,495 flat fee, everything included:
+THE PACKAGE — $2,000 flat fee, everything included:
 - Last Will and Testament
 - Durable Power of Attorney
 - Medical Power of Attorney and HIPAA release

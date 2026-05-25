@@ -598,7 +598,7 @@ export function TrailheadForm() {
                     <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>Everything included. Nothing extra.</p>
                   </div>
                   <div className="shrink-0 text-right">
-                    <div className="text-2xl font-bold" style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}>$1,495</div>
+                    <div className="text-2xl font-bold" style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}>$2,000</div>
                     <div className="text-xs" style={{ color: 'var(--color-text-muted)' }}>flat fee · all-in</div>
                   </div>
                 </div>
@@ -624,7 +624,7 @@ export function TrailheadForm() {
                   className="w-full py-3 rounded-xl text-sm font-semibold text-white transition-opacity disabled:opacity-40"
                   style={{ background: 'var(--color-accent)' }}
                 >
-                  {actionLoading ? 'Processing…' : 'Get started — $1,495'}
+                  {actionLoading ? 'Processing…' : 'Get started — $2,000'}
                 </button>
                 <button
                   onClick={() => handleAction('book')}
