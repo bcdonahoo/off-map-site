@@ -42,32 +42,16 @@ export default function BookPage() {
           will generate. No pitch deck, no fluff.
         </p>
 
-        {/* Cal.com embed placeholder */}
-        <div
-          className="flex min-h-[480px] items-center justify-center rounded-2xl"
-          style={{
-            background: 'var(--color-bg-surface)',
-            border: '1px solid var(--color-border)',
-          }}
-        >
-          <div className="text-center">
-            <p
-              className="mb-2 text-sm font-medium"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
-              Booking calendar coming soon.
-            </p>
-            <p className="text-xs" style={{ color: 'var(--color-text-muted)', opacity: 0.6 }}>
-              In the meantime, email us at{' '}
-              <a
-                href="mailto:hello@off-map.com"
-                className="underline transition-opacity hover:opacity-70"
-                style={{ color: 'var(--color-accent)' }}
-              >
-                hello@off-map.com
-              </a>
-            </p>
-          </div>
+        {/* Cal.com embed */}
+        <div className="overflow-hidden rounded-2xl" style={{ border: '1px solid var(--color-border)' }}>
+          <iframe
+            src="https://cal.com/brent-donahoo-yamn0e?embed=true&theme=light"
+            width="100%"
+            height="700"
+            frameBorder="0"
+            title="Book a call with Brent Donahoo"
+            style={{ display: 'block' }}
+          />
         </div>
 
         <p className="mt-8 text-xs" style={{ color: 'var(--color-text-muted)', opacity: 0.5 }}>
