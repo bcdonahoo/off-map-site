@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { LegalPage } from '@/components/legal/legal-page'
 import { conservativeCopy, boldCopy } from '@/components/legal/copy'
+import type { CtaLayout } from '@/components/legal/legal-hero'
 
 export const metadata: Metadata = {
   title: 'Modern Client Acquisition for Texas Law Firms | Off-Map',
@@ -19,8 +20,15 @@ type Props = {
 
 export default async function LegalSegmentPage({ searchParams }: Props) {
   const { v } = await searchParams
-  const variant = v === 'bold' ? 'bold' : 'conservative'
-  const copy = variant === 'bold' ? boldCopy : conservativeCopy
 
-  return <LegalPage copy={copy} variant={variant} />
+  const isBold = v === 'bold'
+  const variant = isBold ? 'bold' : 'conservative'
+  const copy = isBold ? boldCopy : conservativeCopy
+
+  const ctaLayout: CtaLayout =
+    v === 'equal' ? 'equal' :
+    v === 'demo-first' ? 'demo-first' :
+    'book-first'
+
+  return <LegalPage copy={copy} variant={variant} ctaLayout={ctaLayout} />
 }

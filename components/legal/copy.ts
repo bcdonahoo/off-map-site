@@ -113,8 +113,6 @@ export const conservativeCopy: LegalCopy = {
     secondaryHref: '/trailhead',
     secondaryCtaType: 'demo',
     trustSignals: [
-      'Built for managing partners of 3 to 15 attorney firms',
-      'Senior operator delivering every engagement',
       'Focus areas: estate planning, probate, real estate, small business',
     ],
   },

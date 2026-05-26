@@ -8,18 +8,20 @@ import { LegalServices } from './legal-services'
 import { LegalProof } from './legal-proof'
 import { LegalCta } from './legal-cta'
 import type { LegalCopy } from './copy'
+import type { CtaLayout } from './legal-hero'
 
 type Props = {
   copy: LegalCopy
   variant: 'conservative' | 'bold'
+  ctaLayout: CtaLayout
 }
 
-export function LegalPage({ copy, variant }: Props) {
+export function LegalPage({ copy, variant, ctaLayout }: Props) {
   useEffect(() => {
     try {
-      posthog.capture('legal_page_view', { variant })
+      posthog.capture('legal_page_view', { variant, ctaLayout })
     } catch {}
-  }, [variant])
+  }, [variant, ctaLayout])
 
   function fireHeroCta(ctaType: 'book' | 'demo') {
     try {
@@ -31,8 +33,9 @@ export function LegalPage({ copy, variant }: Props) {
     <main>
       <LegalHero
         copy={copy.hero}
-        onPrimaryClick={() => fireHeroCta(copy.hero.primaryCtaType)}
-        onSecondaryClick={() => fireHeroCta(copy.hero.secondaryCtaType)}
+        ctaLayout={ctaLayout}
+        onBookClick={() => fireHeroCta('book')}
+        onDemoClick={() => fireHeroCta('demo')}
       />
       <LegalProblem copy={copy.problem} />
       <LegalServices copy={copy.services} />
