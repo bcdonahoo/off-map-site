@@ -113,7 +113,7 @@ export const conservativeCopy: LegalCopy = {
     secondaryHref: '/trailhead',
     secondaryCtaType: 'demo',
     trustSignals: [
-      'Focus areas: estate planning, probate, real estate, small business',
+      'Focus areas: estate planning, probate & real estate',
     ],
   },
   problem: {
