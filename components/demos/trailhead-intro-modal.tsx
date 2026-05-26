@@ -2,17 +2,18 @@
 
 import { useEffect, useRef, useState } from 'react'
 
+const SESSION_KEY = 'trailhead_disclosure_v1'
+
 export function TrailheadIntroModal() {
   const [isOpen, setIsOpen] = useState(false)
   const ctaRef = useRef<HTMLButtonElement>(null)
   const modalRef = useRef<HTMLDivElement>(null)
 
-  // Open after hydration to avoid SSR mismatch
   useEffect(() => {
+    if (sessionStorage.getItem(SESSION_KEY) === 'true') return
     setIsOpen(true)
   }, [])
 
-  // Body scroll lock with scrollbar-width compensation to prevent layout shift
   useEffect(() => {
     if (!isOpen) return
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
@@ -24,20 +25,14 @@ export function TrailheadIntroModal() {
     }
   }, [isOpen])
 
-  // Focus CTA when modal opens
   useEffect(() => {
     if (isOpen) ctaRef.current?.focus()
   }, [isOpen])
 
-  // Escape key + focus trap
   useEffect(() => {
     if (!isOpen) return
-
     function onKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Escape') {
-        close()
-        return
-      }
+      if (e.key === 'Escape') { close(); return }
       if (e.key !== 'Tab') return
       const modal = modalRef.current
       if (!modal) return
@@ -50,25 +45,18 @@ export function TrailheadIntroModal() {
       const first = focusable[0]
       const last = focusable[focusable.length - 1]
       if (e.shiftKey) {
-        if (document.activeElement === first) {
-          e.preventDefault()
-          last.focus()
-        }
+        if (document.activeElement === first) { e.preventDefault(); last.focus() }
       } else {
-        if (document.activeElement === last) {
-          e.preventDefault()
-          first.focus()
-        }
+        if (document.activeElement === last) { e.preventDefault(); first.focus() }
       }
     }
-
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
   }, [isOpen])
 
   function close() {
+    sessionStorage.setItem(SESSION_KEY, 'true')
     setIsOpen(false)
-    // Return focus to chat textarea after the modal unmounts
     requestAnimationFrame(() => {
       document.querySelector<HTMLTextAreaElement>('textarea')?.focus()
     })
@@ -95,7 +83,6 @@ export function TrailheadIntroModal() {
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close (X) */}
         <button
           aria-label="Close intro"
           onClick={close}
@@ -107,55 +94,57 @@ export function TrailheadIntroModal() {
           }}
         >
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-            <path
-              d="M1 1L11 11M11 1L1 11"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
+            <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
           </svg>
         </button>
 
-        {/* Eyebrow */}
         <p
           className="mb-3 text-xs font-semibold uppercase tracking-widest"
           style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
         >
-          A demo from Off-Map
+          Trailhead Demo · Off-Map
         </p>
 
-        {/* Headline */}
         <h2
           id="intro-modal-heading"
           className="mb-4 text-2xl font-bold tracking-tight"
           style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}
         >
-          What you&rsquo;re about to see
+          Before we begin
         </h2>
 
-        {/* Body */}
         <p className="mb-3 text-sm leading-relaxed" style={{ color: 'var(--color-text-primary)' }}>
-          Hill Country Estate Law is a fictional firm. We built it to show what AI-powered sales and intake
-          could look like for a real estate planning practice — flat-fee pricing, conversational
-          qualification, instant booking, no front-desk friction.
-        </p>
-        <p className="mb-6 text-sm leading-relaxed" style={{ color: 'var(--color-text-primary)' }}>
-          Try the chat the way one of your clients might. Tell it about a family situation, ask about
-          pricing, see how it qualifies and routes. The whole experience is real — only the firm is
-          invented.
+          Hill Country Estate Law is a fictional firm. This is a working demo of the Trailhead GTM
+          engine — an attorney-controlled intake and sales system for flat-fee legal services.
         </p>
 
-        {/* CTA */}
+        <div
+          className="mb-5 rounded-xl p-4"
+          style={{ background: 'var(--color-bg-light)', border: '1px solid var(--color-border)' }}
+        >
+          <p className="text-sm font-semibold mb-2" style={{ color: 'var(--color-text-primary)' }}>
+            Disclosure
+          </p>
+          <p className="text-xs leading-relaxed mb-2" style={{ color: 'var(--color-text-muted)' }}>
+            This guided intake is for information gathering only. It does not provide legal advice,
+            does not create an attorney-client relationship, and does not guarantee that the flat-fee
+            package is appropriate for your situation.
+          </p>
+          <p className="text-xs leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
+            A licensed attorney must review your information before confirming representation, scope,
+            fees, or legal recommendations.
+          </p>
+        </div>
+
         <button
           ref={ctaRef}
           onClick={close}
           className="w-full py-3 rounded-xl text-sm font-semibold text-white transition-opacity hover:opacity-90"
           style={{ background: 'var(--color-accent)' }}
         >
-          Try the demo
+          I understand — start intake
         </button>
 
-        {/* Footer note */}
         <p className="mt-4 text-xs text-center" style={{ color: 'var(--color-text-muted)' }}>
           Built by Off-Map. Not legal advice.
         </p>
