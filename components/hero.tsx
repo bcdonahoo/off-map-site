@@ -1,10 +1,6 @@
 import Link from 'next/link'
 import { buttonVariants } from '@/components/ui/button'
 
-// TODO: Wire PostHog A/B test for hero tagline variants (flag: hero-tagline-variant).
-// Variant A (current, locked): "AI redrew GTM. / We help you build for what's next."
-// Variants B-D documented in SITE_COPY.md. Track CTA clicks to /services/audit and /book.
-
 export function Hero() {
   return (
     <section
@@ -27,7 +23,7 @@ export function Hero() {
           className="mb-6 text-xs font-semibold uppercase tracking-widest"
           style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
         >
-          GTM Consulting
+          For Texas law firms
         </p>
 
         {/* Headline */}
@@ -38,9 +34,7 @@ export function Hero() {
             fontFamily: 'var(--font-display)',
           }}
         >
-          AI redrew GTM.
-          <br />
-          We help you build for what&apos;s next.
+          Modern client acquisition for Texas practices.
         </h1>
 
         {/* Subhead */}
@@ -48,65 +42,66 @@ export function Hero() {
           className="mx-auto mb-10 max-w-[560px] text-lg leading-relaxed"
           style={{ color: 'var(--color-text-muted)' }}
         >
-          The old GTM playbooks were written for a world that&apos;s gone, and
-          nobody&apos;s written the new ones yet. Off-Map works with services firms
-          and early-stage founders to build the pipelines, offers, and sales motions
-          that fit the business you actually run, in the world we are actually in.
+          Off-Map helps small Texas law firms grow matter volume without adding
+          partners. We build the intake, marketing, and business development
+          systems that fit how your practice actually operates.
         </p>
 
         {/* Primary CTA */}
         <div className="mb-4">
           <Link
-            href="/services/audit"
+            href="/book?source=homepage"
             className={
               buttonVariants({ size: 'lg' }) +
               ' !text-[var(--color-bg)] font-semibold px-8 py-3 text-base'
             }
             style={{ background: 'var(--color-accent)' }}
           >
-            Start with a $350 Audit →
+            Book a conversation
           </Link>
         </div>
 
         {/* Secondary CTA */}
         <div className="mb-12">
           <Link
-            href="/book"
+            href="/trailhead"
             className="text-sm transition-opacity hover:opacity-70"
             style={{ color: 'var(--color-text-muted)' }}
           >
-            Or book a discovery call
+            Or see our demo
           </Link>
         </div>
 
         {/* Trust signals */}
         <div className="flex flex-wrap items-center justify-center gap-6">
-          {['Senior operator', 'No copy-paste playbooks', 'Solo by design'].map(
-            (signal) => (
-              <div
-                key={signal}
-                className="flex items-center gap-2 text-sm"
-                style={{ color: 'var(--color-text-muted)' }}
+          {[
+            'Built for managing partners of 3 to 15 attorney firms',
+            'Senior operator delivering every engagement',
+            'Focus areas: estate planning, probate, real estate, small business',
+          ].map((signal) => (
+            <div
+              key={signal}
+              className="flex items-center gap-2 text-sm"
+              style={{ color: 'var(--color-text-muted)' }}
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+                className="shrink-0"
               >
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 14 14"
-                  fill="none"
-                  className="shrink-0"
-                >
-                  <path
-                    d="M2 7L5.5 10.5L12 4"
-                    stroke="var(--color-accent)"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                {signal}
-              </div>
-            )
-          )}
+                <path
+                  d="M2 7L5.5 10.5L12 4"
+                  stroke="var(--color-accent)"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              {signal}
+            </div>
+          ))}
         </div>
       </div>
     </section>

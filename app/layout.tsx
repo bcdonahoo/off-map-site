@@ -23,9 +23,14 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Off-Map | GTM Consulting',
+  title: 'Modern Client Acquisition for Texas Law Firms | Off-Map',
   description:
-    'AI redrew GTM. Off-Map works with services firms and early-stage founders to build the pipelines, offers, and sales motions that fit the business you actually run.',
+    'Off-Map helps small Texas law firms grow matter volume without adding partners. AI-powered intake, productized offers, and business development systems built for how lawyers actually work.',
+  openGraph: {
+    title: 'Modern Client Acquisition for Texas Law Firms | Off-Map',
+    description:
+      'Off-Map helps small Texas law firms grow matter volume without adding partners. AI-powered intake, productized offers, and business development systems built for how lawyers actually work.',
+  },
 }
 
 export default function RootLayout({

@@ -21,8 +21,8 @@ export function Footer() {
               Off-Map
             </p>
             <p className="text-sm text-[var(--color-text-muted)] max-w-xs leading-relaxed">
-              GTM consulting for services firms and early-stage founders. Built
-              for what&apos;s next.
+              Client acquisition consulting for Texas law firms. Built for
+              managing partners.
             </p>
           </div>
 
@@ -38,7 +38,7 @@ export function Footer() {
                     href="/services/audit"
                     className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors"
                   >
-                    The Audit
+                    Practice Diagnostic
                   </Link>
                 </li>
                 <li>
@@ -46,7 +46,7 @@ export function Footer() {
                     href="/services/sprint"
                     className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors"
                   >
-                    Pipeline Sprint
+                    Practice Growth Engagement
                   </Link>
                 </li>
                 <li>
@@ -54,7 +54,7 @@ export function Footer() {
                     href="/services/fractional"
                     className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors"
                   >
-                    Fractional GTM
+                    Fractional Practice Operator
                   </Link>
                 </li>
               </ul>

@@ -11,7 +11,7 @@ export function CTADirect() {
         className="mb-4 text-xs font-semibold uppercase tracking-widest"
         style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
       >
-        Get Started
+        Start here
       </p>
       <h2
         className="mb-6 text-4xl font-bold md:text-5xl"
@@ -20,31 +20,40 @@ export function CTADirect() {
           fontFamily: 'var(--font-display)',
         }}
       >
-        Find out what is actually broken.
+        Start with a conversation.
       </h2>
       <p
         className="mx-auto mb-10 max-w-[480px] text-sm leading-relaxed"
         style={{ color: 'var(--color-text-muted)' }}
       >
-        Start with a $350 Off-Map Audit. Sixty minutes, a one-page brief in 72
-        hours, and one move to make next. If it is worth more, we will talk
-        about what comes after.
+        30 minutes, on Zoom. We will discuss your practice, the growth
+        bottleneck, and whether what Off-Map does fits. You will see Trailhead,
+        our working AI sales demo, before or during the call.
       </p>
+      <div className="mb-4">
+        <Link
+          href="/book?source=homepage"
+          onClick={() =>
+            posthog.capture('cta_clicked', {
+              variant: 'direct',
+              location: 'cta-section',
+            })
+          }
+          className={
+            buttonVariants({ size: 'lg' }) +
+            ' !text-[var(--color-bg)] font-semibold px-8 py-3 text-base'
+          }
+          style={{ background: 'var(--color-accent)' }}
+        >
+          Book a call
+        </Link>
+      </div>
       <Link
-        href="/services/audit"
-        onClick={() =>
-          posthog.capture('cta_clicked', {
-            variant: 'direct',
-            location: 'cta-section',
-          })
-        }
-        className={
-          buttonVariants({ size: 'lg' }) +
-          ' !text-[var(--color-bg)] font-semibold px-8 py-3 text-base'
-        }
-        style={{ background: 'var(--color-accent)' }}
+        href="/trailhead"
+        className="text-sm transition-opacity hover:opacity-70"
+        style={{ color: 'var(--color-text-muted)' }}
       >
-        Get an Audit →
+        Or see the demo first
       </Link>
     </div>
   )

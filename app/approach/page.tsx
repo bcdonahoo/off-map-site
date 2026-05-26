@@ -5,7 +5,7 @@ import { buttonVariants } from '@/components/ui/button'
 export const metadata: Metadata = {
   title: 'The Approach | Off-Map',
   description:
-    'Most GTM advice is recycled. Off-Map starts from the business in front of us. Every time.',
+    'Off-Map is one operator. Every engagement is scoped before it begins, delivered in working sessions, and handed off as documented systems your firm owns.',
 }
 
 export default function ApproachPage() {
@@ -31,7 +31,7 @@ export default function ApproachPage() {
             fontFamily: 'var(--font-display)',
           }}
         >
-          What &ldquo;off the map&rdquo; actually means.
+          How Off-Map works with a law firm.
         </h1>
 
         {/* Body */}
@@ -40,30 +40,36 @@ export default function ApproachPage() {
           style={{ color: 'var(--color-text-muted)' }}
         >
           <p>
-            Most GTM advice is recycled. Same frameworks, same playbooks, same
-            hire-a-VP-Sales answer, applied to companies that do not fit the mold.
+            Off-Map is one operator. You work directly with Brent Donahoo from
+            the first call through the final handoff. There is no agency behind
+            this, no junior team doing the actual work, no account manager in
+            the middle.
           </p>
           <p>
-            The mold does not exist anymore. AI compressed the timeline on every
-            GTM motion that worked five years ago. The companies that figured out
-            outbound in 2018 are watching reply rates collapse. The advice
-            industry is still selling 2018.
-          </p>
-          <p>Off-Map exists to do something different.</p>
-          <p>
-            Every engagement starts from the business in front of us. What does
-            this company sell, to whom, and why? What is working that we should
-            protect? What is broken that is costing real money this quarter? What
-            is the smallest, sharpest move that gets us measurably closer to
-            repeatable revenue?
+            Every engagement is scoped before it begins. That means a specific
+            problem, a specific deliverable, and a clear end point. The
+            engagement has a defined shape before any work starts. You know what
+            you are buying and what you will have when it is done.
           </p>
           <p>
-            That is the work. No frameworks borrowed from someone else&apos;s
-            exit. No tools-first thinking that ignores what your customers
-            actually want. No playbooks that fit a deck better than they fit a
-            business.
+            Delivery happens in working sessions and written outputs. Not decks.
+            Not strategy documents that sit unread. Live sessions where we are
+            building something together, and written documentation that records
+            what we built and how your team can run it.
           </p>
-          <p>We draw the map together. You end up with a motion that fits.</p>
+          <p>
+            The outcome is always firm-owned. Every process, intake system, and
+            template that comes out of an engagement is documented so your firm
+            can operate it after the engagement ends. Off-Map is not trying to
+            make itself permanent. It is trying to make itself unnecessary.
+          </p>
+          <p>
+            The work is specific to your practice. Managing partners of small
+            Texas law firms operate differently from each other. Different
+            practice areas, different referral networks, different client
+            relationships. There is no standard Off-Map engagement. There is a
+            scoped engagement for the practice in front of us.
+          </p>
         </div>
 
         {/* Bottom CTA */}
@@ -75,24 +81,17 @@ export default function ApproachPage() {
               fontFamily: 'var(--font-display)',
             }}
           >
-            Want a sharp outside read?
+            Start with a conversation.
           </h2>
           <Link
-            href="/services/audit"
+            href="/book?source=approach"
             className={
               buttonVariants({ size: 'lg' }) +
               ' !text-[var(--color-bg)] font-semibold px-8 py-3 text-base'
             }
             style={{ background: 'var(--color-accent)' }}
           >
-            Get a $350 Audit →
-          </Link>
-          <Link
-            href="/book"
-            className="text-sm transition-opacity hover:opacity-70"
-            style={{ color: 'var(--color-text-muted)' }}
-          >
-            Or book a discovery call
+            Book a call →
           </Link>
         </div>
       </div>

@@ -3,50 +3,46 @@ import Link from 'next/link'
 import { buttonVariants } from '@/components/ui/button'
 
 export const metadata: Metadata = {
-  title: 'The Pipeline Sprint | Off-Map',
+  title: 'Practice Growth Engagement | Off-Map',
   description:
-    'We rebuild your GTM motion end to end. ICP, messaging, channel, sales process. You leave with a documented playbook your team can actually run.',
+    'A defined project that rebuilds one part of your client acquisition. Scoped before we start. Documented systems your firm owns at the end.',
 }
 
 const deliverables = [
   {
-    label: 'Week 1 · ICP and offer pressure-test',
-    body: 'We lock the one segment to attack first. Everything else gets parked until this is working.',
+    label: 'Scoping session before we start',
+    body: 'We define the specific problem, the deliverable, and how we will know the work succeeded. You know exactly what you are buying before any work begins.',
   },
   {
-    label: 'Week 2 · Messaging and assets',
-    body: 'Cold email, LinkedIn copy, one-pager, qualification script. Rewritten or built from scratch.',
+    label: 'Working sessions across the engagement',
+    body: 'Live sessions building and testing the work together. The number and frequency depend on scope. You see the work as it develops, not at a final handoff.',
   },
   {
-    label: 'Weeks 3 to 4 · Channel build',
-    body: 'Outbound infrastructure or partner outreach engine, whichever fits the business. We run it together so the motion is real, not theoretical.',
+    label: 'Documented systems your firm owns',
+    body: 'Every process, template, or system we build is documented in a format your team can operate without us. The work lives in your tools, not ours.',
   },
   {
-    label: 'Week 5 · Sales process',
-    body: 'Discovery script, objection responses, pricing conversation, follow-up cadence. Recorded role-plays so you know it works.',
-  },
-  {
-    label: 'Week 6 · Handoff',
-    body: 'A 30-day execution plan you or your team can run. Two follow-up office-hours calls in the month after.',
+    label: 'Follow-up call one month after handoff',
+    body: 'A check-in to see what is working, what needs adjustment, and whether any follow-on scope makes sense.',
   },
 ]
 
 const faqs = [
   {
-    q: 'How much of my time does this take?',
-    a: '90 minutes of working session per week, plus async review of drafts and assets between sessions. Roughly 3 to 5 hours per week of your time.',
+    q: 'How long does an engagement typically run?',
+    a: 'Common engagements run 4 to 8 weeks depending on scope. We set the timeline in the scoping session before any work begins.',
   },
   {
-    q: 'What do I need to have in place to start?',
-    a: 'A working offer that has produced revenue. The Sprint builds the engine that makes the offer repeatable. If you are pre-offer, an Audit is the right starting point.',
+    q: 'Do I need to have done the Diagnostic first?',
+    a: 'Not required. If you already know what needs to be built, we can scope a Practice Growth Engagement directly. The Diagnostic is the right starting point if you are not sure where the bottleneck is.',
   },
   {
-    q: 'What does success look like at the end of 6 weeks?',
-    a: 'A documented motion, a working channel, and 2 to 4 qualified meetings sourced by the new system. We define specific success metrics in week 1.',
+    q: 'What if the scope changes mid-engagement?',
+    a: 'Minor adjustments happen and we handle them. Material changes to scope get agreed separately before we expand the work.',
   },
   {
-    q: 'What if I want to keep working together after the Sprint?',
-    a: 'That is what the Fractional GTM retainer is for. Sprint graduates get month one at $2,500 instead of $4,500.',
+    q: 'What kinds of projects do you typically scope?',
+    a: 'AI-powered intake systems, productized flat-fee offer design, referral partner outreach processes, and business development cadences for managing partners. The scope follows the practice.',
   },
 ]
 
@@ -66,7 +62,7 @@ export default function SprintPage() {
               color: 'var(--color-accent)',
             }}
           >
-            6 Weeks · $7,500
+            Engagement
           </span>
           <h1
             className="mb-6 text-4xl font-bold md:text-6xl"
@@ -75,25 +71,36 @@ export default function SprintPage() {
               fontFamily: 'var(--font-display)',
             }}
           >
-            The Pipeline Sprint
+            Practice Growth Engagement
           </h1>
           <p
-            className="mb-10 max-w-xl text-lg leading-relaxed"
+            className="mb-6 max-w-xl text-lg leading-relaxed"
             style={{ color: 'var(--color-text-muted)' }}
           >
-            We rebuild your GTM motion end to end. ICP, messaging, channel,
-            sales process. You leave with a documented playbook your team can
-            actually run.
+            A time-boxed project that rebuilds one part of your client
+            acquisition. You define the problem. We scope the solution. You own
+            what we build.
+          </p>
+          <p
+            className="mb-10 max-w-xl text-sm leading-relaxed"
+            style={{ color: 'var(--color-text-muted)' }}
+          >
+            This is not a retainer and not ongoing advice. It is a defined
+            project with a clear scope, a defined output, and a handoff date.
+            We determine the scope in the first conversation and document it
+            before any work begins. Common scopes include AI-powered intake,
+            a productized flat-fee offer, a referral partner outreach process,
+            or a business development cadence for the managing partner.
           </p>
           <Link
-            href="/book"
+            href="/book?source=services-sprint"
             className={
               buttonVariants({ size: 'lg' }) +
               ' !text-[var(--color-bg)] font-semibold px-8 py-3 text-base'
             }
             style={{ background: 'var(--color-accent)' }}
           >
-            Book a Discovery Call →
+            Book a conversation →
           </Link>
         </div>
       </section>
@@ -117,7 +124,7 @@ export default function SprintPage() {
               fontFamily: 'var(--font-display)',
             }}
           >
-            Six weeks. One repeatable motion.
+            One system. Built and documented.
           </h2>
           <div className="flex flex-col gap-4">
             {deliverables.map(({ label, body }) => (
@@ -152,37 +159,47 @@ export default function SprintPage() {
               </div>
             ))}
           </div>
-
-          {/* Founding-client pricing */}
-          <div
-            className="mt-8 rounded-2xl p-6"
-            style={{
-              background: 'var(--color-accent-dim)',
-              border: '1px solid var(--color-border-light)',
-            }}
-          >
-            <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-              <strong style={{ color: 'var(--color-accent)' }}>Founding-client pricing:</strong>{' '}
-              $3,750 for the first 3 signed Sprints, in exchange for case study
-              rights and a public testimonial. After that, $7,500.
-            </p>
-          </div>
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* Who It's For */}
       <section className="py-24 px-6" style={{ background: 'var(--color-bg)' }}>
         <div className="mx-auto max-w-2xl">
           <p
             className="mb-4 text-xs font-semibold uppercase tracking-widest"
             style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
           >
+            Who It&apos;s For
+          </p>
+          <p
+            className="text-sm leading-relaxed"
+            style={{ color: 'var(--color-text-muted)' }}
+          >
+            Managing partners who have completed a Practice Diagnostic or who
+            already know the specific part of their client acquisition that needs
+            to be rebuilt. You have a real practice with real clients. You are
+            not looking for general advice. You want a senior operator to build
+            something specific alongside you that your firm can own and run.
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section
+        className="py-24 px-6"
+        style={{ background: 'var(--color-bg-light)' }}
+      >
+        <div className="mx-auto max-w-2xl">
+          <p
+            className="mb-4 text-xs font-semibold uppercase tracking-widest"
+            style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
+          >
             FAQ
           </p>
           <h2
             className="mb-12 text-3xl font-bold"
             style={{
-              color: 'var(--color-text-primary)',
+              color: 'var(--color-text-dark)',
               fontFamily: 'var(--font-display)',
             }}
           >
@@ -212,36 +229,36 @@ export default function SprintPage() {
       {/* CTA */}
       <section
         className="py-24 px-6 text-center"
-        style={{ background: 'var(--color-bg-light)' }}
+        style={{ background: 'var(--color-bg)' }}
       >
         <div className="mx-auto max-w-xl">
           <h2
             className="mb-6 text-3xl font-bold"
             style={{
-              color: 'var(--color-text-dark)',
+              color: 'var(--color-text-primary)',
               fontFamily: 'var(--font-display)',
             }}
           >
-            Ready to build the motion?
+            Start with a conversation.
           </h2>
           <Link
-            href="/book"
+            href="/book?source=services-sprint"
             className={
               buttonVariants({ size: 'lg' }) +
               ' !text-[var(--color-bg)] font-semibold px-8 py-3 text-base'
             }
             style={{ background: 'var(--color-accent)' }}
           >
-            Book a Discovery Call →
+            Book a call →
           </Link>
           <p className="mt-6 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-            Or start with a{' '}
+            Not sure where to start? Begin with a{' '}
             <Link
               href="/services/audit"
               className="underline transition-opacity hover:opacity-70"
               style={{ color: 'var(--color-text-muted)' }}
             >
-              $350 Audit
+              Practice Diagnostic
             </Link>
           </p>
         </div>

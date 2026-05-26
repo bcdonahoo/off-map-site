@@ -1,7 +1,8 @@
 const bullets = [
-  'Years of senior GTM work at companies between traction and scale',
-  'Experience across services firms, B2B SaaS, and early-stage startups',
-  'Hands-on with the AI tools redefining the field',
+  '15+ years of operator experience across services firms and growth-stage businesses',
+  'Currently building and deploying AI-powered sales and intake systems',
+  'Direct work with Texas estate, probate, and real estate practices',
+  'One operator delivers every engagement, no agency hand-off',
 ]
 
 export function Proof() {
@@ -16,7 +17,7 @@ export function Proof() {
           className="mb-4 text-xs font-semibold uppercase tracking-widest"
           style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
         >
-          Background
+          Who is Off-Map
         </p>
 
         {/* Headline */}
@@ -27,7 +28,7 @@ export function Proof() {
             fontFamily: 'var(--font-display)',
           }}
         >
-          Built by someone who has actually done this.
+          A senior operator who builds the system, not the slide deck.
         </h2>
 
         {/* Bullets */}
@@ -54,9 +55,9 @@ export function Proof() {
           className="max-w-2xl text-sm leading-relaxed"
           style={{ color: 'var(--color-text-muted)' }}
         >
-          Off-Map is a one-person operation by design. You work directly with
-          Brendon. Every engagement is delivered by the same operator you spoke
-          to on the call.
+          Off-Map is one operator by design. You work directly with Brent
+          Donahoo. Every engagement is scoped, delivered, and documented by the
+          same person you spoke with on the first call.
         </p>
       </div>
     </section>

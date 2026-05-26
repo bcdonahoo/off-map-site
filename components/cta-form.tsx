@@ -54,7 +54,7 @@ export function CTAForm() {
           You are in.
         </p>
         <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
-          Check your inbox in the next few minutes for the Audit link and intake.
+          We will reach out within one business day to schedule the call.
         </p>
       </div>
     )
@@ -66,7 +66,7 @@ export function CTAForm() {
         className="mb-4 text-xs font-semibold uppercase tracking-widest"
         style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
       >
-        Get Started
+        Start here
       </p>
       <h2
         className="mb-6 text-4xl font-bold md:text-5xl"
@@ -75,14 +75,14 @@ export function CTAForm() {
           fontFamily: 'var(--font-display)',
         }}
       >
-        Find out what is actually broken.
+        Start with a conversation.
       </h2>
       <p
         className="mx-auto mb-10 max-w-[480px] text-sm leading-relaxed"
         style={{ color: 'var(--color-text-muted)' }}
       >
-        Drop your info and we will send the Audit link plus an intake form. You
-        will have everything you need within one business day.
+        Drop your name and email and we will reach out within one business day
+        to schedule a 30-minute call.
       </p>
 
       <form
@@ -117,7 +117,7 @@ export function CTAForm() {
         />
         <input
           type="text"
-          placeholder="Company (optional)"
+          placeholder="Firm name (optional)"
           value={company}
           onChange={(e) => setCompany(e.target.value)}
           className="w-full rounded-xl px-4 py-3 text-sm outline-none transition-all"
@@ -136,7 +136,7 @@ export function CTAForm() {
             color: 'var(--color-bg)',
           }}
         >
-          {state === 'submitting' ? 'Sending...' : 'Send Me the Audit →'}
+          {state === 'submitting' ? 'Sending...' : 'Request a Conversation'}
         </button>
         {state === 'error' && (
           <p className="text-xs" style={{ color: '#f87171' }}>

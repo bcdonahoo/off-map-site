@@ -4,17 +4,17 @@ const pillars = [
   {
     number: '01',
     label: 'Operator-led.',
-    body: 'Every engagement is run by a senior GTM operator who has done the work, not a junior consultant with a deck.',
+    body: 'Every engagement is run by a senior operator with hands-on experience. No junior hand-off, no agency model.',
   },
   {
     number: '02',
     label: 'Strategy and execution.',
-    body: 'We do not separate thinking from doing. We design the motion and help you run it.',
+    body: 'We do not separate thinking from doing. We design the process and help you run it.',
   },
   {
     number: '03',
-    label: 'The map is yours to draw.',
-    body: 'We do not sell playbooks. We help you build the one that fits.',
+    label: 'The system is yours.',
+    body: 'We do not hand you a template. We build the one that fits your practice, documented so your firm can run it.',
   },
 ]
 
@@ -41,17 +41,17 @@ export function ApproachPreview() {
                 fontFamily: 'var(--font-display)',
               }}
             >
-              Built for the business in front of us.
+              Built for the practice in front of us.
             </h2>
             <p
               className="mb-8 text-sm leading-relaxed"
               style={{ color: 'var(--color-text-muted)' }}
             >
-              Every Off-Map engagement starts with one question: what does the
-              company actually need next? Not what the playbook says. Not what
-              the last successful exit did. What works for the business operating
-              here, in the market we are actually in. The deliverable is always
-              the same: a motion you can run.
+              Every Off-Map engagement starts with one question: what does this
+              practice actually need next? Not what the standard advice says.
+              Not what the last successful firm did. What works for the practice
+              operating here, in the market we are actually in. The deliverable
+              is always the same: a process you can run.
             </p>
             <Link
               href="/approach"

@@ -4,7 +4,7 @@ Edit any text in this file, then tell Claude Code "sync the copy" and it will up
 Do not change the section headers (lines starting with `##` or `###`) without coordinating component changes. These headers are landmarks used to find the right component.
 Prices, tool names, and email addresses are safe to change.
 
-This file was rewritten on 2026-05-11 against locked positioning ("Where the old maps end") and the Audit / Sprint / Fractional offer architecture. See `STRUCTURAL CHANGES` section at the bottom for component-level work required to sync.
+This file was rewritten on 2026-05-11 against locked positioning ("Where the old maps end") and the Audit / Sprint / Fractional offer architecture. Updated 2026-05-26 for legal-vertical positioning (Phase 1 of offmap-legal-vertical-refactor). See `STRUCTURAL CHANGES` section at the bottom for component-level work required to sync.
 
 ---
 
@@ -12,7 +12,7 @@ This file was rewritten on 2026-05-11 against locked positioning ("Where the old
 
 - **Wordmark:** Off-Map
 - **Links:** Services · Approach
-- **Services dropdown:** The Audit · Pipeline Sprint · Fractional GTM
+- **Services dropdown:** Practice Diagnostic · Practice Growth Engagement · Fractional Practice Operator
 - **CTA button:** Book a Call
 
 ---
@@ -21,75 +21,75 @@ This file was rewritten on 2026-05-11 against locked positioning ("Where the old
 
 ### Hero
 
-- **Eyebrow:** GTM Consulting
-- **Headline:**
-  AI redrew GTM.
-  We help you build for what's next.
-- **Subhead:** The old GTM playbooks were written for a world that's gone, and nobody's written the new ones yet. Off-Map works with services firms and early-stage founders to build the pipelines, offers, and sales motions that fit the business you actually run, in the world we are actually in.
-- **CTA button:** Start with a $350 Audit →
-- **Secondary CTA:** Or book a discovery call
-- **Trust signals:** Senior operator · No copy-paste playbooks · Solo by design
+- **Eyebrow:** For Texas law firms
+- **Headline:** Modern client acquisition for Texas practices.
+- **Subhead:** Off-Map helps small Texas law firms grow matter volume without adding partners. We build the intake, marketing, and business development systems that fit how your practice actually operates.
+- **CTA button:** Book a conversation
+- **CTA href:** /book?source=homepage
+- **Secondary CTA:** Or see our demo
+- **Secondary CTA href:** /trailhead
+- **Trust signals:** Built for managing partners of 3 to 15 attorney firms · Senior operator delivering every engagement · Focus areas: estate planning, probate, real estate, small business
 
 ---
 
 ### Problem
 
-- **Eyebrow:** The Problem
-- **Headline:** Founder-led selling got you here. It will not get you there.
+- **Eyebrow:** What managing partners tell us
+- **Headline:** Your firm grows when you work. That is the ceiling.
 
 **Problem 1**
-- Label: You are the GTM.
-- Body: Every closed deal, every renewal, every referral runs through you. The business cannot grow past your calendar.
+- Label: You are the rainmaker.
+- Body: Every new client, every renewal, every referral flows through your relationships. You cannot delegate yourself.
 
 **Problem 2**
-- Label: The playbook everyone hands you is for someone else's business.
-- Body: Hire a VP Sales. Run a generic outbound machine. Pour money into ads. None of it fits where you actually are.
+- Label: The marketing the industry sells does not fit.
+- Body: Generic SEO, bar association mixers, untrained associate outreach. The motion does not match how your clients actually find you.
 
 **Problem 3**
-- Label: You do not have time to figure it out alone.
-- Body: Every month spent winging it is a month of revenue you cannot get back. The cost of doing nothing is higher than the cost of getting help.
+- Label: Hiring is not the answer alone.
+- Body: Associates take 18 months to ramp into business development. Paralegals can free your time, not your funnel. You need a system, not another headcount.
 
 ---
 
 ### Services
 
-- **Eyebrow:** Services
-- **Headline:** Three ways to work together.
+- **Eyebrow:** How we work
+- **Headline:** Three ways to engage.
 
-**Card 1 · The Off-Map Audit**
-- Badge: 5 Days
-- Title: The Off-Map Audit
-- Body: A 60-minute deep dive, a written brief in 72 hours, a 15-minute follow-up two weeks later. One thing working. One thing broken. One move to make next.
-- Price: $350
-- Link: Learn More →
+**Card 1 · Practice Diagnostic**
+- Badge: Diagnostic
+- Title: Practice Diagnostic
+- Body: 60 minutes on the practice. Written brief in 5 business days. One follow-up call two weeks later. One thing working, one thing broken, one move to make next.
+- Price: (none)
+- Link: Learn more → /services/audit
 
-**Card 2 · The Pipeline Sprint**
-- Badge: 6 Weeks
-- Title: The Pipeline Sprint
-- Body: We rebuild your GTM motion end to end. ICP, messaging, channel, sales process. You leave with a documented playbook your team can run.
-- Price: $7,500
-- Link: Learn More →
+**Card 2 · Practice Growth Engagement**
+- Badge: Engagement
+- Title: Practice Growth Engagement
+- Body: A defined project that rebuilds one part of your client acquisition. AI intake, productized offer build, marketing engine, or business development process. Scoped before we start. Documented systems your firm owns at the end.
+- Price: (none)
+- Link: Learn more → /services/sprint
 
-**Card 3 · Fractional GTM**
-- Badge: 3-Month Minimum
-- Title: Fractional GTM
-- Body: An embedded operator working alongside you on whatever the rate-limiting GTM lever is that month. Weekly working sessions, async access, the leverage of a senior hire without the headcount.
-- Price: From $4,500/mo
-- Link: Learn More →
+**Card 3 · Fractional Practice Operator**
+- Badge: Embedded
+- Title: Fractional Practice Operator
+- Body: Embedded alongside you on whatever is rate-limiting practice growth this month. Weekly working sessions, async access. Senior-operator leverage without adding to payroll.
+- Price: (none)
+- Link: Learn more → /services/fractional
 
 ---
 
 ### Approach
 
 - **Eyebrow:** The Approach
-- **Headline:** Built for the business in front of us.
+- **Headline:** Built for the practice in front of us.
 
-**Body:** Every Off-Map engagement starts with one question: what does the company actually need next? Not what the playbook says. Not what the last successful exit did. What works for the business operating here, in the market we are actually in. The deliverable is always the same: a motion you can run.
+**Body:** Every Off-Map engagement starts with one question: what does this practice actually need next? Not what the standard advice says. Not what the last successful firm did. What works for the practice operating here, in the market we are actually in. The deliverable is always the same: a process you can run.
 
 **Pillars**
-- 01 · Operator-led. Every engagement is run by a senior GTM operator who has done the work, not a junior consultant with a deck.
-- 02 · Strategy and execution. We do not separate thinking from doing. We design the motion and help you run it.
-- 03 · The map is yours to draw. We do not sell playbooks. We help you build the one that fits.
+- 01 · Operator-led. Every engagement is run by a senior operator with hands-on experience. No junior hand-off, no agency model.
+- 02 · Strategy and execution. We do not separate thinking from doing. We design the process and help you run it.
+- 03 · The system is yours. We do not hand you a template. We build the one that fits your practice, documented so your firm can run it.
 
 **Link:** Read more about the approach →
 
@@ -97,32 +97,34 @@ This file was rewritten on 2026-05-11 against locked positioning ("Where the old
 
 ### Proof
 
-- **Eyebrow:** Background
-- **Headline:** Built by someone who has actually done this.
+- **Eyebrow:** Who is Off-Map
+- **Headline:** A senior operator who builds the system, not the slide deck.
 
 **Bullets**
-- Years of senior GTM work at companies between traction and scale
-- Experience across services firms, B2B SaaS, and early-stage startups
-- Hands-on with the AI tools redefining the field
+- 15+ years of operator experience across services firms and growth-stage businesses
+- Currently building and deploying AI-powered sales and intake systems
+- Direct work with Texas estate, probate, and real estate practices
+- One operator delivers every engagement, no agency hand-off
 
-**Body:** Off-Map is a one-person operation by design. You work directly with Brendon. Every engagement is delivered by the same operator you spoke to on the call.
+**Body:** Off-Map is one operator by design. You work directly with Brent Donahoo. Every engagement is scoped, delivered, and documented by the same person you spoke with on the first call.
 
 ---
 
 ### CTA Section
 
-- **Eyebrow:** Get Started
-- **Headline:** Find out what is actually broken.
+- **Eyebrow:** Start here
+- **Headline:** Start with a conversation.
 
 **Direct variant (default)**
-- Body: Start with a $350 Off-Map Audit. Sixty minutes, a one-page brief in 72 hours, and one move to make next. If it is worth more, we will talk about what comes after.
-- Button: Get an Audit →
+- Body: 30 minutes, on Zoom. We will discuss your practice, the growth bottleneck, and whether what Off-Map does fits. You will see Trailhead, our working AI sales demo, before or during the call.
+- Button: Book a call → /book?source=homepage
+- Secondary: Or see the demo first → /trailhead
 
 **Form variant (PostHog flag: form-first)**
-- Body: Drop your info and we will send the Audit link plus an intake form. You will have everything you need within one business day.
-- Button: Send Me the Audit →
+- Body: Drop your name and email and we will reach out within one business day to schedule a 30-minute call.
+- Button: Request a Conversation
 - Success headline: You are in.
-- Success body: Check your inbox in the next few minutes for the Audit link and intake.
+- Success body: We will reach out within one business day to schedule the call.
 - Error: Something went wrong. Email us at hello@off-map.com
 
 ---
@@ -130,8 +132,8 @@ This file was rewritten on 2026-05-11 against locked positioning ("Where the old
 ## FOOTER
 
 - **Wordmark:** Off-Map
-- **Description:** GTM consulting for services firms and early-stage founders. Built for what's next.
-- **Services links:** The Audit · Pipeline Sprint · Fractional GTM
+- **Description:** Client acquisition consulting for Texas law firms. Built for managing partners.
+- **Services links:** Practice Diagnostic · Practice Growth Engagement · Fractional Practice Operator
 - **Company links:** Approach · Writing · Book a Call
 - **Copyright:** © 2026 Off-Map Consulting
 - **Email:** hello@off-map.com

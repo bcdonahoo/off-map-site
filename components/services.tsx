@@ -2,24 +2,21 @@ import Link from 'next/link'
 
 const services = [
   {
-    badge: '5 Days',
-    title: 'The Off-Map Audit',
-    body: 'A 60-minute deep dive, a written brief in 72 hours, a 15-minute follow-up two weeks later. One thing working. One thing broken. One move to make next.',
-    price: '$350',
+    badge: 'Diagnostic',
+    title: 'Practice Diagnostic',
+    body: '60 minutes on the practice. Written brief in 5 business days. One follow-up call two weeks later. One thing working, one thing broken, one move to make next.',
     href: '/services/audit',
   },
   {
-    badge: '6 Weeks',
-    title: 'The Pipeline Sprint',
-    body: 'We rebuild your GTM motion end to end. ICP, messaging, channel, sales process. You leave with a documented playbook your team can run.',
-    price: '$7,500',
+    badge: 'Engagement',
+    title: 'Practice Growth Engagement',
+    body: 'A defined project that rebuilds one part of your client acquisition. AI intake, productized offer build, marketing engine, or business development process. Scoped before we start. Documented systems your firm owns at the end.',
     href: '/services/sprint',
   },
   {
-    badge: '3-Month Minimum',
-    title: 'Fractional GTM',
-    body: 'An embedded operator working alongside you on whatever the rate-limiting GTM lever is that month. Weekly working sessions, async access, the leverage of a senior hire without the headcount.',
-    price: 'From $4,500/mo',
+    badge: 'Embedded',
+    title: 'Fractional Practice Operator',
+    body: 'Embedded alongside you on whatever is rate-limiting practice growth this month. Weekly working sessions, async access. Senior-operator leverage without adding to payroll.',
     href: '/services/fractional',
   },
 ]
@@ -36,7 +33,7 @@ export function Services() {
           className="mb-4 text-xs font-semibold uppercase tracking-widest"
           style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
         >
-          Services
+          How we work
         </p>
 
         {/* Headline */}
@@ -47,11 +44,11 @@ export function Services() {
             fontFamily: 'var(--font-display)',
           }}
         >
-          Three ways to work together.
+          Three ways to engage.
         </h2>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {services.map(({ badge, title, body, price, href }) => (
+          {services.map(({ badge, title, body, href }) => (
             <div
               key={title}
               className="group relative rounded-2xl p-8 transition-all duration-200"
@@ -88,19 +85,13 @@ export function Services() {
               >
                 {body}
               </p>
-              <div className="flex items-center justify-between">
-                <p
-                  className="font-semibold"
-                  style={{ color: 'var(--color-text-primary)' }}
-                >
-                  {price}
-                </p>
+              <div className="flex items-center justify-end">
                 <Link
                   href={href}
                   className="text-sm font-medium transition-colors hover:opacity-80"
                   style={{ color: 'var(--color-accent)' }}
                 >
-                  Learn More →
+                  Learn more →
                 </Link>
               </div>
             </div>

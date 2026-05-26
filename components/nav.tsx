@@ -41,7 +41,7 @@ export function Nav() {
             </button>
             <div className="absolute top-full left-0 pt-2 hidden group-hover:block">
               <div
-                className="rounded-lg p-2 min-w-[200px]"
+                className="rounded-lg p-2 min-w-[240px]"
                 style={{
                   background: 'var(--color-bg-surface)',
                   border: '1px solid var(--color-border)',
@@ -51,19 +51,19 @@ export function Nav() {
                   href="/services/audit"
                   className="block px-3 py-2 text-sm rounded-md text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-black/5 transition-colors"
                 >
-                  The Audit
+                  Practice Diagnostic
                 </Link>
                 <Link
                   href="/services/sprint"
                   className="block px-3 py-2 text-sm rounded-md text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-black/5 transition-colors"
                 >
-                  Pipeline Sprint
+                  Practice Growth Engagement
                 </Link>
                 <Link
                   href="/services/fractional"
                   className="block px-3 py-2 text-sm rounded-md text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-black/5 transition-colors"
                 >
-                  Fractional GTM
+                  Fractional Practice Operator
                 </Link>
               </div>
             </div>
@@ -120,21 +120,21 @@ export function Nav() {
             className="text-sm text-[var(--color-text-muted)]"
             onClick={() => setMenuOpen(false)}
           >
-            The Audit
+            Practice Diagnostic
           </Link>
           <Link
             href="/services/sprint"
             className="text-sm text-[var(--color-text-muted)]"
             onClick={() => setMenuOpen(false)}
           >
-            Pipeline Sprint
+            Practice Growth Engagement
           </Link>
           <Link
             href="/services/fractional"
             className="text-sm text-[var(--color-text-muted)]"
             onClick={() => setMenuOpen(false)}
           >
-            Fractional GTM
+            Fractional Practice Operator
           </Link>
           <Link
             href="/approach"

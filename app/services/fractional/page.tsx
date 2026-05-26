@@ -3,50 +3,46 @@ import Link from 'next/link'
 import { buttonVariants } from '@/components/ui/button'
 
 export const metadata: Metadata = {
-  title: 'Fractional GTM | Off-Map',
+  title: 'Fractional Practice Operator | Off-Map',
   description:
-    'An embedded operator working alongside you on whatever the rate-limiting GTM lever is that month. Weekly working sessions, async access, the leverage of a senior hire without the headcount.',
+    'A senior operator embedded in your practice on a monthly basis. Weekly working sessions, async access, documented outputs. Senior-operator leverage without adding to payroll.',
 }
 
 const included = [
   {
-    label: 'One weekly working session',
-    body: '90 minutes, live, on whatever is most important that week. ICP refinement, pipeline review, hiring the first AE, repricing the offer. The agenda follows the business.',
+    label: 'Weekly working session',
+    body: '60 to 90 minutes, live. The agenda follows what is rate-limiting growth this week. Intake review, referral source analysis, offer design, marketing channel, business development. No fixed curriculum.',
   },
   {
-    label: 'Async Slack and email access',
-    body: 'During business hours. The kind of "can you look at this draft" and "what would you do here" access a senior hire gives you, without the senior-hire price.',
+    label: 'Async access between sessions',
+    body: 'Slack or email access during business hours. For quick questions, draft reviews, and decisions that should not wait until next week.',
   },
   {
-    label: 'Monthly pipeline and motion review',
-    body: 'Written recommendations on the state of the motion. What is working. What is broken. What to change next month.',
+    label: 'Monthly written review',
+    body: 'A short written summary of what we built that month, what is working, what is not, and what the priority is for the next month.',
   },
   {
-    label: 'Hands-on work on the rate-limiting lever',
-    body: 'Not just advice. If the bottleneck is outbound, we build it together. If it is hiring, we run the hiring process. If it is pricing, we redesign the conversation.',
-  },
-  {
-    label: 'Quarterly strategic offsite',
-    body: 'A half-day deep dive on direction, hiring, market shifts. The work most founders never carve out time for.',
+    label: 'Documented outputs throughout',
+    body: 'Every system, process, or template built during the engagement is documented so it can run without us when the engagement ends.',
   },
 ]
 
 const faqs = [
   {
-    q: 'Is this a fractional CRO or a fractional VP Sales?',
-    a: 'Neither. Fractional CROs and VP Sales are full-time-equivalent operators on a part-time schedule. Fractional GTM is a senior operator working alongside you on the highest-leverage move each week. We do not manage your team. We help you build a team that runs without us.',
+    q: 'Is this a fractional CMO or a fractional VP of Business Development?',
+    a: 'Neither. A fractional CMO manages marketing. A fractional VP of BD manages business development. The Fractional Practice Operator works alongside you on whatever is rate-limiting growth, which often crosses traditional role lines. We build systems. We do not manage your staff.',
   },
   {
-    q: 'Can I get more time if I need it?',
-    a: 'Yes. Extra working sessions are $400 each. Or upgrade to a custom retainer with multiple weekly sessions and we will quote it.',
+    q: 'How long do engagements typically run?',
+    a: 'Most run 3 to 6 months. Some partners extend month to month after the initial period. The engagement ends when the systems are built and running without us.',
   },
   {
-    q: 'How is this different from the Sprint?',
-    a: 'The Sprint builds one specific motion in six weeks. The Fractional keeps building, iterating, and adjusting as the business changes. Most clients graduate from a Sprint into a Fractional once they see the output.',
+    q: 'Can I start with something smaller to test the fit?',
+    a: 'Yes. A Practice Diagnostic is the right starting point if you want a feel for how we work before committing to a monthly engagement.',
   },
   {
-    q: 'When should I end the retainer?',
-    a: "When the business is running without you needing it. Off-Map's job is to make itself unnecessary. Most engagements run 6 to 12 months.",
+    q: "What happens when the engagement ends?",
+    a: "You own everything we built. The processes are documented, the systems are in your tools, and your team can run them. Off-Map's job is to make itself unnecessary.",
   },
 ]
 
@@ -62,11 +58,11 @@ export default function FractionalPage() {
           <span
             className="mb-6 inline-block rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider"
             style={{
-              background: 'rgba(107,114,128,0.15)',
-              color: 'var(--color-text-muted)',
+              background: 'var(--color-accent-dim)',
+              color: 'var(--color-accent)',
             }}
           >
-            Ongoing Retainer · From $4,500/mo
+            Embedded
           </span>
           <h1
             className="mb-6 text-4xl font-bold md:text-6xl"
@@ -75,25 +71,37 @@ export default function FractionalPage() {
               fontFamily: 'var(--font-display)',
             }}
           >
-            Fractional GTM
+            Fractional Practice Operator
           </h1>
           <p
-            className="mb-10 max-w-xl text-lg leading-relaxed"
+            className="mb-6 max-w-xl text-lg leading-relaxed"
             style={{ color: 'var(--color-text-muted)' }}
           >
-            An embedded operator working alongside you on whatever the
-            rate-limiting GTM lever is that month. Weekly working sessions,
-            async access, the leverage of a senior hire without the headcount.
+            A senior operator embedded in your practice on a monthly basis. Not
+            an advisor. Not a consultant with a deck. The person working
+            alongside you on whatever is most rate-limiting this month.
+          </p>
+          <p
+            className="mb-10 max-w-xl text-sm leading-relaxed"
+            style={{ color: 'var(--color-text-muted)' }}
+          >
+            This engagement is for managing partners who are past the diagnostic
+            phase and have a specific growth lever they are working. Maybe intake
+            is inconsistent and you need someone building a system while you run
+            the practice. Maybe you are adding a practice area and need someone
+            who has done it. Maybe you need a sharp outside voice in the room
+            each week. This gives you senior-operator leverage without adding a
+            senior-level employee.
           </p>
           <Link
-            href="/book"
+            href="/book?source=services-fractional"
             className={
               buttonVariants({ size: 'lg' }) +
               ' !text-[var(--color-bg)] font-semibold px-8 py-3 text-base'
             }
             style={{ background: 'var(--color-accent)' }}
           >
-            Book a Discovery Call →
+            Book a conversation →
           </Link>
         </div>
       </section>
@@ -117,7 +125,7 @@ export default function FractionalPage() {
               fontFamily: 'var(--font-display)',
             }}
           >
-            An operator on retainer.
+            A senior operator on your side of the table.
           </h2>
           <div className="flex flex-col gap-4">
             {included.map(({ label, body }) => (
@@ -152,55 +160,47 @@ export default function FractionalPage() {
               </div>
             ))}
           </div>
-
-          {/* Pricing */}
-          <div
-            className="mt-8 rounded-2xl p-6"
-            style={{
-              background: 'var(--color-bg)',
-              border: '1px solid var(--color-border-light)',
-            }}
-          >
-            <p
-              className="mb-2 font-semibold"
-              style={{ color: 'var(--color-text-dark)' }}
-            >
-              Pricing
-            </p>
-            <p
-              className="mb-3 text-sm leading-relaxed"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
-              $4,500 per month. Three-month minimum, month-to-month after.
-              Sprint graduates get month one at $2,500.
-            </p>
-            <p
-              className="text-sm leading-relaxed"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
-              <strong style={{ color: 'var(--color-accent)' }}>
-                Founding-client pricing:
-              </strong>{' '}
-              $2,250 per month for the first 3 months for the first 3 Fractional
-              clients, in exchange for case study rights.
-            </p>
-          </div>
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* Who It's For */}
       <section className="py-24 px-6" style={{ background: 'var(--color-bg)' }}>
         <div className="mx-auto max-w-2xl">
           <p
             className="mb-4 text-xs font-semibold uppercase tracking-widest"
             style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
           >
+            Who It&apos;s For
+          </p>
+          <p
+            className="text-sm leading-relaxed"
+            style={{ color: 'var(--color-text-muted)' }}
+          >
+            Managing partners who know what they are working on and need a senior
+            operator alongside them while they work it. You have a clear
+            bottleneck. You are not looking for a six-month strategy project. You
+            want someone in the room each week who has actually built what you
+            are trying to build.
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section
+        className="py-24 px-6"
+        style={{ background: 'var(--color-bg-light)' }}
+      >
+        <div className="mx-auto max-w-2xl">
+          <p
+            className="mb-4 text-xs font-semibold uppercase tracking-widest"
+            style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
+          >
             FAQ
           </p>
           <h2
             className="mb-12 text-3xl font-bold"
             style={{
-              color: 'var(--color-text-primary)',
+              color: 'var(--color-text-dark)',
               fontFamily: 'var(--font-display)',
             }}
           >
@@ -230,36 +230,36 @@ export default function FractionalPage() {
       {/* CTA */}
       <section
         className="py-24 px-6 text-center"
-        style={{ background: 'var(--color-bg-light)' }}
+        style={{ background: 'var(--color-bg)' }}
       >
         <div className="mx-auto max-w-xl">
           <h2
             className="mb-6 text-3xl font-bold"
             style={{
-              color: 'var(--color-text-dark)',
+              color: 'var(--color-text-primary)',
               fontFamily: 'var(--font-display)',
             }}
           >
-            Ready for an operator on retainer?
+            Start with a conversation.
           </h2>
           <Link
-            href="/book"
+            href="/book?source=services-fractional"
             className={
               buttonVariants({ size: 'lg' }) +
               ' !text-[var(--color-bg)] font-semibold px-8 py-3 text-base'
             }
             style={{ background: 'var(--color-accent)' }}
           >
-            Book a Discovery Call →
+            Book a call →
           </Link>
           <p className="mt-6 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-            Or start with a{' '}
+            Not sure where to start? Begin with a{' '}
             <Link
               href="/services/audit"
               className="underline transition-opacity hover:opacity-70"
               style={{ color: 'var(--color-text-muted)' }}
             >
-              $350 Audit
+              Practice Diagnostic
             </Link>
           </p>
         </div>

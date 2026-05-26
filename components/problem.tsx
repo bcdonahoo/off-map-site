@@ -1,15 +1,15 @@
 const problems = [
   {
-    label: 'You are the GTM.',
-    body: 'Every closed deal, every renewal, every referral runs through you. The business cannot grow past your calendar.',
+    label: 'You are the rainmaker.',
+    body: 'Every new client, every renewal, every referral flows through your relationships. You cannot delegate yourself.',
   },
   {
-    label: 'The playbook everyone hands you is for someone else’s business.',
-    body: 'Hire a VP Sales. Run a generic outbound machine. Pour money into ads. None of it fits where you actually are.',
+    label: 'The marketing the industry sells does not fit.',
+    body: 'Generic SEO, bar association mixers, untrained associate outreach. The motion does not match how your clients actually find you.',
   },
   {
-    label: 'You do not have time to figure it out alone.',
-    body: 'Every month spent winging it is a month of revenue you cannot get back. The cost of doing nothing is higher than the cost of getting help.',
+    label: 'Hiring is not the answer alone.',
+    body: 'Associates take 18 months to ramp into business development. Paralegals can free your time, not your funnel. You need a system, not another headcount.',
   },
 ]
 
@@ -25,7 +25,7 @@ export function Problem() {
           className="mb-4 text-xs font-semibold uppercase tracking-widest"
           style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
         >
-          The Problem
+          What managing partners tell us
         </p>
 
         {/* Headline */}
@@ -36,7 +36,7 @@ export function Problem() {
             fontFamily: 'var(--font-display)',
           }}
         >
-          Founder-led selling got you here. It will not get you there.
+          Your firm grows when you work. That is the ceiling.
         </h2>
 
         {/* Three-column grid */}

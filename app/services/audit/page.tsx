@@ -3,38 +3,38 @@ import Link from 'next/link'
 import { buttonVariants } from '@/components/ui/button'
 
 export const metadata: Metadata = {
-  title: 'The Off-Map Audit | Off-Map',
+  title: 'Practice Diagnostic | Off-Map',
   description:
-    'A sharp outside read on your GTM. 60 minutes live, a 1-page brief in 72 hours, a follow-up two weeks later to see what stuck.',
+    'A focused look at your practice in one session. A written brief in 5 business days. One thing working, one thing broken, one move to make next.',
 }
 
 const deliverables = [
   {
     label: '60-minute working session',
-    body: 'Live, recorded, yours to keep. We walk your GTM end to end. ICP, offer, pipeline, sales process. No filler.',
+    body: 'We cover your intake process, referral sources, current marketing, and where new client volume is actually coming from. Live conversation, recorded and yours to keep.',
   },
   {
-    label: 'The Off-Map Brief (1 to 2 pages, 72 hours)',
-    body: 'The one thing working. The one thing broken. The one move to make next. Specific, concrete, written like an operator would write it.',
+    label: 'Written brief in 5 business days',
+    body: 'One thing working that you should protect. One thing broken that is costing you matter volume. One move to make next. Two pages maximum. Written for a managing partner, not a consulting firm.',
   },
   {
-    label: '15-minute follow-up at week 2',
-    body: 'Did the move work? What did you learn? What is the next call to make? Built into the price.',
+    label: 'Follow-up call at two weeks',
+    body: 'A 30-minute check-in to see whether the move is underway, what you learned, and whether the finding holds up. Built into the engagement.',
   },
 ]
 
 const faqs = [
   {
-    q: 'What do I need to send ahead of time?',
-    a: 'A short intake form, a link to your website, and any pipeline data you are comfortable sharing. Ten minutes of prep.',
+    q: 'What do I send ahead of time?',
+    a: 'A short intake form, your website, and a rough picture of where new clients come from today. Fifteen minutes of prep.',
   },
   {
-    q: 'Is this a sales call?',
-    a: 'No. The Audit is the deliverable. If you want more after, we will talk about what that looks like in the follow-up. Most clients use the Audit as a complete, standalone engagement.',
+    q: 'Is this a sales pitch for a bigger engagement?',
+    a: 'No. The Diagnostic is a standalone engagement. The brief is the deliverable. If you want to explore more after, we will talk about it in the follow-up. Most partners use the Diagnostic as a complete, standalone read.',
   },
   {
-    q: 'What if I do not like the brief?',
-    a: 'The Brief is the product. If you would genuinely have rather had your $350 back, ask, and you will have it.',
+    q: 'What does the written brief look like?',
+    a: 'Two pages maximum. Plain language. No frameworks, no jargon. One specific finding, one specific move. Written the way a senior operator writes, not the way a consulting firm writes.',
   },
 ]
 
@@ -54,7 +54,7 @@ export default function AuditPage() {
               color: 'var(--color-accent)',
             }}
           >
-            5 Days · $350
+            Diagnostic
           </span>
           <h1
             className="mb-6 text-4xl font-bold md:text-6xl"
@@ -63,24 +63,35 @@ export default function AuditPage() {
               fontFamily: 'var(--font-display)',
             }}
           >
-            The Off-Map Audit
+            Practice Diagnostic
           </h1>
           <p
-            className="mb-10 max-w-xl text-lg leading-relaxed"
+            className="mb-6 max-w-xl text-lg leading-relaxed"
             style={{ color: 'var(--color-text-muted)' }}
           >
-            A sharp outside read on your GTM. 60 minutes live, a 1-page brief
-            in 72 hours, a follow-up two weeks later to see what stuck.
+            A focused look at your practice in one session. A written brief in 5
+            business days. One thing working, one thing broken, one move to make
+            next.
+          </p>
+          <p
+            className="mb-10 max-w-xl text-sm leading-relaxed"
+            style={{ color: 'var(--color-text-muted)' }}
+          >
+            Most managing partners know something is off. Client intake is
+            inconsistent. A referral source went dry. A marketing effort never
+            produced results. The Diagnostic finds the highest-leverage issue and
+            gives you a concrete next step. Not a list of everything that could be
+            improved. One thing.
           </p>
           <Link
-            href="/book"
+            href="/book?source=services-audit"
             className={
               buttonVariants({ size: 'lg' }) +
               ' !text-[var(--color-bg)] font-semibold px-8 py-3 text-base'
             }
             style={{ background: 'var(--color-accent)' }}
           >
-            Get the Audit →
+            Book a conversation →
           </Link>
         </div>
       </section>
@@ -104,7 +115,7 @@ export default function AuditPage() {
               fontFamily: 'var(--font-display)',
             }}
           >
-            One sharp read. Three concrete answers.
+            One sharp read. Three concrete outputs.
           </h2>
           <div className="flex flex-col gap-4">
             {deliverables.map(({ label, body }) => (
@@ -155,11 +166,12 @@ export default function AuditPage() {
             className="text-sm leading-relaxed"
             style={{ color: 'var(--color-text-muted)' }}
           >
-            Founders and services-firm principals between $250k and $5M in
-            revenue who know something is off in their GTM but cannot pinpoint
-            what. You want a fast, sharp read from someone who has built GTM at
-            your stage. You would rather pay $350 to figure out what is actually
-            broken than spend the next three months guessing.
+            Managing partners of 3 to 15 attorney Texas law firms who know client
+            acquisition is not where it should be but cannot pinpoint why. You
+            have been running the practice on referrals and relationships. You
+            want a fast, honest read from someone who has actually built client
+            acquisition systems, not a generic marketing agency that does not
+            understand how law firms operate.
           </p>
         </div>
       </section>
@@ -219,26 +231,26 @@ export default function AuditPage() {
               fontFamily: 'var(--font-display)',
             }}
           >
-            Find out what is actually broken.
+            Start with a conversation.
           </h2>
           <Link
-            href="/book"
+            href="/book?source=services-audit"
             className={
               buttonVariants({ size: 'lg' }) +
               ' !text-[var(--color-bg)] font-semibold px-8 py-3 text-base'
             }
             style={{ background: 'var(--color-accent)' }}
           >
-            Get an Audit →
+            Book a call →
           </Link>
           <p className="mt-6 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-            Or compare with the{' '}
+            Or learn about the{' '}
             <Link
               href="/services/sprint"
               className="underline transition-opacity hover:opacity-70"
               style={{ color: 'var(--color-text-muted)' }}
             >
-              Pipeline Sprint
+              Practice Growth Engagement
             </Link>
           </p>
         </div>
