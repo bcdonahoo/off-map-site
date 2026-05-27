@@ -439,11 +439,14 @@ RULES (non-negotiable):
 
 export const maxDuration = 60
 
+type HandoffFit = 'none' | 'standard' | 'possible' | 'outside'
+
 type SSEEvent =
   | { type: 'tool_start'; label: string }
   | { type: 'tool_done'; label: string }
   | { type: 'checkout_redirect'; url: string }
   | { type: 'booking_data'; reference: string }
+  | { type: 'handoff_update'; fit: HandoffFit; keyFacts: string[]; nextStep: string | null }
   | { type: 'done'; text: string; toolCalls: { name: string; label: string }[]; messages: Anthropic.MessageParam[] }
   | { type: 'error'; error: string }
 
@@ -512,6 +515,29 @@ export async function POST(req: NextRequest) {
               const result = await executeTool(block.name, block.input as Record<string, unknown>)
               toolCallsMade.push({ name: block.name, label })
               send({ type: 'tool_done', label })
+
+              // Emit handoff panel update after qualify_lead
+              if (block.name === 'qualify_lead') {
+                const inp = block.input as {
+                  fitLevel?: 'high' | 'medium' | 'out_of_scope'
+                  fitIndicators?: string[]
+                }
+                const fitMap: Record<string, HandoffFit> = {
+                  high: 'standard',
+                  medium: 'possible',
+                  out_of_scope: 'outside',
+                }
+                const nextStepMap: Record<string, string> = {
+                  medium: 'Schedule paid consultation. Attorney review required before scope is confirmed.',
+                  out_of_scope: 'Attorney callback recommended. This matter is outside the flat-fee package scope.',
+                }
+                send({
+                  type: 'handoff_update',
+                  fit: inp.fitLevel ? fitMap[inp.fitLevel] : 'none',
+                  keyFacts: inp.fitIndicators ?? [],
+                  nextStep: inp.fitLevel ? (nextStepMap[inp.fitLevel] ?? null) : null,
+                })
+              }
 
               // Emit checkout-specific events for client-side routing
               if (block.name === 'initiate_checkout') {

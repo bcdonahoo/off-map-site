@@ -100,7 +100,7 @@ const DIFFICULT_SEQUENCE: SeqItem[] = [
   { delay: 1800, action: { kind: 'user-msg', text: "That makes sense. What would a consultation look like?" } },
   { delay: 400, action: { kind: 'show-typing' } },
   { delay: 1600, action: { kind: 'hide-typing', text: "The attorney will review everything you have shared, explain your options, and give you a clear picture of what planning you actually need before any fee is quoted. I will help you get that scheduled." } },
-  { delay: 300, action: { kind: 'handoff', patch: { nextStep: 'Schedule paid attorney consultation. Flat-fee scope unlikely — custom engagement probable.' } } },
+  { delay: 300, action: { kind: 'handoff', patch: { nextStep: 'Schedule paid attorney consultation. Flat-fee scope unlikely. Custom engagement probable.' } } },
   { delay: 700, action: { kind: 'done' } },
 ]
 

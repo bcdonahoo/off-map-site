@@ -58,7 +58,7 @@ export function TrailheadLiveIntake() {
 
   return (
     <div id="live-intake" className="px-6 pb-12" style={{ background: 'var(--color-bg)' }}>
-      <div className="mx-auto max-w-2xl">
+      <div className="mx-auto max-w-5xl">
         <p className="mb-3 text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>
           Now try your own situation.
         </p>
