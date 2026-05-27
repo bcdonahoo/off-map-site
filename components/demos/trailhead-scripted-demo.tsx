@@ -134,7 +134,7 @@ export function TrailheadScriptedDemo() {
   const [isTyping, setIsTyping] = useState(false)
   const [handoff, setHandoff] = useState<HandoffData>(initialHandoff)
   const [isDone, setIsDone] = useState(false)
-  const messagesEndRef = useRef<HTMLDivElement>(null)
+  const messagesContainerRef = useRef<HTMLDivElement>(null)
   // Ref so the effect always reads the latest scenario without listing it as a dep
   const activeScenarioRef = useRef<ScenarioId>('easy')
 
@@ -180,7 +180,8 @@ export function TrailheadScriptedDemo() {
   }, [runKey])
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    const el = messagesContainerRef.current
+    if (el) el.scrollTop = el.scrollHeight
   }, [messages, isTyping])
 
   const scenario = SCENARIOS.find((s) => s.id === activeScenario)!
@@ -261,6 +262,7 @@ export function TrailheadScriptedDemo() {
 
           {/* Messages */}
           <div
+            ref={messagesContainerRef}
             className="flex flex-col gap-3 py-4 overflow-y-auto"
             style={{ flex: '1 1 auto', minHeight: 0 }}
           >
@@ -328,7 +330,6 @@ export function TrailheadScriptedDemo() {
               </div>
             )}
 
-            <div ref={messagesEndRef} />
           </div>
         </div>
 
