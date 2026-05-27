@@ -25,11 +25,11 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: 'Modern Client Acquisition for Texas Law Firms | Off-Map',
   description:
-    'Off-Map helps small Texas law firms grow matter volume without adding partners. AI-powered intake, productized offers, and business development systems built for how lawyers actually work.',
+    'Off-Map helps Texas law firms grow matter volume without adding partners. AI-powered intake, productized offers, and business development systems built for how lawyers actually work.',
   openGraph: {
     title: 'Modern Client Acquisition for Texas Law Firms | Off-Map',
     description:
-      'Off-Map helps small Texas law firms grow matter volume without adding partners. AI-powered intake, productized offers, and business development systems built for how lawyers actually work.',
+      'Off-Map helps Texas law firms grow matter volume without adding partners. AI-powered intake, productized offers, and business development systems built for how lawyers actually work.',
   },
 }
 

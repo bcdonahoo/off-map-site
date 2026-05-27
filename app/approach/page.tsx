@@ -64,8 +64,8 @@ export default function ApproachPage() {
             make itself permanent. It is trying to make itself unnecessary.
           </p>
           <p>
-            The work is specific to your practice. Managing partners of small
-            Texas law firms operate differently from each other. Different
+            The work is specific to your practice. Managing partners of Texas
+            law firms operate differently from each other. Different
             practice areas, different referral networks, different client
             relationships. There is no standard Off-Map engagement. There is a
             scoped engagement for the practice in front of us.
