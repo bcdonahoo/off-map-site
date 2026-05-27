@@ -34,7 +34,7 @@ const faqs = [
   },
   {
     q: 'What does the written brief look like?',
-    a: 'Two pages maximum. Plain language. No frameworks, no jargon. One specific finding, one specific move. Written the way a senior operator writes, not the way a consulting firm writes.',
+    a: 'Two pages maximum. Plain language. No frameworks, no jargon. One specific finding, one specific move. Written for a managing partner, not a consulting firm.',
   },
 ]
 

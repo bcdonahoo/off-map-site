@@ -178,8 +178,9 @@ export default function SprintPage() {
             Managing partners who have completed a Practice Diagnostic or who
             already know the specific part of their client acquisition that needs
             to be rebuilt. You have a real practice with real clients. You are
-            not looking for general advice. You want a senior operator to build
-            something specific alongside you that your firm can own and run.
+            not looking for general advice. You want someone who has actually
+            built what you are trying to build working alongside you, producing
+            something your firm can own and run.
           </p>
         </div>
       </section>

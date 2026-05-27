@@ -76,7 +76,7 @@ export function Hero() {
         <div className="flex flex-wrap items-center justify-center gap-6">
           {[
             'Built for managing partners of 3 to 15 attorney firms',
-            'Senior operator delivering every engagement',
+            'You work directly with Brent Donahoo, start to finish',
             'Focus areas: estate planning, probate, real estate, small business',
           ].map((signal) => (
             <div

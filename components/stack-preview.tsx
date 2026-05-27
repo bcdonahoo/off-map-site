@@ -4,7 +4,7 @@ const pillars = [
   {
     number: '01',
     label: 'Operator-led.',
-    body: 'Every engagement is run by a senior operator with hands-on experience. No junior hand-off, no agency model.',
+    body: 'Every engagement is run by the same person you spoke with on the first call. No junior hand-off, no agency model.',
   },
   {
     number: '02',

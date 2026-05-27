@@ -5,7 +5,7 @@ import { buttonVariants } from '@/components/ui/button'
 export const metadata: Metadata = {
   title: 'Fractional Practice Operator | Off-Map',
   description:
-    'A senior operator embedded in your practice on a monthly basis. Weekly working sessions, async access, documented outputs. Senior-operator leverage without adding to payroll.',
+    'Brent Donahoo embedded in your practice on a monthly basis. Weekly working sessions, async access, documented outputs. Outside expertise without adding to payroll.',
 }
 
 const included = [
@@ -77,9 +77,9 @@ export default function FractionalPage() {
             className="mb-6 max-w-xl text-lg leading-relaxed"
             style={{ color: 'var(--color-text-muted)' }}
           >
-            A senior operator embedded in your practice on a monthly basis. Not
-            an advisor. Not a consultant with a deck. The person working
-            alongside you on whatever is most rate-limiting this month.
+            Embedded in your practice on a monthly basis. Not an advisor. Not a
+            consultant with a deck. The person working alongside you on whatever
+            is most rate-limiting this month.
           </p>
           <p
             className="mb-10 max-w-xl text-sm leading-relaxed"
@@ -125,7 +125,7 @@ export default function FractionalPage() {
               fontFamily: 'var(--font-display)',
             }}
           >
-            A senior operator on your side of the table.
+            Off-Map on your side of the table.
           </h2>
           <div className="flex flex-col gap-4">
             {included.map(({ label, body }) => (
