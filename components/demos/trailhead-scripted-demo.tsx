@@ -127,8 +127,8 @@ const SCENARIOS = [
   },
 ] as const
 
-export function TrailheadScriptedDemo() {
-  const [activeScenario, setActiveScenario] = useState<ScenarioId>('easy')
+export function TrailheadScriptedDemo({ compact = false }: { compact?: boolean }) {
+  const [activeScenario, setActiveScenario] = useState<ScenarioId>(compact ? 'medium' : 'easy')
   const [runKey, setRunKey] = useState(0)
   const [messages, setMessages] = useState<ChatMsg[]>([])
   const [isTyping, setIsTyping] = useState(false)
@@ -136,7 +136,7 @@ export function TrailheadScriptedDemo() {
   const [isDone, setIsDone] = useState(false)
   const messagesContainerRef = useRef<HTMLDivElement>(null)
   // Ref so the effect always reads the latest scenario without listing it as a dep
-  const activeScenarioRef = useRef<ScenarioId>('easy')
+  const activeScenarioRef = useRef<ScenarioId>(compact ? 'medium' : 'easy')
 
   function selectScenario(id: ScenarioId) {
     activeScenarioRef.current = id
@@ -188,7 +188,8 @@ export function TrailheadScriptedDemo() {
 
   return (
     <div>
-      {/* Scenario tabs */}
+      {/* Scenario tabs — hidden in compact mode */}
+      {!compact && (
       <div className="flex flex-wrap items-center gap-3 mb-3">
         <div
           className="flex gap-1 p-1 rounded-xl"
@@ -217,6 +218,7 @@ export function TrailheadScriptedDemo() {
           ))}
         </div>
       </div>
+      )}
 
       <p
         className="mb-6 text-xs leading-relaxed"
@@ -233,7 +235,7 @@ export function TrailheadScriptedDemo() {
           style={{
             border: '1px solid var(--color-border)',
             boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
-            maxHeight: 500,
+            maxHeight: compact ? 360 : 500,
             background: 'var(--color-bg)',
           }}
         >

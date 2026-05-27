@@ -7,7 +7,7 @@ import { TrailheadChat } from './trailhead-chat'
 
 const FLAG = 'trailhead_live_intake_visible'
 
-export function TrailheadLiveIntake() {
+export function TrailheadLiveIntake({ compact = false }: { compact?: boolean }) {
   const [show, setShow] = useState(false)
   const [revealed, setRevealed] = useState(false)
 
@@ -27,21 +27,20 @@ export function TrailheadLiveIntake() {
 
   if (!show && !revealed) {
     return (
-      <div id="live-intake" className="px-6 pb-12" style={{ background: 'var(--color-bg)' }}>
+      <div id="live-intake" className={`px-6 ${compact ? 'pb-8' : 'pb-12'}`} style={{ background: 'var(--color-bg)' }}>
         <div className="mx-auto max-w-2xl">
           <div
-            className="rounded-2xl p-10 text-center"
+            className={`rounded-2xl text-center ${compact ? 'p-6' : 'p-10'}`}
             style={{ background: 'var(--color-bg-surface)', border: '1px solid var(--color-border)' }}
           >
             <p
-              className="text-xl font-bold mb-2"
+              className={`font-bold mb-2 ${compact ? 'text-base' : 'text-xl'}`}
               style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}
             >
               Ready to try it yourself?
             </p>
-            <p className="text-sm mb-8" style={{ color: 'var(--color-text-muted)' }}>
-              Run the same guided intake with your own situation. No legal advice, attorney review required
-              before any scope is confirmed.
+            <p className={`text-sm ${compact ? 'mb-5' : 'mb-8'}`} style={{ color: 'var(--color-text-muted)' }}>
+              Run the same guided intake with your own situation.
             </p>
             <button
               onClick={reveal}

@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { TrailheadIntroModal } from '@/components/demos/trailhead-intro-modal'
-import { TrailheadScriptedDemo } from '@/components/demos/trailhead-scripted-demo'
-import { TrailheadLiveIntake } from '@/components/demos/trailhead-live-intake'
+import { TrailheadSystemOverview } from '@/components/trailhead/system-overview'
+import { TrailheadDemoSection } from '@/components/trailhead/demo-section'
 
 export const metadata: Metadata = {
-  title: 'Trailhead Demo | Attorney-Controlled Intake for Flat-Fee Legal Services | Off-Map',
+  title: 'Trailhead | The Flat-Fee GTM System for Law Firms | Off-Map',
   robots: { index: false, follow: false },
 }
 
@@ -47,18 +47,6 @@ const SAFEGUARDS = [
   'Human review for all legal recommendations',
 ]
 
-const WHAT_TRAILHEAD_INCLUDES = [
-  'Flat-fee offer packaging',
-  'Consumer landing page',
-  'Guided intake workflow',
-  'Complexity flagging',
-  'Attorney handoff summary',
-  'Lead capture',
-  'Follow-up automation',
-  'Analytics and conversion tracking',
-  'Firm-configurable disclaimers and rules',
-]
-
 const WHY_FIRMS_USE_THIS = [
   'Sell repeatable services more clearly',
   'Reduce low-quality intake calls',
@@ -81,31 +69,31 @@ export default function TrailheadPage() {
     <main className="min-h-screen" style={{ background: 'var(--color-bg)' }}>
       <TrailheadIntroModal />
 
-      {/* ── Demo frame header ── */}
+      {/* ── Hero ── */}
       <div className="px-6">
-        <div className="mx-auto max-w-2xl pt-28 pb-10">
+        <div className="mx-auto max-w-3xl pt-28 pb-10">
           <p
             className="mb-4 text-xs font-semibold uppercase tracking-widest"
             style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
           >
-            Trailhead Demo · Off-Map
+            Trailhead · Off-Map
           </p>
           <h1
-            className="mb-4 text-4xl font-bold tracking-tight leading-tight"
+            className="mb-5 text-4xl font-bold tracking-tight leading-tight md:text-5xl"
             style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}
           >
-            Attorney-controlled intake for flat-fee legal services.
+            The complete go-to-market system for law firms that offer flat-fee legal services.
           </h1>
-          <p className="mb-8 text-lg leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-            Hill Country Estate Law is a fictional firm. This is a working demo of the Trailhead GTM
-            engine. Watch the guided intake qualify a prospect, flag complexity, and hand off to
-            attorney review.
+          <p className="mb-8 text-lg leading-relaxed max-w-2xl" style={{ color: 'var(--color-text-muted)' }}>
+            Trailhead packages the offer, runs the intake, flags complexity, and delivers a clean
+            attorney handoff. Automatically, for every prospect. Hill Country Estate Law is a
+            fictional firm built to demo the full system.
           </p>
 
           {/* Law-firm CTA chip */}
           <Link
             href="/book?source=trailhead"
-            className="flex items-center justify-between gap-4 rounded-xl px-5 py-4 transition-opacity hover:opacity-80"
+            className="flex items-center justify-between gap-4 rounded-xl px-5 py-4 transition-opacity hover:opacity-80 max-w-xl"
             style={{ background: 'var(--color-accent-dim)', border: '1px solid var(--color-accent)' }}
           >
             <div>
@@ -123,31 +111,27 @@ export default function TrailheadPage() {
         </div>
       </div>
 
-      {/* ── Scripted demo — side by side, wider ── */}
-      <section className="py-12 px-6" style={{ background: 'var(--color-bg)' }}>
-        <div className="mx-auto max-w-5xl">
+      {/* ── System overview ── */}
+      <section className="pb-16 px-6" style={{ background: 'var(--color-bg)' }}>
+        <div className="mx-auto max-w-6xl">
           <p
             className="mb-2 text-xs font-semibold uppercase tracking-widest"
             style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
           >
-            See it in action
+            What is in the system
           </p>
           <h2
-            className="mb-3 text-2xl font-bold"
+            className="mb-8 text-2xl font-bold"
             style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}
           >
-            Guided intake, complexity detection, attorney handoff.
+            Two layers. One system.
           </h2>
-          <p className="mb-8 text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-            Three scenarios showing standard fit, possible fit with complexity flags, and a case
-            outside flat-fee scope. Watch how the handoff summary builds as the intake progresses.
-          </p>
-          <TrailheadScriptedDemo />
+          <TrailheadSystemOverview />
         </div>
       </section>
 
-      {/* ── Live chat (PostHog flag: trailhead_live_intake_visible) ── */}
-      <TrailheadLiveIntake />
+      {/* ── Demo section (scripted + live intake) ── */}
+      <TrailheadDemoSection />
 
       {/* ── Package + How it works + Testimonials ── */}
       <div className="px-6 pb-16">
@@ -160,6 +144,12 @@ export default function TrailheadPage() {
           >
             <div className="flex items-start justify-between mb-4 gap-4 flex-wrap">
               <div>
+                <p
+                  className="text-xs font-semibold uppercase tracking-widest mb-1"
+                  style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
+                >
+                  Demo firm · sample package
+                </p>
                 <h2
                   className="text-lg font-bold mb-1"
                   style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}
@@ -325,48 +315,18 @@ export default function TrailheadPage() {
         </div>
       </section>
 
-      {/* ── What Trailhead includes ── */}
+      {/* ── Why firms use this ── */}
       <section className="py-24 px-6" style={{ background: 'var(--color-bg)' }}>
         <div className="mx-auto max-w-6xl">
           <p
             className="mb-4 text-xs font-semibold uppercase tracking-widest"
             style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
           >
-            What you get
-          </p>
-          <h2
-            className="mb-16 text-4xl font-bold md:text-5xl"
-            style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}
-          >
-            What Trailhead includes.
-          </h2>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-            {WHAT_TRAILHEAD_INCLUDES.map((item) => (
-              <div
-                key={item}
-                className="flex items-start gap-3 rounded-xl p-5"
-                style={{ background: 'var(--color-bg-surface)', border: '1px solid var(--color-border)' }}
-              >
-                <CheckIcon />
-                <span className="text-sm font-medium" style={{ color: 'var(--color-text-primary)' }}>{item}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Why firms use this ── */}
-      <section className="py-24 px-6" style={{ background: 'var(--color-bg-light)' }}>
-        <div className="mx-auto max-w-6xl">
-          <p
-            className="mb-4 text-xs font-semibold uppercase tracking-widest"
-            style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
-          >
             Business case
           </p>
           <h2
             className="mb-16 text-4xl font-bold md:text-5xl"
-            style={{ color: 'var(--color-text-dark)', fontFamily: 'var(--font-display)' }}
+            style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}
           >
             Why firms use Trailhead.
           </h2>
@@ -378,34 +338,6 @@ export default function TrailheadPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ── Not just a chatbot ── */}
-      <section className="py-24 px-6" style={{ background: 'var(--color-bg)' }}>
-        <div className="mx-auto max-w-4xl">
-          <p
-            className="mb-4 text-xs font-semibold uppercase tracking-widest"
-            style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
-          >
-            The system
-          </p>
-          <h2
-            className="mb-6 text-4xl font-bold md:text-5xl"
-            style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}
-          >
-            Not just a chatbot.
-          </h2>
-          <p className="mb-4 max-w-2xl text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-            Trailhead combines offer packaging, a consumer landing page, guided intake, complexity
-            flagging, qualification routing, and attorney handoff in one system. The guided intake
-            is one component, not the whole product.
-          </p>
-          <p className="max-w-2xl text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-            A law firm deploying Trailhead gets an end-to-end system for turning a repeatable legal
-            service into a packaged, conversion-ready offer with structured intake and attorney-reviewed
-            handoff at every step.
-          </p>
         </div>
       </section>
 
@@ -457,8 +389,8 @@ export default function TrailheadPage() {
             <p className="text-xs leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
               Hill Country Estate Law is a fictional firm created for demonstration purposes by{' '}
               <span style={{ color: 'var(--color-text-primary)' }}>Off-Map</span>. This is a working
-              demo of the Trailhead GTM engine — an AI-powered sales and intake system for productized
-              legal services.
+              demo of the Trailhead GTM system — an AI-powered sales and intake platform for
+              productized flat-fee legal services.
             </p>
           </div>
         </div>
