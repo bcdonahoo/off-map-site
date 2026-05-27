@@ -57,9 +57,6 @@ export function TrailheadIntroModal() {
   function close() {
     sessionStorage.setItem(SESSION_KEY, 'true')
     setIsOpen(false)
-    requestAnimationFrame(() => {
-      document.querySelector<HTMLTextAreaElement>('textarea')?.focus()
-    })
   }
 
   if (!isOpen) return null

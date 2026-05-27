@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { TrailheadChat } from '@/components/demos/trailhead-chat'
 import { TrailheadIntroModal } from '@/components/demos/trailhead-intro-modal'
 import { TrailheadScriptedDemo } from '@/components/demos/trailhead-scripted-demo'
+import { TrailheadLiveIntake } from '@/components/demos/trailhead-live-intake'
 
 export const metadata: Metadata = {
   title: 'Trailhead Demo | Attorney-Controlled Intake for Flat-Fee Legal Services | Off-Map',
@@ -139,43 +139,15 @@ export default function TrailheadPage() {
             Guided intake, complexity detection, attorney handoff.
           </h2>
           <p className="mb-8 text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-            Watch the system work through a real scenario. A married couple with a special needs
-            beneficiary and a business interest. Two of the most common complexity flags.
+            Three scenarios showing standard fit, possible fit with complexity flags, and a case
+            outside flat-fee scope. Watch how the handoff summary builds as the intake progresses.
           </p>
           <TrailheadScriptedDemo />
         </div>
       </section>
 
-      {/* ── Live chat ── */}
-      <div id="live-intake" className="px-6 pb-12" style={{ background: 'var(--color-bg)' }}>
-        <div className="mx-auto max-w-2xl">
-          <p className="mb-3 text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>
-            Now try your own situation.
-          </p>
-          <p className="mb-4 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-            The intake works the same way — guided, no legal advice, attorney review required before
-            any scope is confirmed.
-          </p>
-          <TrailheadChat />
-          <Link
-            href="/trailhead/form"
-            className="mt-4 flex items-center justify-between gap-4 rounded-xl px-5 py-4 transition-opacity hover:opacity-80"
-            style={{ background: 'var(--color-bg-surface)', border: '1px solid var(--color-border)' }}
-          >
-            <div>
-              <p className="text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>
-                Not a fan of chat? Use the traditional form instead.
-              </p>
-              <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
-                Answer a few simple questions — no conversation required.
-              </p>
-            </div>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0" style={{ color: 'var(--color-text-muted)' }}>
-              <path d="M4 8H12M9 5L12 8L9 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </Link>
-        </div>
-      </div>
+      {/* ── Live chat (PostHog flag: trailhead_live_intake_visible) ── */}
+      <TrailheadLiveIntake />
 
       {/* ── Package + How it works + Testimonials ── */}
       <div className="px-6 pb-16">

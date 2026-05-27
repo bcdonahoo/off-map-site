@@ -5,9 +5,11 @@ import Link from 'next/link'
 
 type ChatMsg = { role: 'user' | 'assistant'; text: string }
 
+type HandoffFit = 'none' | 'standard' | 'possible' | 'outside'
+
 type HandoffData = {
   service: string | null
-  fit: 'none' | 'possible'
+  fit: HandoffFit
   keyFacts: string[]
   flags: string[]
   nextStep: string | null
@@ -30,7 +32,31 @@ type Action =
 
 type SeqItem = { delay: number; action: Action }
 
-const SEQUENCE: SeqItem[] = [
+// ── Easy: standard fit, no flags ──────────────────────────────────────────
+const EASY_SEQUENCE: SeqItem[] = [
+  { delay: 600, action: { kind: 'user-msg', text: "Hi, my husband and I have been meaning to put together a will. We have two adult kids and own our home in Cedar Park. Is this something you can help with?" } },
+  { delay: 700, action: { kind: 'show-typing' } },
+  { delay: 1800, action: { kind: 'hide-typing', text: "Hello. I can help figure out whether our flat-fee estate planning package is a fit for your family. Are both of you Texas residents?" } },
+  { delay: 300, action: { kind: 'handoff', patch: { service: 'Texas flat-fee estate planning package', keyFacts: ['Two adult children', 'Primary residence in Cedar Park'] } } },
+  { delay: 1600, action: { kind: 'user-msg', text: "Yes, we have been in Texas our whole lives. Both in Williamson County." } },
+  { delay: 400, action: { kind: 'show-typing' } },
+  { delay: 1500, action: { kind: 'hide-typing', text: "Good. Do either of you have children from a prior relationship, or any family member who receives government benefits?" } },
+  { delay: 1800, action: { kind: 'user-msg', text: "No, this is our only marriage. Both kids are grown and doing well on their own." } },
+  { delay: 500, action: { kind: 'show-typing' } },
+  { delay: 1500, action: { kind: 'hide-typing', text: "Do either of you own any business interests or property outside of Texas?" } },
+  { delay: 1800, action: { kind: 'user-msg', text: "No, just the house. My husband has a 401k through his employer but nothing else." } },
+  { delay: 500, action: { kind: 'show-typing' } },
+  { delay: 2000, action: { kind: 'hide-typing', text: "Based on what you have shared, this looks like a standard fit for our flat-fee package. No complexity flags came up. Would you like to schedule a consultation to confirm scope and get started?" } },
+  { delay: 200, action: { kind: 'handoff', patch: { fit: 'standard', keyFacts: ['Married couple, both Texas residents (Williamson County)', 'Two adult children', 'Primary residence in Cedar Park', 'No business interests or out-of-state property'] } } },
+  { delay: 1600, action: { kind: 'user-msg', text: "Yes, let's do that." } },
+  { delay: 400, action: { kind: 'show-typing' } },
+  { delay: 1400, action: { kind: 'hide-typing', text: "I will help you get that scheduled. The attorney will confirm scope, answer your questions, and get your documents underway." } },
+  { delay: 300, action: { kind: 'handoff', patch: { nextStep: 'Schedule flat-fee scope confirmation call.' } } },
+  { delay: 700, action: { kind: 'done' } },
+]
+
+// ── Medium: possible fit, 2 complexity flags ──────────────────────────────
+const MEDIUM_SEQUENCE: SeqItem[] = [
   { delay: 600, action: { kind: 'user-msg', text: "Hi, my wife and I have been putting off getting an estate plan for years. We have two kids and own our home in Austin. Where do we start?" } },
   { delay: 700, action: { kind: 'show-typing' } },
   { delay: 1800, action: { kind: 'hide-typing', text: "Welcome. I can help figure out whether our flat-fee estate plan is a fit for your family. Are both of you Texas residents?" } },
@@ -53,13 +79,70 @@ const SEQUENCE: SeqItem[] = [
   { delay: 700, action: { kind: 'done' } },
 ]
 
+// ── Difficult: likely outside flat-fee scope ──────────────────────────────
+const DIFFICULT_SEQUENCE: SeqItem[] = [
+  { delay: 600, action: { kind: 'user-msg', text: "I need to update my estate plan. I have kids from my first marriage and my current wife has kids from hers. We also have one together. My old will probably does not cover everything." } },
+  { delay: 700, action: { kind: 'show-typing' } },
+  { delay: 1800, action: { kind: 'hide-typing', text: "Welcome. I can help evaluate whether our flat-fee package is a fit. Are you and your current wife both Texas residents?" } },
+  { delay: 300, action: { kind: 'handoff', patch: { service: 'Texas flat-fee estate planning package', keyFacts: ['Blended family with children from prior relationships'] } } },
+  { delay: 1600, action: { kind: 'user-msg', text: "Yes, we live in San Antonio. But I do have a vacation cabin up in Colorado." } },
+  { delay: 500, action: { kind: 'show-typing' } },
+  { delay: 1800, action: { kind: 'hide-typing', text: "Noted. Out-of-state property typically requires separate ancillary documents and may fall outside our standard flat-fee scope. Do you have an existing trust, or any estate planning documents from a prior marriage?" } },
+  { delay: 200, action: { kind: 'handoff', patch: { flags: ['Out-of-state property (Colorado) requires ancillary documents'] } } },
+  { delay: 1800, action: { kind: 'user-msg', text: "I have a revocable living trust from 2009. Set it up in another state. I have never updated it." } },
+  { delay: 600, action: { kind: 'show-typing' } },
+  { delay: 2000, action: { kind: 'hide-typing', text: "An out-of-state trust that has not been reviewed recently will need attorney evaluation before we can determine scope. Do any of your beneficiaries have needs that would require special protections for their inheritance?" } },
+  { delay: 200, action: { kind: 'handoff', patch: { flags: ['Out-of-state property (Colorado) requires ancillary documents', 'Existing out-of-state trust requires review and possible restatement'] } } },
+  { delay: 1800, action: { kind: 'user-msg', text: "My son from my first marriage has struggled with addiction. I want to make sure he is protected but cannot spend through everything at once." } },
+  { delay: 600, action: { kind: 'show-typing' } },
+  { delay: 2200, action: { kind: 'hide-typing', text: "That is an important consideration. Protecting an inheritance from a beneficiary with substance use concerns typically requires a discretionary or spendthrift trust, which goes beyond standard document preparation. Based on what you have shared — blended family, out-of-state property, an existing trust to review, and a beneficiary requiring protective trust planning — this situation is likely outside our standard flat-fee scope. I would recommend a paid consultation so the attorney can assess your full situation before any scope is committed to." } },
+  { delay: 300, action: { kind: 'handoff', patch: { fit: 'outside', flags: ['Out-of-state property (Colorado) requires ancillary documents', 'Existing out-of-state trust requires review and possible restatement', 'Beneficiary requiring protective or spendthrift trust planning'], keyFacts: ['Blended family with children from prior relationships', 'Primary residence in San Antonio', 'Vacation cabin in Colorado (out-of-state)'] } } },
+  { delay: 1800, action: { kind: 'user-msg', text: "That makes sense. What would a consultation look like?" } },
+  { delay: 400, action: { kind: 'show-typing' } },
+  { delay: 1600, action: { kind: 'hide-typing', text: "The attorney will review everything you have shared, explain your options, and give you a clear picture of what planning you actually need before any fee is quoted. I will help you get that scheduled." } },
+  { delay: 300, action: { kind: 'handoff', patch: { nextStep: 'Schedule paid attorney consultation. Flat-fee scope unlikely — custom engagement probable.' } } },
+  { delay: 700, action: { kind: 'done' } },
+]
+
+type ScenarioId = 'easy' | 'medium' | 'difficult'
+
+const SCENARIOS = [
+  {
+    id: 'easy' as ScenarioId,
+    label: 'Standard fit',
+    description: 'A married couple in Williamson County. Two adult children, single home, no business interests. Clean intake, no flags.',
+    sequence: EASY_SEQUENCE,
+  },
+  {
+    id: 'medium' as ScenarioId,
+    label: 'Possible fit',
+    description: 'A married couple in Austin with a special needs beneficiary on government benefits and a small LLC. Two complexity flags surface.',
+    sequence: MEDIUM_SEQUENCE,
+  },
+  {
+    id: 'difficult' as ScenarioId,
+    label: 'Outside scope',
+    description: 'A blended family in San Antonio with out-of-state property, an old out-of-state trust, and a beneficiary requiring protective planning.',
+    sequence: DIFFICULT_SEQUENCE,
+  },
+] as const
+
 export function TrailheadScriptedDemo() {
+  const [activeScenario, setActiveScenario] = useState<ScenarioId>('easy')
   const [runKey, setRunKey] = useState(0)
   const [messages, setMessages] = useState<ChatMsg[]>([])
   const [isTyping, setIsTyping] = useState(false)
   const [handoff, setHandoff] = useState<HandoffData>(initialHandoff)
   const [isDone, setIsDone] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  // Ref so the effect always reads the latest scenario without listing it as a dep
+  const activeScenarioRef = useRef<ScenarioId>('easy')
+
+  function selectScenario(id: ScenarioId) {
+    activeScenarioRef.current = id
+    setActiveScenario(id)
+    setRunKey((k) => k + 1)
+  }
 
   useEffect(() => {
     setMessages([])
@@ -67,10 +150,11 @@ export function TrailheadScriptedDemo() {
     setHandoff(initialHandoff)
     setIsDone(false)
 
+    const seq = SCENARIOS.find((s) => s.id === activeScenarioRef.current)!.sequence
     const timeouts: ReturnType<typeof setTimeout>[] = []
     let cumulative = 0
 
-    for (const item of SEQUENCE) {
+    for (const item of seq) {
       cumulative += item.delay
       const d = cumulative
       const a = item.action
@@ -99,8 +183,47 @@ export function TrailheadScriptedDemo() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, isTyping])
 
+  const scenario = SCENARIOS.find((s) => s.id === activeScenario)!
+
   return (
     <div>
+      {/* Scenario tabs */}
+      <div className="flex flex-wrap items-center gap-3 mb-3">
+        <div
+          className="flex gap-1 p-1 rounded-xl"
+          style={{ background: 'var(--color-bg-light)', border: '1px solid var(--color-border)' }}
+        >
+          {SCENARIOS.map((s) => (
+            <button
+              key={s.id}
+              onClick={() => selectScenario(s.id)}
+              className="rounded-lg px-4 py-1.5 text-xs font-semibold transition-all"
+              style={
+                activeScenario === s.id
+                  ? {
+                      background: 'var(--color-bg)',
+                      color: 'var(--color-text-primary)',
+                      boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
+                    }
+                  : {
+                      color: 'var(--color-text-muted)',
+                      background: 'transparent',
+                    }
+              }
+            >
+              {s.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <p
+        className="mb-6 text-xs leading-relaxed"
+        style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
+      >
+        {scenario.description}
+      </p>
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
 
         {/* Left: animated chat */}
@@ -249,17 +372,35 @@ export function TrailheadScriptedDemo() {
               </div>
             )}
 
-            {handoff.fit === 'possible' && (
+            {handoff.fit !== 'none' && (
               <div>
                 <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
-                  Likely Fit
+                  Flat Fee Fit
                 </p>
-                <span
-                  className="inline-block rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider"
-                  style={{ background: 'rgba(234,179,8,0.12)', color: '#b45309' }}
-                >
-                  Possible fit. Attorney review required.
-                </span>
+                {handoff.fit === 'standard' && (
+                  <span
+                    className="inline-block rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider"
+                    style={{ background: 'rgba(34,197,94,0.12)', color: '#15803d' }}
+                  >
+                    Standard package fit.
+                  </span>
+                )}
+                {handoff.fit === 'possible' && (
+                  <span
+                    className="inline-block rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider"
+                    style={{ background: 'rgba(234,179,8,0.12)', color: '#b45309' }}
+                  >
+                    Possible fit. Attorney review required.
+                  </span>
+                )}
+                {handoff.fit === 'outside' && (
+                  <span
+                    className="inline-block rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider"
+                    style={{ background: 'rgba(239,68,68,0.12)', color: '#b91c1c' }}
+                  >
+                    Likely outside flat-fee scope.
+                  </span>
+                )}
               </div>
             )}
 
@@ -309,7 +450,7 @@ export function TrailheadScriptedDemo() {
             className="inline-flex items-center gap-2 rounded-xl px-8 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             style={{ background: 'var(--color-accent)' }}
           >
-            Run the intake yourself →
+            Run the intake yourself
           </Link>
           <button
             onClick={() => setRunKey((k) => k + 1)}
