@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { TrailheadChat } from '@/components/demos/trailhead-chat'
 import { TrailheadIntroModal } from '@/components/demos/trailhead-intro-modal'
+import { TrailheadScriptedDemo } from '@/components/demos/trailhead-scripted-demo'
 
 export const metadata: Metadata = {
   title: 'Trailhead Demo | Attorney-Controlled Intake for Flat-Fee Legal Services | Off-Map',
@@ -75,24 +76,14 @@ function CheckIcon() {
   )
 }
 
-function ArrowIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0" style={{ color: 'var(--color-accent)' }}>
-      <path d="M4 8H12M9 5L12 8L9 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  )
-}
-
 export default function TrailheadPage() {
   return (
     <main className="min-h-screen" style={{ background: 'var(--color-bg)' }}>
       <TrailheadIntroModal />
 
-      {/* ─── Narrow column: demo frame + chat + handoff sample + package ─── */}
+      {/* ── Demo frame header ── */}
       <div className="px-6">
-        <div className="mx-auto max-w-2xl pt-28">
-
-          {/* Demo frame header */}
+        <div className="mx-auto max-w-2xl pt-28 pb-10">
           <p
             className="mb-4 text-xs font-semibold uppercase tracking-widest"
             style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
@@ -105,7 +96,7 @@ export default function TrailheadPage() {
           >
             Attorney-controlled intake for flat-fee legal services.
           </h1>
-          <p className="mb-6 text-lg leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
+          <p className="mb-8 text-lg leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
             Hill Country Estate Law is a fictional firm. This is a working demo of the Trailhead GTM
             engine. Watch the guided intake qualify a prospect, flag complexity, and hand off to
             attorney review.
@@ -114,7 +105,7 @@ export default function TrailheadPage() {
           {/* Law-firm CTA chip */}
           <Link
             href="/book?source=trailhead"
-            className="mb-12 flex items-center justify-between gap-4 rounded-xl px-5 py-4 transition-opacity hover:opacity-80"
+            className="flex items-center justify-between gap-4 rounded-xl px-5 py-4 transition-opacity hover:opacity-80"
             style={{ background: 'var(--color-accent-dim)', border: '1px solid var(--color-accent)' }}
           >
             <div>
@@ -125,124 +116,70 @@ export default function TrailheadPage() {
                 Book a Trailhead walkthrough — 30 minutes, no pitch deck.
               </p>
             </div>
-            <ArrowIcon />
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0" style={{ color: 'var(--color-accent)' }}>
+              <path d="M4 8H12M9 5L12 8L9 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </Link>
+        </div>
+      </div>
 
-          {/* Guided intake */}
-          <div className="mb-12">
-            <p className="mb-3 text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>
-              Guided intake
-            </p>
-            <p className="mb-4 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-              Experience the intake as a prospective client would. The system qualifies the situation,
-              identifies complexity flags, and routes to attorney review.
-            </p>
-            <TrailheadChat />
-            <Link
-              href="/trailhead/form"
-              className="mt-4 flex items-center justify-between gap-4 rounded-xl px-5 py-4 transition-opacity hover:opacity-80"
-              style={{ background: 'var(--color-bg-surface)', border: '1px solid var(--color-border)' }}
-            >
-              <div>
-                <p className="text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>
-                  Not a fan of chat? Use the traditional form instead.
-                </p>
-                <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
-                  Answer a few simple questions — no conversation required.
-                </p>
-              </div>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0" style={{ color: 'var(--color-text-muted)' }}>
-                <path d="M4 8H12M9 5L12 8L9 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </Link>
-          </div>
+      {/* ── Scripted demo — side by side, wider ── */}
+      <section className="py-12 px-6" style={{ background: 'var(--color-bg)' }}>
+        <div className="mx-auto max-w-5xl">
+          <p
+            className="mb-2 text-xs font-semibold uppercase tracking-widest"
+            style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
+          >
+            See it in action
+          </p>
+          <h2
+            className="mb-3 text-2xl font-bold"
+            style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}
+          >
+            Guided intake, complexity detection, attorney handoff.
+          </h2>
+          <p className="mb-8 text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
+            Watch the system work through a real scenario. A married couple with a special needs
+            beneficiary and a business interest. Two of the most common complexity flags.
+          </p>
+          <TrailheadScriptedDemo />
+        </div>
+      </section>
 
-          {/* Attorney handoff — static sample */}
-          <div className="mb-16">
-            <p
-              className="mb-3 text-xs font-semibold uppercase tracking-widest"
-              style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
-            >
-              Attorney handoff · Sample output
-            </p>
-            <h2
-              className="mb-2 text-xl font-bold"
-              style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}
-            >
-              What the attorney receives after intake.
-            </h2>
-            <p className="mb-5 text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-              When intake completes, Trailhead generates a structured handoff summary for attorney
-              review — not a chat transcript.
-            </p>
-            <div
-              className="rounded-2xl p-6"
-              style={{ background: 'var(--color-bg-surface)', border: '1px solid var(--color-border)' }}
-            >
-              <p
-                className="mb-5 text-[10px] font-bold uppercase tracking-widest"
-                style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
-              >
-                Trailhead Intake Summary
+      {/* ── Live chat ── */}
+      <div id="live-intake" className="px-6 pb-12" style={{ background: 'var(--color-bg)' }}>
+        <div className="mx-auto max-w-2xl">
+          <p className="mb-3 text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>
+            Now try your own situation.
+          </p>
+          <p className="mb-4 text-xs" style={{ color: 'var(--color-text-muted)' }}>
+            The intake works the same way — guided, no legal advice, attorney review required before
+            any scope is confirmed.
+          </p>
+          <TrailheadChat />
+          <Link
+            href="/trailhead/form"
+            className="mt-4 flex items-center justify-between gap-4 rounded-xl px-5 py-4 transition-opacity hover:opacity-80"
+            style={{ background: 'var(--color-bg-surface)', border: '1px solid var(--color-border)' }}
+          >
+            <div>
+              <p className="text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>
+                Not a fan of chat? Use the traditional form instead.
               </p>
-
-              <div className="space-y-4 text-xs" style={{ fontFamily: 'var(--font-mono)' }}>
-                <div>
-                  <p className="font-semibold mb-1" style={{ color: 'var(--color-text-primary)' }}>Prospective Client</p>
-                  <p style={{ color: 'var(--color-text-muted)' }}>John and Mary Smith</p>
-                </div>
-                <div>
-                  <p className="font-semibold mb-1" style={{ color: 'var(--color-text-primary)' }}>Requested Service</p>
-                  <p style={{ color: 'var(--color-text-muted)' }}>Texas flat-fee estate planning package</p>
-                </div>
-                <div>
-                  <p className="font-semibold mb-1" style={{ color: 'var(--color-text-primary)' }}>Likely Package Fit</p>
-                  <span
-                    className="inline-block rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider"
-                    style={{ background: 'rgba(234,179,8,0.12)', color: '#b45309' }}
-                  >
-                    Possible fit. Attorney review required.
-                  </span>
-                </div>
-                <div>
-                  <p className="font-semibold mb-1" style={{ color: 'var(--color-text-primary)' }}>Key Facts</p>
-                  <ul className="space-y-0.5" style={{ color: 'var(--color-text-muted)' }}>
-                    {[
-                      'Married couple',
-                      'Two adult children',
-                      'Primary residence in Travis County',
-                      'No known business ownership',
-                      'No out-of-state real estate',
-                      'No known special needs beneficiaries',
-                      'Interested in wills, POAs, HIPAA release, medical directive, and TOD deed',
-                    ].map((f) => <li key={f}>- {f}</li>)}
-                  </ul>
-                </div>
-                <div>
-                  <p className="font-semibold mb-1" style={{ color: '#b45309' }}>Potential Complexity Flags</p>
-                  <ul className="space-y-0.5" style={{ color: 'var(--color-text-muted)' }}>
-                    <li>- Client mentioned one child receives financial support</li>
-                    <li>- Client unsure whether existing beneficiary designations are current</li>
-                  </ul>
-                </div>
-                <div>
-                  <p className="font-semibold mb-1" style={{ color: 'var(--color-text-primary)' }}>Recommended Attorney Review</p>
-                  <ul className="space-y-0.5" style={{ color: 'var(--color-text-muted)' }}>
-                    {[
-                      'Confirm property ownership',
-                      'Confirm whether TOD deed is appropriate',
-                      'Confirm beneficiary designations',
-                      'Confirm family dynamics and capacity',
-                    ].map((r) => <li key={r}>- {r}</li>)}
-                  </ul>
-                </div>
-                <div>
-                  <p className="font-semibold mb-1" style={{ color: 'var(--color-text-primary)' }}>Suggested Next Step</p>
-                  <p style={{ color: 'var(--color-text-muted)' }}>Schedule paid consultation or flat-fee scope confirmation call.</p>
-                </div>
-              </div>
+              <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
+                Answer a few simple questions — no conversation required.
+              </p>
             </div>
-          </div>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0" style={{ color: 'var(--color-text-muted)' }}>
+              <path d="M4 8H12M9 5L12 8L9 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
+        </div>
+      </div>
+
+      {/* ── Package + How it works + Testimonials ── */}
+      <div className="px-6 pb-16">
+        <div className="mx-auto max-w-2xl">
 
           {/* Package card */}
           <div
@@ -322,8 +259,8 @@ export default function TrailheadPage() {
             </div>
           </div>
 
-          {/* Testimonials — labeled as sample */}
-          <div className="mb-16">
+          {/* Testimonials */}
+          <div className="mb-10">
             <div className="flex items-center gap-3 mb-4">
               <h2
                 className="text-lg font-bold"
@@ -366,7 +303,7 @@ export default function TrailheadPage() {
         </div>
       </div>
 
-      {/* ─── Attorney-controlled workflow ─── */}
+      {/* ── Attorney-controlled workflow ── */}
       <section className="py-24 px-6" style={{ background: 'var(--color-bg-light)' }}>
         <div className="mx-auto max-w-6xl">
           <p
@@ -416,7 +353,7 @@ export default function TrailheadPage() {
         </div>
       </section>
 
-      {/* ─── What Trailhead includes ─── */}
+      {/* ── What Trailhead includes ── */}
       <section className="py-24 px-6" style={{ background: 'var(--color-bg)' }}>
         <div className="mx-auto max-w-6xl">
           <p
@@ -446,7 +383,7 @@ export default function TrailheadPage() {
         </div>
       </section>
 
-      {/* ─── Why firms use this ─── */}
+      {/* ── Why firms use this ── */}
       <section className="py-24 px-6" style={{ background: 'var(--color-bg-light)' }}>
         <div className="mx-auto max-w-6xl">
           <p
@@ -472,7 +409,7 @@ export default function TrailheadPage() {
         </div>
       </section>
 
-      {/* ─── Not just a chatbot ─── */}
+      {/* ── Not just a chatbot ── */}
       <section className="py-24 px-6" style={{ background: 'var(--color-bg)' }}>
         <div className="mx-auto max-w-4xl">
           <p
@@ -500,7 +437,7 @@ export default function TrailheadPage() {
         </div>
       </section>
 
-      {/* ─── Law-firm CTA ─── */}
+      {/* ── Law-firm CTA ── */}
       <section className="py-24 px-6" style={{ background: 'var(--color-bg-light)' }}>
         <div className="mx-auto max-w-4xl">
           <p
