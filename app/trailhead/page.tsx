@@ -19,23 +19,6 @@ const INCLUDED = [
   'Two Rounds of Revisions within 90 Days',
 ]
 
-const TESTIMONIALS = [
-  {
-    quote: "We'd been putting this off for ten years. The process was completely painless and we had our documents in less than two weeks.",
-    name: 'Michael & Sarah T.',
-    location: 'Austin, TX',
-  },
-  {
-    quote: "I was worried it would cost thousands and take months. The flat fee made it easy to say yes. Documents were exactly what we needed.",
-    name: 'Jennifer R.',
-    location: 'Round Rock, TX',
-  },
-  {
-    quote: "Straightforward, affordable, and the attorney answered every question. I wish we'd done this five years ago.",
-    name: 'David K.',
-    location: 'Georgetown, TX',
-  },
-]
 
 const SAFEGUARDS = [
   'Intake-first workflow, not advice-first workflow',
@@ -221,47 +204,6 @@ export default function TrailheadPage() {
             </div>
           </div>
 
-          {/* Testimonials */}
-          <div className="mb-10">
-            <div className="flex items-center gap-3 mb-4">
-              <h2
-                className="text-lg font-bold"
-                style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}
-              >
-                Texas families who got it done
-              </h2>
-              <span
-                className="rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider"
-                style={{ background: 'var(--color-bg-light)', color: 'var(--color-text-muted)', border: '1px solid var(--color-border)' }}
-              >
-                Sample · Demo only
-              </span>
-            </div>
-            <div className="grid grid-cols-1 gap-3">
-              {TESTIMONIALS.map((t) => (
-                <div
-                  key={t.name}
-                  className="rounded-xl p-4"
-                  style={{ background: 'var(--color-bg-surface)', border: '1px solid var(--color-border)' }}
-                >
-                  <div className="flex gap-0.5 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} width="12" height="12" viewBox="0 0 12 12" fill="var(--color-accent)">
-                        <path d="M6 1L7.545 4.13L11 4.635L8.5 7.07L9.09 10.51L6 8.885L2.91 10.51L3.5 7.07L1 4.635L4.455 4.13L6 1Z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--color-text-primary)' }}>
-                    &ldquo;{t.quote}&rdquo;
-                  </p>
-                  <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                    — {t.name}, {t.location}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
         </div>
       </div>
 
@@ -332,8 +274,8 @@ export default function TrailheadPage() {
           </h2>
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3">
             {WHY_FIRMS_USE_THIS.map((item) => (
-              <div key={item}>
-                <span className="mb-2 block" style={{ color: 'var(--color-accent)' }}>✓</span>
+              <div key={item} className="flex items-start gap-2">
+                <span className="shrink-0 mt-0.5" style={{ color: 'var(--color-accent)' }}>✓</span>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>{item}</p>
               </div>
             ))}
