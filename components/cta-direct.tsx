@@ -30,7 +30,7 @@ export function CTADirect() {
         bottleneck, and whether what Off-Map does fits. You will see Trailhead,
         our working AI sales demo, before or during the call.
       </p>
-      <div className="mb-4">
+      <div className="flex flex-wrap items-center justify-center gap-4">
         <Link
           href="/book?source=homepage"
           onClick={() =>
@@ -47,14 +47,23 @@ export function CTADirect() {
         >
           Book a call
         </Link>
+        <Link
+          href="/trailhead"
+          onClick={() =>
+            posthog.capture('cta_clicked', {
+              variant: 'demo',
+              location: 'cta-section',
+            })
+          }
+          className="inline-flex items-center justify-center rounded-lg border px-8 py-3 text-base font-semibold transition-opacity hover:opacity-80"
+          style={{
+            borderColor: 'var(--color-border-strong)',
+            color: 'var(--color-text-primary)',
+          }}
+        >
+          See the demo
+        </Link>
       </div>
-      <Link
-        href="/trailhead"
-        className="text-sm transition-opacity hover:opacity-70"
-        style={{ color: 'var(--color-text-muted)' }}
-      >
-        Or see the demo first
-      </Link>
     </div>
   )
 }

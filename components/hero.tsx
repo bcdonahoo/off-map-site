@@ -47,8 +47,8 @@ export function Hero() {
           systems that fit how your practice actually operates.
         </p>
 
-        {/* Primary CTA */}
-        <div className="mb-4">
+        {/* CTAs */}
+        <div className="mb-12 flex flex-wrap items-center justify-center gap-4">
           <Link
             href="/book?source=homepage"
             className={
@@ -59,16 +59,15 @@ export function Hero() {
           >
             Book a conversation
           </Link>
-        </div>
-
-        {/* Secondary CTA */}
-        <div className="mb-12">
           <Link
             href="/trailhead"
-            className="text-sm transition-opacity hover:opacity-70"
-            style={{ color: 'var(--color-text-muted)' }}
+            className="inline-flex items-center justify-center rounded-lg border px-8 py-3 text-base font-semibold transition-opacity hover:opacity-80"
+            style={{
+              borderColor: 'var(--color-border-strong)',
+              color: 'var(--color-text-primary)',
+            }}
           >
-            Or see our demo
+            See the demo
           </Link>
         </div>
 

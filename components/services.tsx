@@ -1,34 +1,29 @@
-import Link from 'next/link'
-
 const services = [
   {
-    badge: 'Diagnostic',
-    title: 'Practice Diagnostic',
-    body: '60 minutes on the practice. Written brief in 5 business days. One follow-up call two weeks later. One thing working, one thing broken, one move to make next.',
-    href: '/services/audit',
+    badge: 'Training',
+    title: 'AI Training for Your Firm',
+    body: 'Practical AI training focused on operational work, never legal substance. Email drafting, intake summaries, client communication, marketing content, internal SOPs, vendor evaluation. The result is a firm that knows where AI helps, where it does not, and how staff can use it responsibly.',
   },
   {
-    badge: 'Engagement',
-    title: 'Practice Growth Engagement',
-    body: 'A defined project that rebuilds one part of your client acquisition. AI intake, productized offer build, marketing engine, or business development process. Scoped before we start. Documented systems your firm owns at the end.',
-    href: '/services/sprint',
+    badge: 'Fixed-Fee',
+    title: 'Fixed-Fee Service Lines',
+    body: 'Turn one repeatable service into a clear, fixed-fee offering. Off-Map builds the intake flow, eligibility screening, client education, follow-up process, and reporting so the firm can serve more clients without turning every matter into a custom one-off.',
   },
   {
     badge: 'Embedded',
-    title: 'Fractional Practice Operator',
-    body: 'Embedded alongside you on whatever is rate-limiting practice growth this month. Weekly working sessions, async access. Senior-operator leverage without adding to payroll.',
-    href: '/services/fractional',
+    title: 'Fractional Practice Operations',
+    body: 'Embedded fractional partner on intake, marketing operations, reporting, workflow automation, vendor selection, and AI adoption. Off-Map helps the firm decide what to automate, what to buy, what to ignore, and how to turn AI into measurable business results.',
   },
 ]
 
 export function Services() {
   return (
     <section
+      id="services"
       className="py-24 px-6"
       style={{ background: 'var(--color-bg)' }}
     >
       <div className="mx-auto max-w-6xl">
-        {/* Eyebrow */}
         <p
           className="mb-4 text-xs font-semibold uppercase tracking-widest"
           style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
@@ -36,7 +31,6 @@ export function Services() {
           How we work
         </p>
 
-        {/* Headline */}
         <h2
           className="mb-16 text-4xl font-bold md:text-5xl"
           style={{
@@ -44,11 +38,11 @@ export function Services() {
             fontFamily: 'var(--font-display)',
           }}
         >
-          Three ways to engage.
+          Three ways we work with you.
         </h2>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {services.map(({ badge, title, body, href }) => (
+          {services.map(({ badge, title, body }) => (
             <div
               key={title}
               className="group relative rounded-2xl p-8 transition-all duration-200"
@@ -80,20 +74,11 @@ export function Services() {
                 {title}
               </h3>
               <p
-                className="mb-8 text-sm leading-relaxed"
+                className="text-sm leading-relaxed"
                 style={{ color: 'var(--color-text-muted)' }}
               >
                 {body}
               </p>
-              <div className="flex items-center justify-end">
-                <Link
-                  href={href}
-                  className="text-sm font-medium transition-colors hover:opacity-80"
-                  style={{ color: 'var(--color-accent)' }}
-                >
-                  Learn more →
-                </Link>
-              </div>
             </div>
           ))}
         </div>

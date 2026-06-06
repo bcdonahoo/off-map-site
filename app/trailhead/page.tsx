@@ -5,7 +5,7 @@ import { TrailheadSystemOverview } from '@/components/trailhead/system-overview'
 import { TrailheadDemoSection } from '@/components/trailhead/demo-section'
 
 export const metadata: Metadata = {
-  title: 'Trailhead | The Flat-Fee GTM System for Law Firms | Off-Map',
+  title: 'Trailhead | Fixed-Fee Client Intake for Law Firms | Off-Map',
   robots: { index: false, follow: false },
 }
 
@@ -331,8 +331,8 @@ export default function TrailheadPage() {
             <p className="text-xs leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
               Hill Country Estate Law is a fictional firm created for demonstration purposes by{' '}
               <span style={{ color: 'var(--color-text-primary)' }}>Off-Map</span>. This is a working
-              demo of the Trailhead GTM system — an AI-powered sales and intake platform for
-              productized flat-fee legal services.
+              demo of Trailhead, an AI-powered intake and client acquisition system for law firms
+              offering flat-fee legal services.
             </p>
           </div>
         </div>

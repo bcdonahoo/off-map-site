@@ -48,22 +48,22 @@ export function Nav() {
                 }}
               >
                 <Link
-                  href="/services/audit"
+                  href="/book?source=nav-training"
                   className="block px-3 py-2 text-sm rounded-md text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-black/5 transition-colors"
                 >
-                  Practice Diagnostic
+                  AI Training for Your Firm
                 </Link>
                 <Link
-                  href="/services/sprint"
+                  href="/book?source=nav-fixed-fee"
                   className="block px-3 py-2 text-sm rounded-md text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-black/5 transition-colors"
                 >
-                  Practice Growth Engagement
+                  Fixed-Fee Service Lines
                 </Link>
                 <Link
-                  href="/services/fractional"
+                  href="/book?source=nav-fractional"
                   className="block px-3 py-2 text-sm rounded-md text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-black/5 transition-colors"
                 >
-                  Fractional Practice Operator
+                  Fractional Practice Operations
                 </Link>
               </div>
             </div>
@@ -116,25 +116,25 @@ export function Nav() {
       >
         <div className="px-6 py-4 flex flex-col gap-4">
           <Link
-            href="/services/audit"
+            href="/book?source=nav-training"
             className="text-sm text-[var(--color-text-muted)]"
             onClick={() => setMenuOpen(false)}
           >
-            Practice Diagnostic
+            AI Training for Your Firm
           </Link>
           <Link
-            href="/services/sprint"
+            href="/book?source=nav-fixed-fee"
             className="text-sm text-[var(--color-text-muted)]"
             onClick={() => setMenuOpen(false)}
           >
-            Practice Growth Engagement
+            Fixed-Fee Service Lines
           </Link>
           <Link
-            href="/services/fractional"
+            href="/book?source=nav-fractional"
             className="text-sm text-[var(--color-text-muted)]"
             onClick={() => setMenuOpen(false)}
           >
-            Fractional Practice Operator
+            Fractional Practice Operations
           </Link>
           <Link
             href="/approach"
