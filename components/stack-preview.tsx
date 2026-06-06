@@ -3,8 +3,8 @@ import Link from 'next/link'
 const pillars = [
   {
     number: '01',
-    label: 'Operator-led.',
-    body: 'Every engagement is run by the same person you spoke with on the first call. No junior hand-off, no agency model.',
+    label: 'Senior work, multiplied by AI.',
+    body: 'You get senior-level strategy and execution, not a junior team learning on your account. AI handles the volume so the thinking stays sharp and the systems carry the heavy lifting.',
   },
   {
     number: '02',

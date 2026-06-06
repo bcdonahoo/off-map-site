@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
         destination: '/approach',
         permanent: true,
       },
-      // Retired service pages — old three-rung ladder replaced by three pillars
+      // Retired offerings — redirect to closest current equivalent
       {
         source: '/services/audit',
         destination: '/book',
@@ -21,11 +21,6 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/services/sprint',
-        destination: '/book',
-        permanent: false,
-      },
-      {
-        source: '/services/fractional',
         destination: '/book',
         permanent: false,
       },

@@ -5,7 +5,7 @@ import { buttonVariants } from '@/components/ui/button'
 export const metadata: Metadata = {
   title: 'The Approach | Off-Map',
   description:
-    'Off-Map is one operator. Every engagement is scoped before it begins, delivered in working sessions, and handed off as documented systems your firm owns.',
+    'Every engagement is scoped before it begins, delivered in working sessions, and handed off as documented systems your firm owns.',
 }
 
 export default function ApproachPage() {
@@ -40,10 +40,10 @@ export default function ApproachPage() {
           style={{ color: 'var(--color-text-muted)' }}
         >
           <p>
-            Off-Map is one operator. You work directly with Brent Donahoo from
-            the first call through the final handoff. There is no agency behind
-            this, no junior team doing the actual work, no account manager in
-            the middle.
+            Off-Map delivers senior-level engagement, directly. There is no
+            junior team doing the work, no account manager in the middle. The
+            senior judgment that scopes an engagement is the judgment that
+            delivers it, with AI leverage built in to handle the volume.
           </p>
           <p>
             Every engagement is scoped before it begins. That means a specific
@@ -64,11 +64,11 @@ export default function ApproachPage() {
             make itself permanent. It is trying to make itself unnecessary.
           </p>
           <p>
-            The work is specific to your practice. Managing partners of Texas
-            law firms operate differently from each other. Different
-            practice areas, different referral networks, different client
-            relationships. There is no standard Off-Map engagement. There is a
-            scoped engagement for the practice in front of us.
+            The work is specific to your practice. Managing partners operate
+            differently from each other. Different practice areas, different
+            referral networks, different client relationships. There is no
+            standard Off-Map engagement. There is a scoped engagement for the
+            practice in front of us.
           </p>
         </div>
 

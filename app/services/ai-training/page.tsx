@@ -4,39 +4,20 @@ import { buttonVariants } from '@/components/ui/button'
 import { Guardrail } from '@/components/guardrail'
 
 export const metadata: Metadata = {
-  title: 'Fractional Practice Operations | Off-Map',
+  title: 'AI Training for Your Firm | Off-Map',
   description:
-    'Embedded fractional partner on intake, marketing operations, reporting, workflow automation, and AI adoption. Senior-level GTM operations without adding a senior-level employee.',
+    'Practical AI training for law firm staff focused on operational work, never legal substance. Build real skills your team can use immediately.',
 }
 
 const deliverables = [
-  'Weekly working sessions focused on the highest-leverage growth lever each month',
-  'Async access between sessions for quick decisions, draft reviews, and time-sensitive calls',
-  'Monthly written review: what was built, what is working, what is next',
-  'Support across intake design, marketing operations, AI tool selection, and reporting',
-  'Documented processes and systems your firm owns and can run independently',
+  'Practical skills applied to your firm\'s actual daily tasks',
+  'A clear picture of where AI helps and where it creates risk',
+  'Staff who can evaluate AI tools without relying on vendor claims',
+  'Firm-specific guidance on responsible use and confidentiality boundaries',
+  'A documented use framework your firm can adopt and update over time',
 ]
 
-const faqs = [
-  {
-    q: 'Is this a fractional CMO or fractional VP of Business Development?',
-    a: 'Neither. A fractional CMO manages marketing. A fractional VP of BD manages business development. Fractional Practice Operations works alongside you on whatever is rate-limiting growth, which often crosses traditional role lines. The work is about building systems, not managing functions.',
-  },
-  {
-    q: 'How long do engagements typically run?',
-    a: 'Most run three to six months. Some partners continue month to month after the initial period. The engagement ends when the systems are built and running. The goal is to make the engagement unnecessary.',
-  },
-  {
-    q: 'What does "embedded" mean in practice?',
-    a: 'Weekly working sessions, async access between sessions, and a monthly written summary. You have a senior outside perspective in the room each week without adding headcount.',
-  },
-  {
-    q: 'What happens when the engagement ends?',
-    a: 'You own everything built during the engagement. The processes are documented, the systems are in your tools, and your team can run them. Nothing leaves with Off-Map.',
-  },
-]
-
-export default function FractionalPage() {
+export default function AITrainingPage() {
   return (
     <main className="min-h-screen" style={{ background: 'var(--color-bg)' }}>
 
@@ -47,23 +28,23 @@ export default function FractionalPage() {
             className="mb-6 inline-block rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider"
             style={{ background: 'var(--color-accent-dim)', color: 'var(--color-accent)' }}
           >
-            Embedded
+            Training
           </span>
           <h1
             className="mb-6 text-4xl font-bold leading-tight md:text-6xl"
             style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}
           >
-            Fractional Practice Operations
+            AI Training for Your Firm
           </h1>
           <p
             className="mb-10 max-w-xl text-lg leading-relaxed"
             style={{ color: 'var(--color-text-muted)' }}
           >
-            Senior-level operations, embedded in your practice.
+            Practical skills your team can use on Monday.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link
-              href="/book?source=services-fractional"
+              href="/book?source=services-ai-training"
               className={
                 buttonVariants({ size: 'lg' }) +
                 ' !text-[var(--color-bg)] font-semibold px-8 py-3 text-base'
@@ -94,23 +75,22 @@ export default function FractionalPage() {
           </p>
           <div className="flex flex-col gap-5 text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
             <p>
-              Fractional Practice Operations is Off-Map's deepest engagement. It is an embedded
-              partnership on intake, marketing operations, reporting, workflow automation, vendor
-              selection, and AI adoption. The focus each month follows what is most rate-limiting
-              growth, not a fixed curriculum.
+              AI training for law firms should be about operational work, not legal substance. Off-Map
+              does not train staff on AI tools in the abstract. We build real skills around the specific
+              tasks your firm does every day: email drafting, intake summaries, client communication,
+              marketing content, internal SOPs, and vendor evaluation.
             </p>
             <p>
-              The work is structured around weekly sessions and async access, with a monthly written
-              summary of what was built, what is working, and what the next priority is. Everything
-              built during the engagement is documented so your firm can operate it after the
-              engagement ends.
+              Every session is built around your firm's actual workflows. We cover where AI produces
+              useful output, where it creates risk, and how staff can use it responsibly without
+              creating ethics or confidentiality exposure. The goal is confident, practical adoption,
+              not enthusiasm for technology.
             </p>
             <p>
-              The goal is measurable business results, not a permanent dependency. Off-Map helps the
-              firm decide what to automate, what to buy, what to ignore, and how to turn AI into
-              results the firm can actually see. This is Off-Map's longest engagement and is best
-              suited for managing partners who have a clear growth problem and want a senior outside
-              perspective working it alongside them.
+              This is the lowest-commitment way to start working with Off-Map. Formats include a
+              half-day workshop, a multi-week program, or an embedded advisor engagement. We scope
+              the right format based on your firm's size, practice areas, and current AI maturity
+              before any work begins.
             </p>
           </div>
         </div>
@@ -129,7 +109,7 @@ export default function FractionalPage() {
             className="mb-8 text-2xl font-bold"
             style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}
           >
-            A senior operator on your side of the table.
+            A firm that knows what AI is actually for.
           </h2>
           <ul className="flex flex-col gap-3">
             {deliverables.map((item) => (
@@ -146,30 +126,6 @@ export default function FractionalPage() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="py-20 px-6" style={{ background: 'var(--color-bg-light)' }}>
-        <div className="mx-auto max-w-2xl">
-          <p
-            className="mb-4 text-xs font-semibold uppercase tracking-widest"
-            style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
-          >
-            Common questions
-          </p>
-          <div className="flex flex-col gap-8">
-            {faqs.map(({ q, a }) => (
-              <div key={q}>
-                <p className="mb-2 font-semibold" style={{ color: 'var(--color-text-primary)' }}>
-                  {q}
-                </p>
-                <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-                  {a}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <Guardrail />
 
       {/* Closing CTA */}
@@ -182,11 +138,11 @@ export default function FractionalPage() {
             Start with a conversation.
           </h2>
           <p className="mb-8 text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-            30 minutes on Zoom. We will discuss your practice, where growth is
-            stuck, and whether an embedded engagement is the right fit.
+            30 minutes on Zoom. We will discuss your practice, your team, and
+            what a well-scoped AI training engagement looks like for your firm.
           </p>
           <Link
-            href="/book?source=services-fractional-cta"
+            href="/book?source=services-ai-training-cta"
             className={
               buttonVariants({ size: 'lg' }) +
               ' !text-[var(--color-bg)] font-semibold px-8 py-3 text-base'

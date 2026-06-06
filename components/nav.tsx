@@ -48,19 +48,19 @@ export function Nav() {
                 }}
               >
                 <Link
-                  href="/book?source=nav-training"
+                  href="/services/ai-training"
                   className="block px-3 py-2 text-sm rounded-md text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-black/5 transition-colors"
                 >
                   AI Training for Your Firm
                 </Link>
                 <Link
-                  href="/book?source=nav-fixed-fee"
+                  href="/services/fixed-fee"
                   className="block px-3 py-2 text-sm rounded-md text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-black/5 transition-colors"
                 >
                   Fixed-Fee Service Lines
                 </Link>
                 <Link
-                  href="/book?source=nav-fractional"
+                  href="/services/fractional"
                   className="block px-3 py-2 text-sm rounded-md text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-black/5 transition-colors"
                 >
                   Fractional Practice Operations
@@ -116,21 +116,21 @@ export function Nav() {
       >
         <div className="px-6 py-4 flex flex-col gap-4">
           <Link
-            href="/book?source=nav-training"
+            href="/services/ai-training"
             className="text-sm text-[var(--color-text-muted)]"
             onClick={() => setMenuOpen(false)}
           >
             AI Training for Your Firm
           </Link>
           <Link
-            href="/book?source=nav-fixed-fee"
+            href="/services/fixed-fee"
             className="text-sm text-[var(--color-text-muted)]"
             onClick={() => setMenuOpen(false)}
           >
             Fixed-Fee Service Lines
           </Link>
           <Link
-            href="/book?source=nav-fractional"
+            href="/services/fractional"
             className="text-sm text-[var(--color-text-muted)]"
             onClick={() => setMenuOpen(false)}
           >

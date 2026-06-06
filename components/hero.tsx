@@ -23,7 +23,7 @@ export function Hero() {
           className="mb-6 text-xs font-semibold uppercase tracking-widest"
           style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
         >
-          For Texas law firms
+          For small law firms
         </p>
 
         {/* Headline */}
@@ -34,7 +34,7 @@ export function Hero() {
             fontFamily: 'var(--font-display)',
           }}
         >
-          Modern client acquisition for Texas practices.
+          Modern client acquisition for law practices.
         </h1>
 
         {/* Subhead */}
@@ -42,7 +42,7 @@ export function Hero() {
           className="mx-auto mb-10 max-w-[560px] text-lg leading-relaxed"
           style={{ color: 'var(--color-text-muted)' }}
         >
-          Off-Map helps Texas law firms grow matter volume without adding
+          Off-Map helps law firms grow matter volume without adding
           partners. We build the intake, marketing, and business development
           systems that fit how your practice actually operates.
         </p>
@@ -74,8 +74,8 @@ export function Hero() {
         {/* Trust signals */}
         <div className="flex flex-wrap items-center justify-center gap-6">
           {[
-            'Built for Texas law firm managing partners',
-            'Direct engagement, no hand-offs',
+            'Built for managing partners of small firms',
+            'Senior-led, built on AI leverage',
             'Focus areas: estate planning, probate, real estate, small business',
           ].map((signal) => (
             <div

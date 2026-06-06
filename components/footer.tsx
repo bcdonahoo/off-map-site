@@ -21,7 +21,7 @@ export function Footer() {
               Off-Map
             </p>
             <p className="text-sm text-[var(--color-text-muted)] max-w-xs leading-relaxed">
-              Client acquisition consulting for Texas law firms. Built for
+              Client acquisition consulting for law firms. Built for
               managing partners.
             </p>
           </div>
@@ -35,18 +35,18 @@ export function Footer() {
               <ul className="flex flex-col gap-3">
                 <li>
                   <Link
-                    href="/services/audit"
+                    href="/services/ai-training"
                     className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors"
                   >
-                    Practice Diagnostic
+                    AI Training for Your Firm
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/services/sprint"
+                    href="/services/fixed-fee"
                     className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors"
                   >
-                    Practice Growth Engagement
+                    Fixed-Fee Service Lines
                   </Link>
                 </li>
                 <li>
@@ -54,7 +54,7 @@ export function Footer() {
                     href="/services/fractional"
                     className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors"
                   >
-                    Fractional Practice Operator
+                    Fractional Practice Operations
                   </Link>
                 </li>
               </ul>

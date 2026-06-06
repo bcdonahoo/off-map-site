@@ -1,8 +1,8 @@
 const bullets = [
   '15+ years of operator experience across services firms and growth-stage businesses',
-  'Currently building and deploying AI-powered sales and intake systems',
-  'Direct work with Texas estate, probate, and real estate practices',
-  'One operator delivers every engagement, no agency hand-off',
+  'Currently building and deploying AI-powered intake and client acquisition systems',
+  'Work across estate planning, probate, real estate, and small business practices',
+  'Senior-level output with AI leverage built into the delivery',
 ]
 
 export function Proof() {
@@ -12,7 +12,6 @@ export function Proof() {
       style={{ background: 'var(--color-bg-light)' }}
     >
       <div className="mx-auto max-w-6xl">
-        {/* Eyebrow */}
         <p
           className="mb-4 text-xs font-semibold uppercase tracking-widest"
           style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
@@ -20,7 +19,6 @@ export function Proof() {
           Who is Off-Map
         </p>
 
-        {/* Headline */}
         <h2
           className="mb-10 max-w-2xl text-4xl font-bold md:text-5xl"
           style={{
@@ -31,7 +29,6 @@ export function Proof() {
           A senior operator who builds the system, not the slide deck.
         </h2>
 
-        {/* Bullets */}
         <ul className="mb-10 flex flex-col gap-3">
           {bullets.map((item) => (
             <li
@@ -50,14 +47,13 @@ export function Proof() {
           ))}
         </ul>
 
-        {/* Body */}
         <p
           className="max-w-2xl text-sm leading-relaxed"
           style={{ color: 'var(--color-text-muted)' }}
         >
-          Off-Map is one operator by design. You work directly with Brent
-          Donahoo. Every engagement is scoped, delivered, and documented by the
-          same person you spoke with on the first call.
+          Off-Map delivers senior-level engagement, directly. Every project is
+          scoped before it begins, built in working sessions, and documented so
+          your firm can operate it after the engagement ends.
         </p>
       </div>
     </section>

@@ -4,39 +4,21 @@ import { buttonVariants } from '@/components/ui/button'
 import { Guardrail } from '@/components/guardrail'
 
 export const metadata: Metadata = {
-  title: 'Fractional Practice Operations | Off-Map',
+  title: 'Fixed-Fee Service Lines | Off-Map',
   description:
-    'Embedded fractional partner on intake, marketing operations, reporting, workflow automation, and AI adoption. Senior-level GTM operations without adding a senior-level employee.',
+    'Turn one repeatable legal service into a clear, fixed-fee offering. Off-Map builds the intake, screening, client education, and reporting so your firm can serve more clients consistently.',
 }
 
 const deliverables = [
-  'Weekly working sessions focused on the highest-leverage growth lever each month',
-  'Async access between sessions for quick decisions, draft reviews, and time-sensitive calls',
-  'Monthly written review: what was built, what is working, what is next',
-  'Support across intake design, marketing operations, AI tool selection, and reporting',
-  'Documented processes and systems your firm owns and can run independently',
+  'A productized, fixed-fee offer your firm can sell and deliver consistently',
+  'AI-powered intake flow that qualifies and educates prospective clients',
+  'Eligibility screening to flag complexity before the attorney\'s time is spent',
+  'Client communication and follow-up process',
+  'Reporting on intake volume, completion rates, and conversion',
+  'Documented systems your firm owns and operates independently',
 ]
 
-const faqs = [
-  {
-    q: 'Is this a fractional CMO or fractional VP of Business Development?',
-    a: 'Neither. A fractional CMO manages marketing. A fractional VP of BD manages business development. Fractional Practice Operations works alongside you on whatever is rate-limiting growth, which often crosses traditional role lines. The work is about building systems, not managing functions.',
-  },
-  {
-    q: 'How long do engagements typically run?',
-    a: 'Most run three to six months. Some partners continue month to month after the initial period. The engagement ends when the systems are built and running. The goal is to make the engagement unnecessary.',
-  },
-  {
-    q: 'What does "embedded" mean in practice?',
-    a: 'Weekly working sessions, async access between sessions, and a monthly written summary. You have a senior outside perspective in the room each week without adding headcount.',
-  },
-  {
-    q: 'What happens when the engagement ends?',
-    a: 'You own everything built during the engagement. The processes are documented, the systems are in your tools, and your team can run them. Nothing leaves with Off-Map.',
-  },
-]
-
-export default function FractionalPage() {
+export default function FixedFeePage() {
   return (
     <main className="min-h-screen" style={{ background: 'var(--color-bg)' }}>
 
@@ -47,23 +29,23 @@ export default function FractionalPage() {
             className="mb-6 inline-block rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider"
             style={{ background: 'var(--color-accent-dim)', color: 'var(--color-accent)' }}
           >
-            Embedded
+            Fixed-Fee
           </span>
           <h1
             className="mb-6 text-4xl font-bold leading-tight md:text-6xl"
             style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}
           >
-            Fractional Practice Operations
+            Fixed-Fee Service Lines
           </h1>
           <p
             className="mb-10 max-w-xl text-lg leading-relaxed"
             style={{ color: 'var(--color-text-muted)' }}
           >
-            Senior-level operations, embedded in your practice.
+            Turn a repeatable service into a scalable offer.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link
-              href="/book?source=services-fractional"
+              href="/book?source=services-fixed-fee"
               className={
                 buttonVariants({ size: 'lg' }) +
                 ' !text-[var(--color-bg)] font-semibold px-8 py-3 text-base'
@@ -94,23 +76,31 @@ export default function FractionalPage() {
           </p>
           <div className="flex flex-col gap-5 text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
             <p>
-              Fractional Practice Operations is Off-Map's deepest engagement. It is an embedded
-              partnership on intake, marketing operations, reporting, workflow automation, vendor
-              selection, and AI adoption. The focus each month follows what is most rate-limiting
-              growth, not a fixed curriculum.
+              Most law firm services are still quoted and scoped as custom matters, even when the
+              underlying work is largely the same from client to client. A fixed-fee service line
+              changes that. It defines scope clearly, sets a price clients understand before they
+              engage, and creates a predictable intake path that does not depend on an attorney
+              fielding every inquiry.
             </p>
             <p>
-              The work is structured around weekly sessions and async access, with a monthly written
-              summary of what was built, what is working, and what the next priority is. Everything
-              built during the engagement is documented so your firm can operate it after the
-              engagement ends.
+              Off-Map builds the entire system around a single repeatable service: the intake flow,
+              eligibility screening, client education, follow-up process, and reporting. The method
+              works for any service where the work is sufficiently predictable to scope in advance.
+              Examples include deed transfers, simple wills, powers of attorney, and simple trusts.
+              These are examples, not a fixed menu. The engagement is built around your repeatable
+              work, whatever that is.
             </p>
             <p>
-              The goal is measurable business results, not a permanent dependency. Off-Map helps the
-              firm decide what to automate, what to buy, what to ignore, and how to turn AI into
-              results the firm can actually see. This is Off-Map's longest engagement and is best
-              suited for managing partners who have a clear growth problem and want a senior outside
-              perspective working it alongside them.
+              This is a defined-scope, fixed-timeline engagement. One service line per engagement.
+              Trailhead is the working demo of what the output looks like for an estate planning
+              practice.{' '}
+              <Link
+                href="/trailhead"
+                className="underline transition-opacity hover:opacity-70"
+                style={{ color: 'var(--color-accent)' }}
+              >
+                See the demo.
+              </Link>
             </p>
           </div>
         </div>
@@ -123,13 +113,13 @@ export default function FractionalPage() {
             className="mb-4 text-xs font-semibold uppercase tracking-widest"
             style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
           >
-            What you get
+            What we build
           </p>
           <h2
             className="mb-8 text-2xl font-bold"
             style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}
           >
-            A senior operator on your side of the table.
+            One service line, built to run.
           </h2>
           <ul className="flex flex-col gap-3">
             {deliverables.map((item) => (
@@ -146,30 +136,6 @@ export default function FractionalPage() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="py-20 px-6" style={{ background: 'var(--color-bg-light)' }}>
-        <div className="mx-auto max-w-2xl">
-          <p
-            className="mb-4 text-xs font-semibold uppercase tracking-widest"
-            style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
-          >
-            Common questions
-          </p>
-          <div className="flex flex-col gap-8">
-            {faqs.map(({ q, a }) => (
-              <div key={q}>
-                <p className="mb-2 font-semibold" style={{ color: 'var(--color-text-primary)' }}>
-                  {q}
-                </p>
-                <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-                  {a}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <Guardrail />
 
       {/* Closing CTA */}
@@ -182,11 +148,12 @@ export default function FractionalPage() {
             Start with a conversation.
           </h2>
           <p className="mb-8 text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-            30 minutes on Zoom. We will discuss your practice, where growth is
-            stuck, and whether an embedded engagement is the right fit.
+            30 minutes on Zoom. We will discuss your practice, which service
+            line is the right candidate, and what a scoped build engagement
+            looks like.
           </p>
           <Link
-            href="/book?source=services-fractional-cta"
+            href="/book?source=services-fixed-fee-cta"
             className={
               buttonVariants({ size: 'lg' }) +
               ' !text-[var(--color-bg)] font-semibold px-8 py-3 text-base'
