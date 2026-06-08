@@ -102,10 +102,10 @@ const sharedServices: ServicesCopy = {
 
 export const conservativeCopy: LegalCopy = {
   hero: {
-    eyebrow: 'For Texas law firms',
-    headline: 'Modern client acquisition for Texas practices.',
+    eyebrow: 'For small law firms',
+    headline: 'Modern client acquisition for law practices.',
     subhead:
-      'Off-Map helps small Texas law firms grow matter volume without adding partners. We build the intake, marketing, and business development systems that fit how your practice actually operates.',
+      'Off-Map helps small law firms grow matter volume without adding partners. We build the intake, marketing, and business development systems that fit how your practice actually operates.',
     primaryCta: 'Book a conversation',
     primaryHref: '/book?source=legal',
     primaryCtaType: 'book',
@@ -141,7 +141,7 @@ export const conservativeCopy: LegalCopy = {
     bullets: [
       '15+ years of operator experience across services firms and growth-stage businesses',
       'Currently building and deploying AI-powered sales and intake systems',
-      'Direct work with Texas estate, probate, and real estate practices',
+      'Direct work with estate planning, probate, and real estate practices',
       'One operator delivers every engagement, no agency hand-off',
     ],
     body: 'Off-Map is one operator by design. You work directly with Brent Donahoo. Every engagement is scoped, delivered, and documented by the same person you spoke with on the first call.',
@@ -162,11 +162,11 @@ export const conservativeCopy: LegalCopy = {
 
 export const boldCopy: LegalCopy = {
   hero: {
-    eyebrow: 'For Texas law firms',
+    eyebrow: 'For small law firms',
     headline:
-      'We built an AI sales agent for a fictional Texas estate firm.\nWatch what it does for yours.',
+      'We built an AI sales agent for a fictional estate planning firm.\nWatch what it does for yours.',
     subhead:
-      'Off-Map helps Texas law firms in the 3 to 15 attorney range grow client acquisition without hiring more partners. AI-powered intake, productized offers, and a business development process designed for how lawyers actually work.',
+      'Off-Map helps small law firms in the 3 to 15 attorney range grow client acquisition without hiring more partners. AI-powered intake, productized offers, and a business development process designed for how lawyers actually work.',
     primaryCta: 'See the demo',
     primaryHref: '/trailhead',
     primaryCtaType: 'demo',
@@ -176,7 +176,7 @@ export const boldCopy: LegalCopy = {
     trustSignals: [
       'Built for managing partners',
       'Senior operator, hands-on',
-      'Texas estate, probate, real estate, small business',
+      'Estate planning, probate, real estate, small business',
     ],
   },
   problem: {
@@ -205,7 +205,7 @@ export const boldCopy: LegalCopy = {
       'Senior operator experience in B2B services and growth-stage firms',
       'Built AI-powered intake and sales systems currently running in production',
       'Live demo at off-map.com/trailhead shows the work, not the pitch',
-      'Direct experience with Texas estate, probate, and real estate practices',
+      'Direct experience with estate planning, probate, and real estate practices',
     ],
     body: 'Off-Map is a one-person operation by design. You work directly with Brent Donahoo on every engagement. No junior hand-off. No agency model. If you want a senior operator inside your practice for a defined time, that is what this is.',
   },
@@ -216,7 +216,7 @@ export const boldCopy: LegalCopy = {
     cards: [
       {
         title: 'Run the demo',
-        body: 'Watch Trailhead for 5 minutes. It is a working AI sales agent for a fictional Austin estate firm. You will see what is possible.',
+        body: 'Watch Trailhead for 5 minutes. It is a working AI sales agent for a fictional estate planning firm. You will see what is possible.',
         buttonText: 'See the demo',
         href: '/trailhead',
         ctaType: 'demo',

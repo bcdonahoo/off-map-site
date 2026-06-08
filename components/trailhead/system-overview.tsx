@@ -97,7 +97,7 @@ function SplitLayout() {
           className="mb-4 text-[10px] font-bold uppercase tracking-widest"
           style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
         >
-          Attorney configures
+          Set by your firm, built and run by Off-Map
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
           {ATTORNEY_ITEMS.map((item) => (

@@ -10,7 +10,7 @@ function qualify(
   activeDispute: string
 ): { fitLevel: 'high' | 'medium' | 'out_of_scope'; outOfScopeReason?: string } {
   if (texasResident === 'no') {
-    return { fitLevel: 'out_of_scope', outOfScopeReason: 'We focus exclusively on Texas estate planning' }
+    return { fitLevel: 'out_of_scope', outOfScopeReason: 'We focus on straightforward flat-fee estate planning in our service area' }
   }
   if (activeDispute === 'yes') {
     return { fitLevel: 'out_of_scope', outOfScopeReason: 'Active estate disputes require a litigation attorney' }
@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
     const now = new Date().toISOString()
 
     const fitIndicators = [
-      texasResident === 'yes' ? 'Texas resident' : 'Non-Texas resident',
+      texasResident === 'yes' ? 'In service area' : 'Outside service area',
       ...(activeDispute === 'yes' ? ['active estate dispute'] : []),
       ...(familySituation ? [`family: ${familySituation}`] : []),
     ]

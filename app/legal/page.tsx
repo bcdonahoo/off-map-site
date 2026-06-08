@@ -4,13 +4,13 @@ import { conservativeCopy, boldCopy } from '@/components/legal/copy'
 import type { CtaLayout } from '@/components/legal/legal-hero'
 
 export const metadata: Metadata = {
-  title: 'Modern Client Acquisition for Texas Law Firms | Off-Map',
+  title: 'Modern Client Acquisition for Small Law Firms | Off-Map',
   description:
-    'Off-Map helps small Texas law firms grow matter volume without adding partners. AI-powered intake, productized offers, and business development systems built for how lawyers actually work.',
+    'Off-Map helps small law firms grow matter volume without adding partners. AI-powered intake, productized offers, and business development systems built for how lawyers actually work.',
   openGraph: {
-    title: 'Modern Client Acquisition for Texas Law Firms | Off-Map',
+    title: 'Modern Client Acquisition for Small Law Firms | Off-Map',
     description:
-      'Off-Map helps small Texas law firms grow matter volume without adding partners. AI-powered intake, productized offers, and business development systems built for how lawyers actually work.',
+      'Off-Map helps small law firms grow matter volume without adding partners. AI-powered intake, productized offers, and business development systems built for how lawyers actually work.',
   },
 }
 

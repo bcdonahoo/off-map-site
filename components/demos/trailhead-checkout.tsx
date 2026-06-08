@@ -101,10 +101,10 @@ export function TrailheadCheckout({ leadId }: Props) {
             </p>
           )}
           <p className="text-sm mb-2" style={{ color: 'var(--color-text-muted)' }}>
-            Texas Estate Plan Package · Documents ready within 10 business days.
+            Estate Plan Package · Documents ready within 10 business days.
           </p>
           <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
-            A licensed Texas attorney will reach out within 1 business day to begin drafting.
+            A licensed attorney will reach out within 1 business day to begin drafting.
           </p>
         </div>
 
@@ -144,10 +144,10 @@ export function TrailheadCheckout({ leadId }: Props) {
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>
-              Texas Estate Plan Package
+              Estate Plan Package
             </p>
             <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
-              Hill Country Estate Law · Austin, TX
+              Cedar &amp; Vale Estate Law · Demo Firm
             </p>
           </div>
           <p

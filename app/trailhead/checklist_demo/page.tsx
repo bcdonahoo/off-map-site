@@ -4,7 +4,7 @@ import { TrailheadAttorneyChecklist } from '@/components/demos/trailhead-attorne
 import { CHECKLIST_CONFIG } from '@/lib/trailhead/checklist'
 
 export const metadata: Metadata = {
-  title: 'Checklist Demo | Hill Country Estate Law',
+  title: 'Checklist Demo | Cedar & Vale Estate Law',
   robots: { index: false, follow: false },
 }
 
@@ -23,7 +23,7 @@ export default function ChecklistDemoPage() {
           className="mb-4 text-xs font-semibold uppercase tracking-widest"
           style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
         >
-          Off-Map Demo · Hill Country Estate Law
+          Off-Map Demo · Cedar &amp; Vale Estate Law
         </p>
 
         {/* Hero */}
@@ -83,7 +83,7 @@ export default function ChecklistDemoPage() {
           }}
         >
           <p className="text-xs leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-            Hill Country Estate Law is a fictional firm created for demonstration purposes by{' '}
+            Cedar &amp; Vale Estate Law is a fictional firm created for demonstration purposes by{' '}
             <span style={{ color: 'var(--color-text-primary)' }}>Off-Map</span>. Both checklists are interactive — tap any item to mark it complete. State resets on refresh; persistence via Supabase is planned for V2.
           </p>
         </div>

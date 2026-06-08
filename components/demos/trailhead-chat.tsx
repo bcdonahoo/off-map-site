@@ -230,10 +230,10 @@ export function TrailheadChat() {
             </div>
             <div className="min-w-0">
               <div className="text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>
-                Hill Country Estate Law
+                Cedar &amp; Vale Estate Law
               </div>
               <div className="text-xs truncate" style={{ color: 'var(--color-text-muted)' }}>
-                Austin, Texas · Estate Planning
+                Estate Planning · Demo Firm
               </div>
             </div>
             <div className="ml-auto flex items-center gap-2 shrink-0">
@@ -347,7 +347,7 @@ export function TrailheadChat() {
               className="text-[10px]"
               style={{ color: 'var(--color-text-muted)', opacity: 0.4, fontFamily: 'var(--font-mono)' }}
             >
-              AI assistant · Hill Country Estate Law · Not a substitute for legal advice
+              AI assistant · Cedar &amp; Vale Estate Law · Not a substitute for legal advice
             </span>
           </div>
         </div>
@@ -389,7 +389,7 @@ export function TrailheadChat() {
               <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
                 Requested Service
               </p>
-              <p style={{ color: 'var(--color-text-primary)' }}>Texas flat-fee estate planning package</p>
+              <p style={{ color: 'var(--color-text-primary)' }}>Flat-fee estate planning package</p>
             </div>
           )}
 

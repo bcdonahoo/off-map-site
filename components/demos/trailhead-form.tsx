@@ -289,11 +289,11 @@ export function TrailheadForm() {
           className="w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0"
           style={{ background: 'var(--color-accent)', color: '#fff' }}
         >
-          HC
+          CV
         </div>
         <div>
           <div className="text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>
-            Hill Country Estate Law
+            Cedar &amp; Vale Estate Law
           </div>
           <div className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
             Estate Planning Intake Form
@@ -373,7 +373,7 @@ export function TrailheadForm() {
 
           <div className="space-y-5">
             <div>
-              <FieldLabel required>Are you a Texas resident?</FieldLabel>
+              <FieldLabel required>Are you in our service area?</FieldLabel>
               <RadioGroup
                 value={form.texasResident}
                 onChange={(v) => update('texasResident', v as FormData['texasResident'])}
@@ -466,7 +466,7 @@ export function TrailheadForm() {
                   Purchase Confirmed
                 </p>
                 <h3 className="text-xl font-bold mb-1" style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}>
-                  Texas Estate Plan Package
+                  Estate Plan Package
                 </h3>
                 <p className="text-3xl font-bold mb-3" style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}>
                   ${outcome.amount?.toLocaleString()}
@@ -581,7 +581,7 @@ export function TrailheadForm() {
                     You look like a great fit.
                   </p>
                   <p className="text-xs mt-0.5 leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-                    Based on your answers, the Texas Estate Plan Package covers everything your family needs.
+                    Based on your answers, the Estate Plan Package covers everything your family needs.
                   </p>
                 </div>
               </div>
@@ -593,7 +593,7 @@ export function TrailheadForm() {
                 <div className="flex items-start justify-between gap-4 mb-3">
                   <div>
                     <p className="text-sm font-bold" style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}>
-                      Texas Estate Plan Package
+                      Estate Plan Package
                     </p>
                     <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>Everything included. Nothing extra.</p>
                   </div>
@@ -731,7 +731,7 @@ export function TrailheadForm() {
           className="text-[10px]"
           style={{ color: 'var(--color-text-muted)', opacity: 0.4, fontFamily: 'var(--font-mono)' }}
         >
-          Hill Country Estate Law · Not a substitute for legal advice
+          Cedar &amp; Vale Estate Law · Not a substitute for legal advice
         </span>
       </div>
     </div>

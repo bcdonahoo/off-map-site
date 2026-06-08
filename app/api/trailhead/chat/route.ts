@@ -9,11 +9,11 @@ const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 // ── Firm config (swap this block to re-skin for a different firm) ───────────
 
 const FIRM_CONFIG = {
-  name: 'Hill Country Estate Law',
-  city: 'Austin, Texas',
-  positioning: 'Plain-English estate planning for Texas families',
+  name: 'Cedar & Vale Estate Law',
+  city: '',
+  positioning: 'Plain-English estate planning for every family',
   product: {
-    name: 'Texas Estate Plan Package',
+    name: 'Estate Plan Package',
     price: 2000,
     timeline: 'Documents ready within 10 business days',
     included: [
@@ -30,7 +30,7 @@ const FIRM_CONFIG = {
   outOfScope: [
     'Contested probate or litigation',
     'Complex business succession planning',
-    'Multi-state estate planning beyond Texas',
+    'Multi-state or out-of-area estate planning',
     'Family law, criminal, immigration matters',
   ],
   greeting:
@@ -84,7 +84,7 @@ const TOOLS: Anthropic.Tool[] = [
         fitIndicators: {
           type: 'array',
           items: { type: 'string' },
-          description: 'Specific signals observed, e.g. "Texas resident", "paid-off home", "contested probate"',
+          description: 'Specific signals observed, e.g. "local resident", "paid-off home", "contested probate"',
         },
         fitLevel: {
           type: 'string',
@@ -354,11 +354,11 @@ async function executeTool(name: string, input: Record<string, unknown>): Promis
 
 // ── System prompt ──────────────────────────────────────────────────────────
 
-const SYSTEM_PROMPT = `You are an AI assistant for Hill Country Estate Law, an Austin, Texas estate planning firm. Your job is to have a warm, honest conversation with people thinking about getting their estate plan in order, help them understand whether the Texas Estate Plan Package is right for them, and guide them to the right next step.
+const SYSTEM_PROMPT = `You are an AI assistant for Cedar & Vale Estate Law, a flat-fee estate planning firm. Your job is to have a warm, honest conversation with people thinking about getting their estate plan in order, help them understand whether the flat-fee Estate Plan Package is right for them, and guide them to the right next step.
 
 ABOUT THE FIRM:
-Hill Country Estate Law — "Plain-English estate planning for Texas families"
-We believe estate planning shouldn't be expensive or scary.
+Cedar & Vale Estate Law — "Plain-English estate planning for every family"
+We believe estate planning should not be expensive or scary.
 
 THE PACKAGE — $2,000 flat fee, everything included:
 - Last Will and Testament
@@ -374,7 +374,7 @@ Terms: Flat fee. No hourly billing.
 OUT OF SCOPE — be honest when a situation isn't a fit:
 - Contested probate or litigation between family members
 - Complex business succession planning (ownership transfers, buy-sell agreements)
-- Multi-state estate planning beyond Texas
+- Multi-state or out-of-area estate planning
 - Family law, criminal, or immigration matters
 
 YOUR PERSONA: Warm, plain-spoken, never pushy. Confident about what the package includes. Honest when something needs a different kind of engagement. Never scary or legalistic.
@@ -397,9 +397,9 @@ Naturally weave in questions about name and email as the conversation flows. Don
 - Final assessment call: include your fitLevel judgment along with situationSummary, familyComplexity, and fitIndicators
 
 When assessing fitLevel:
-- HIGH: Texas resident, straightforward family (married couple, adult kids, no active litigation), wants a will / powers of attorney / healthcare directive, no complex business interests
+- HIGH: In our service area, straightforward family (married couple, adult kids, no active litigation), wants a will / powers of attorney / healthcare directive, no complex business interests
 - MEDIUM: small business owner with succession questions, blended family with complex inheritance needs, significant complexity that benefits from an attorney first
-- OUT_OF_SCOPE: contested probate or litigation already in progress, criminal / immigration / family law, non-Texas matters
+- OUT_OF_SCOPE: contested probate or litigation already in progress, criminal / immigration / family law, matters outside our service area
 
 STEP 4 — MAKE THE OUTCOME DECISION based on the fitLevel returned by qualify_lead:
 

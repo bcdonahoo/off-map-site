@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { TrailheadIntroModal } from '@/components/demos/trailhead-intro-modal'
 import { TrailheadSystemOverview } from '@/components/trailhead/system-overview'
+import { WalkthroughGate } from '@/components/trailhead/walkthrough-gate'
 import { TrailheadDemoSection } from '@/components/trailhead/demo-section'
 
 export const metadata: Metadata = {
@@ -12,13 +13,12 @@ export const metadata: Metadata = {
 const INCLUDED = [
   'Last Will and Testament',
   'Durable Power of Attorney',
-  'Medical Power of Attorney & HIPAA Release',
+  'Medical Power of Attorney and HIPAA Release',
   'Directive to Physicians (Living Will)',
   'Transfer-on-Death Deed for Primary Residence',
   '60-Minute Attorney Consultation',
   'Two Rounds of Revisions within 90 Days',
 ]
-
 
 const SAFEGUARDS = [
   'Intake-first workflow, not advice-first workflow',
@@ -69,8 +69,8 @@ export default function TrailheadPage() {
           </h1>
           <p className="mb-8 text-lg leading-relaxed max-w-2xl" style={{ color: 'var(--color-text-muted)' }}>
             Trailhead packages the offer, runs the intake, flags complexity, and delivers a clean
-            attorney handoff. Automatically, for every prospect. Hill Country Estate Law is a
-            fictional firm built to demo the full system.
+            attorney handoff. Automatically, for every prospect. Off-Map operates it for your firm.
+            Cedar &amp; Vale Estate Law is a fictional firm built to demo the full system.
           </p>
 
           {/* Law-firm CTA chip */}
@@ -94,8 +94,19 @@ export default function TrailheadPage() {
         </div>
       </div>
 
-      {/* ── System overview ── */}
+      {/* ── Gated walkthrough ── */}
+      {/*
+        Decision: gated walkthrough is the primary demo experience (brief option b).
+        The interactive scripted demo moves below as a secondary "component preview."
+      */}
       <section className="pb-16 px-6" style={{ background: 'var(--color-bg)' }}>
+        <div className="mx-auto max-w-3xl">
+          <WalkthroughGate />
+        </div>
+      </section>
+
+      {/* ── System overview ── */}
+      <section className="py-16 px-6" style={{ background: 'var(--color-bg-light)' }}>
         <div className="mx-auto max-w-6xl">
           <p
             className="mb-2 text-xs font-semibold uppercase tracking-widest"
@@ -113,11 +124,8 @@ export default function TrailheadPage() {
         </div>
       </section>
 
-      {/* ── Demo section (scripted + live intake) ── */}
-      <TrailheadDemoSection />
-
-      {/* ── Package + How it works + Testimonials ── */}
-      <div className="px-6 pb-16">
+      {/* ── Package + How it works ── */}
+      <div className="px-6 py-16">
         <div className="mx-auto max-w-2xl">
 
           {/* Package card */}
@@ -137,7 +145,7 @@ export default function TrailheadPage() {
                   className="text-lg font-bold mb-1"
                   style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}
                 >
-                  Texas Estate Plan Package
+                  Estate Plan Package
                 </h2>
                 <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
                   Everything your family needs. Nothing you don&rsquo;t.
@@ -150,7 +158,7 @@ export default function TrailheadPage() {
                 >
                   $2,000
                 </div>
-                <div className="text-xs" style={{ color: 'var(--color-text-muted)' }}>flat fee · all-in</div>
+                <div className="text-xs" style={{ color: 'var(--color-text-muted)' }}>flat fee · all-in · illustrative</div>
               </div>
             </div>
             <ul className="space-y-2 mb-4">
@@ -182,7 +190,7 @@ export default function TrailheadPage() {
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
               {[
                 { step: '01', label: 'Guided intake', desc: 'Answer a few questions about your family and assets. Takes about 5 minutes.' },
-                { step: '02', label: 'Attorney review', desc: 'A licensed Texas attorney reviews your situation and prepares your documents.' },
+                { step: '02', label: 'Attorney review', desc: 'A licensed attorney reviews your situation and prepares your documents.' },
                 { step: '03', label: 'Sign and done', desc: "Review, sign, and you're covered. Documents in hand within 10 business days." },
               ].map((item) => (
                 <div
@@ -228,12 +236,17 @@ export default function TrailheadPage() {
             through structured intake, explains the service in plain English, identifies possible
             complexity flags, and prepares a clean summary for attorney review.
           </p>
-          <p className="mb-10 max-w-2xl text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
+          <p className="mb-6 max-w-2xl text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
             It does not provide legal advice, create an attorney-client relationship, or make final
-            legal recommendations. Every firm can configure its own package rules, disclaimers,
-            escalation triggers, eligibility criteria, and handoff process. The attorney remains
-            responsible for confirming scope, giving legal advice, preparing documents, and accepting
-            representation.
+            legal recommendations. Off-Map builds to your firm&apos;s rules: the package and fee structure,
+            eligibility criteria, escalation triggers, approved language, and handoff process. The
+            attorney remains responsible for confirming scope, giving legal advice, preparing documents,
+            and accepting representation.
+          </p>
+          <p className="mb-10 max-w-2xl text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
+            Off-Map builds Trailhead to your firm&apos;s rules and runs it for you. You set the legal
+            parameters and make every legal decision. We operate the system so it works in the
+            background while you practice law.
           </p>
           <p className="mb-8 text-sm font-semibold" style={{ color: 'var(--color-text-dark)' }}>
             Designed safeguards include:
@@ -256,6 +269,9 @@ export default function TrailheadPage() {
           </div>
         </div>
       </section>
+
+      {/* ── Component preview (interactive demo, secondary) ── */}
+      <TrailheadDemoSection />
 
       {/* ── Why firms use this ── */}
       <section className="py-24 px-6" style={{ background: 'var(--color-bg)' }}>
@@ -329,7 +345,7 @@ export default function TrailheadPage() {
             style={{ background: 'var(--color-bg-surface)', border: '1px solid var(--color-border)' }}
           >
             <p className="text-xs leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-              Hill Country Estate Law is a fictional firm created for demonstration purposes by{' '}
+              Cedar &amp; Vale Estate Law is a fictional firm created for demonstration purposes by{' '}
               <span style={{ color: 'var(--color-text-primary)' }}>Off-Map</span>. This is a working
               demo of Trailhead, an AI-powered intake and client acquisition system for law firms
               offering flat-fee legal services.

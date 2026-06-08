@@ -111,8 +111,9 @@ export function TrailheadIntroModal() {
         </h2>
 
         <p className="mb-3 text-sm leading-relaxed" style={{ color: 'var(--color-text-primary)' }}>
-          Hill Country Estate Law is a fictional firm. This is a working demo of the Trailhead GTM
-          engine — an attorney-controlled intake and sales system for flat-fee legal services.
+          Cedar &amp; Vale Estate Law is a fictional firm built by Off-Map for this demo. This is a
+          working demo of Trailhead, an attorney-controlled intake and client acquisition system for
+          flat-fee legal services.
         </p>
 
         <div

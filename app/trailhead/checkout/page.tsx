@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { TrailheadCheckout } from '@/components/demos/trailhead-checkout'
 
 export const metadata: Metadata = {
-  title: 'Checkout | Hill Country Estate Law',
+  title: 'Checkout | Cedar & Vale Estate Law',
   robots: { index: false, follow: false },
 }
 
@@ -54,7 +54,7 @@ export default async function CheckoutPage({ searchParams }: Props) {
           className="mb-3 text-xs font-semibold uppercase tracking-widest"
           style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
         >
-          Hill Country Estate Law · Secure Checkout
+          Cedar &amp; Vale Estate Law · Secure Checkout
         </p>
 
         {/* Header */}

@@ -34,11 +34,11 @@ type SeqItem = { delay: number; action: Action }
 
 // ── Easy: standard fit, no flags ──────────────────────────────────────────
 const EASY_SEQUENCE: SeqItem[] = [
-  { delay: 600, action: { kind: 'user-msg', text: "Hi, my husband and I have been meaning to put together a will. We have two adult kids and own our home in Cedar Park. Is this something you can help with?" } },
+  { delay: 600, action: { kind: 'user-msg', text: "Hi, my husband and I have been meaning to put together a will. We have two adult kids and own our home. Is this something you can help with?" } },
   { delay: 700, action: { kind: 'show-typing' } },
-  { delay: 1800, action: { kind: 'hide-typing', text: "Hello. I can help figure out whether our flat-fee estate planning package is a fit for your family. Are both of you Texas residents?" } },
-  { delay: 300, action: { kind: 'handoff', patch: { service: 'Texas flat-fee estate planning package', keyFacts: ['Two adult children', 'Primary residence in Cedar Park'] } } },
-  { delay: 1600, action: { kind: 'user-msg', text: "Yes, we have been in Texas our whole lives. Both in Williamson County." } },
+  { delay: 1800, action: { kind: 'hide-typing', text: "Hello. I can help figure out whether our flat-fee estate planning package is a fit for your family. Are both of you in our service area?" } },
+  { delay: 300, action: { kind: 'handoff', patch: { service: 'flat-fee estate planning package', keyFacts: ['Two adult children', 'Primary residence, single home'] } } },
+  { delay: 1600, action: { kind: 'user-msg', text: "Yes, we have lived in the area for years." } },
   { delay: 400, action: { kind: 'show-typing' } },
   { delay: 1500, action: { kind: 'hide-typing', text: "Good. Do either of you have children from a prior relationship, or any family member who receives government benefits?" } },
   { delay: 1800, action: { kind: 'user-msg', text: "No, this is our only marriage. Both kids are grown and doing well on their own." } },
@@ -47,7 +47,7 @@ const EASY_SEQUENCE: SeqItem[] = [
   { delay: 1800, action: { kind: 'user-msg', text: "No, just the house. My husband has a 401k through his employer but nothing else." } },
   { delay: 500, action: { kind: 'show-typing' } },
   { delay: 2000, action: { kind: 'hide-typing', text: "Based on what you have shared, this looks like a standard fit for our flat-fee package. No complexity flags came up. Would you like to schedule a consultation to confirm scope and get started?" } },
-  { delay: 200, action: { kind: 'handoff', patch: { fit: 'standard', keyFacts: ['Married couple, both Texas residents (Williamson County)', 'Two adult children', 'Primary residence in Cedar Park', 'No business interests or out-of-state property'] } } },
+  { delay: 200, action: { kind: 'handoff', patch: { fit: 'standard', keyFacts: ['Married couple, both local residents', 'Two adult children', 'Primary residence, single home', 'No business interests or out-of-state property'] } } },
   { delay: 1600, action: { kind: 'user-msg', text: "Yes, let's do that." } },
   { delay: 400, action: { kind: 'show-typing' } },
   { delay: 1400, action: { kind: 'hide-typing', text: "I will help you get that scheduled. The attorney will confirm scope, answer your questions, and get your documents underway." } },
@@ -57,11 +57,11 @@ const EASY_SEQUENCE: SeqItem[] = [
 
 // ── Medium: possible fit, 2 complexity flags ──────────────────────────────
 const MEDIUM_SEQUENCE: SeqItem[] = [
-  { delay: 600, action: { kind: 'user-msg', text: "Hi, my wife and I have been putting off getting an estate plan for years. We have two kids and own our home in Austin. Where do we start?" } },
+  { delay: 600, action: { kind: 'user-msg', text: "Hi, my wife and I have been putting off getting an estate plan for years. We have two kids and own our home. Where do we start?" } },
   { delay: 700, action: { kind: 'show-typing' } },
-  { delay: 1800, action: { kind: 'hide-typing', text: "Welcome. I can help figure out whether our flat-fee estate plan is a fit for your family. Are both of you Texas residents?" } },
-  { delay: 300, action: { kind: 'handoff', patch: { service: 'Texas flat-fee estate planning package', keyFacts: ['Two children', 'Primary residence in Austin'] } } },
-  { delay: 1600, action: { kind: 'user-msg', text: "Yes, both Texas residents. Been in Austin about 12 years." } },
+  { delay: 1800, action: { kind: 'hide-typing', text: "Welcome. I can help figure out whether our flat-fee estate plan is a fit for your family. Are both of you in our service area?" } },
+  { delay: 300, action: { kind: 'handoff', patch: { service: 'flat-fee estate planning package', keyFacts: ['Two children', 'Primary residence'] } } },
+  { delay: 1600, action: { kind: 'user-msg', text: "Yes, we are both local." } },
   { delay: 400, action: { kind: 'show-typing' } },
   { delay: 1500, action: { kind: 'hide-typing', text: "Good. Do either of you have any family members with special needs, or children from a previous relationship?" } },
   { delay: 1800, action: { kind: 'user-msg', text: "Our younger daughter has Down syndrome. She receives some government benefits." } },
@@ -75,7 +75,7 @@ const MEDIUM_SEQUENCE: SeqItem[] = [
   { delay: 1600, action: { kind: 'user-msg', text: "Yes, let's do that." } },
   { delay: 400, action: { kind: 'show-typing' } },
   { delay: 1400, action: { kind: 'hide-typing', text: "I will help you book a time. The attorney will review everything you have shared and confirm whether the flat-fee package covers your situation, or whether a different approach makes more sense." } },
-  { delay: 300, action: { kind: 'handoff', patch: { keyFacts: ['Married couple, both Texas residents', 'Two children (one with special needs receiving government benefits)', 'Primary residence in Austin', 'Interested in wills, POAs, medical directive, TOD deed'], nextStep: 'Schedule paid consultation or scope confirmation call.' } } },
+  { delay: 300, action: { kind: 'handoff', patch: { keyFacts: ['Married couple, both local residents', 'Two children (one with special needs receiving government benefits)', 'Primary residence', 'Interested in wills, POAs, medical directive, TOD deed'], nextStep: 'Schedule paid consultation or scope confirmation call.' } } },
   { delay: 700, action: { kind: 'done' } },
 ]
 
@@ -83,20 +83,20 @@ const MEDIUM_SEQUENCE: SeqItem[] = [
 const DIFFICULT_SEQUENCE: SeqItem[] = [
   { delay: 600, action: { kind: 'user-msg', text: "I need to update my estate plan. I have kids from my first marriage and my current wife has kids from hers. We also have one together. My old will probably does not cover everything." } },
   { delay: 700, action: { kind: 'show-typing' } },
-  { delay: 1800, action: { kind: 'hide-typing', text: "Welcome. I can help evaluate whether our flat-fee package is a fit. Are you and your current wife both Texas residents?" } },
-  { delay: 300, action: { kind: 'handoff', patch: { service: 'Texas flat-fee estate planning package', keyFacts: ['Blended family with children from prior relationships'] } } },
-  { delay: 1600, action: { kind: 'user-msg', text: "Yes, we live in San Antonio. But I do have a vacation cabin up in Colorado." } },
+  { delay: 1800, action: { kind: 'hide-typing', text: "Welcome. I can help evaluate whether our flat-fee package is a fit. Are you and your current wife both in our service area?" } },
+  { delay: 300, action: { kind: 'handoff', patch: { service: 'flat-fee estate planning package', keyFacts: ['Blended family with children from prior relationships'] } } },
+  { delay: 1600, action: { kind: 'user-msg', text: "Yes, we are both local. But I do have a vacation cabin out of state." } },
   { delay: 500, action: { kind: 'show-typing' } },
   { delay: 1800, action: { kind: 'hide-typing', text: "Noted. Out-of-state property typically requires separate ancillary documents and may fall outside our standard flat-fee scope. Do you have an existing trust, or any estate planning documents from a prior marriage?" } },
-  { delay: 200, action: { kind: 'handoff', patch: { flags: ['Out-of-state property (Colorado) requires ancillary documents'] } } },
+  { delay: 200, action: { kind: 'handoff', patch: { flags: ['Out-of-state property (vacation cabin) requires ancillary documents'] } } },
   { delay: 1800, action: { kind: 'user-msg', text: "I have a revocable living trust from 2009. Set it up in another state. I have never updated it." } },
   { delay: 600, action: { kind: 'show-typing' } },
   { delay: 2000, action: { kind: 'hide-typing', text: "An out-of-state trust that has not been reviewed recently will need attorney evaluation before we can determine scope. Do any of your beneficiaries have needs that would require special protections for their inheritance?" } },
-  { delay: 200, action: { kind: 'handoff', patch: { flags: ['Out-of-state property (Colorado) requires ancillary documents', 'Existing out-of-state trust requires review and possible restatement'] } } },
+  { delay: 200, action: { kind: 'handoff', patch: { flags: ['Out-of-state property (vacation cabin) requires ancillary documents', 'Existing out-of-state trust requires review and possible restatement'] } } },
   { delay: 1800, action: { kind: 'user-msg', text: "My son from my first marriage has struggled with addiction. I want to make sure he is protected but cannot spend through everything at once." } },
   { delay: 600, action: { kind: 'show-typing' } },
   { delay: 2200, action: { kind: 'hide-typing', text: "That is an important consideration. Protecting an inheritance from a beneficiary with substance use concerns typically requires a discretionary or spendthrift trust, which goes beyond standard document preparation. Based on what you have shared — blended family, out-of-state property, an existing trust to review, and a beneficiary requiring protective trust planning — this situation is likely outside our standard flat-fee scope. I would recommend a paid consultation so the attorney can assess your full situation before any scope is committed to." } },
-  { delay: 300, action: { kind: 'handoff', patch: { fit: 'outside', flags: ['Out-of-state property (Colorado) requires ancillary documents', 'Existing out-of-state trust requires review and possible restatement', 'Beneficiary requiring protective or spendthrift trust planning'], keyFacts: ['Blended family with children from prior relationships', 'Primary residence in San Antonio', 'Vacation cabin in Colorado (out-of-state)'] } } },
+  { delay: 300, action: { kind: 'handoff', patch: { fit: 'outside', flags: ['Out-of-state property (vacation cabin) requires ancillary documents', 'Existing out-of-state trust requires review and possible restatement', 'Beneficiary requiring protective or spendthrift trust planning'], keyFacts: ['Blended family with children from prior relationships', 'Primary residence', 'Out-of-state vacation property'] } } },
   { delay: 1800, action: { kind: 'user-msg', text: "That makes sense. What would a consultation look like?" } },
   { delay: 400, action: { kind: 'show-typing' } },
   { delay: 1600, action: { kind: 'hide-typing', text: "The attorney will review everything you have shared, explain your options, and give you a clear picture of what planning you actually need before any fee is quoted. I will help you get that scheduled." } },
@@ -110,19 +110,19 @@ const SCENARIOS = [
   {
     id: 'easy' as ScenarioId,
     label: 'Standard fit',
-    description: 'A married couple in Williamson County. Two adult children, single home, no business interests. Clean intake, no flags.',
+    description: 'A married couple. Two adult children, single home, no business interests. Clean intake, no flags.',
     sequence: EASY_SEQUENCE,
   },
   {
     id: 'medium' as ScenarioId,
     label: 'Possible fit',
-    description: 'A married couple in Austin with a special needs beneficiary on government benefits and a small LLC. Two complexity flags surface.',
+    description: 'A married couple with a special needs beneficiary on government benefits and a small LLC. Two complexity flags surface.',
     sequence: MEDIUM_SEQUENCE,
   },
   {
     id: 'difficult' as ScenarioId,
     label: 'Outside scope',
-    description: 'A blended family in San Antonio with out-of-state property, an old out-of-state trust, and a beneficiary requiring protective planning.',
+    description: 'A blended family with out-of-state property, an old out-of-state trust, and a beneficiary requiring protective planning.',
     sequence: DIFFICULT_SEQUENCE,
   },
 ] as const
@@ -248,11 +248,11 @@ export function TrailheadScriptedDemo({ compact = false }: { compact?: boolean }
               className="w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0"
               style={{ background: 'var(--color-accent)', color: '#fff' }}
             >
-              HC
+              CV
             </div>
             <div className="min-w-0">
               <p className="text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>
-                Hill Country Estate Law
+                Cedar &amp; Vale Estate Law
               </p>
               <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>Estate Planning</p>
             </div>
@@ -306,7 +306,7 @@ export function TrailheadScriptedDemo({ compact = false }: { compact?: boolean }
                   className="w-7 h-7 rounded-full flex items-center justify-center text-[9px] font-bold shrink-0 mt-0.5"
                   style={{ background: 'var(--color-accent)', color: '#fff' }}
                 >
-                  HC
+                  CV
                 </div>
                 <div
                   className="rounded-2xl rounded-bl-sm px-4 py-3"

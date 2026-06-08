@@ -166,7 +166,7 @@ export default function AuditPage() {
             className="text-sm leading-relaxed"
             style={{ color: 'var(--color-text-muted)' }}
           >
-            Managing partners of Texas law firms who know client acquisition is
+            Managing partners of small law firms who know client acquisition is
             not where it should be but cannot pinpoint why. You
             have been running the practice on referrals and relationships. You
             want a fast, honest read from someone who has actually built client

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { TrailheadForm } from '@/components/demos/trailhead-form'
 
 export const metadata: Metadata = {
-  title: 'Estate Planning Form | Hill Country Estate Law',
+  title: 'Estate Planning Form | Cedar & Vale Estate Law',
   robots: { index: false, follow: false },
 }
 
@@ -32,7 +32,7 @@ export default function TrailheadFormPage() {
           className="mb-4 text-xs font-semibold uppercase tracking-widest"
           style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
         >
-          Hill Country Estate Law · Austin, Texas
+          Cedar &amp; Vale Estate Law · Demo Firm
         </p>
 
         {/* Hero */}
@@ -58,10 +58,9 @@ export default function TrailheadFormPage() {
           }}
         >
           <p className="text-xs leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-            Hill Country Estate Law is a fictional firm created for demonstration purposes by{' '}
+            Cedar &amp; Vale Estate Law is a fictional firm created for demonstration purposes by{' '}
             <span style={{ color: 'var(--color-text-primary)' }}>Off-Map</span>. This is a working demo of
-            the Trailhead GTM Engine — an AI-powered sales and intake system for productized legal
-            services.
+            Trailhead, an AI-powered intake and client acquisition system for flat-fee legal services.
           </p>
         </div>
 
